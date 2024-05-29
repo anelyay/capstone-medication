@@ -1,10 +1,18 @@
 import './App.scss';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <BrowserRouter>
+      {/* <Header /> */}
+      <Routes>
+        {/* <Route path="/" element={<HomePage />} /> */}
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      {/* <Footer /> */}
+    </BrowserRouter>
   );
 }
 
