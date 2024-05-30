@@ -2,12 +2,12 @@
 @use "../../styles/partials/variables" as *;
 
 .header {
-  //   background-color: $background-color;
   @include flex(center, center);
 
   &__container {
     @include direction(column);
     width: 100%;
+    gap: 0.5rem;
 
     @include tablet {
       @include direction(row);

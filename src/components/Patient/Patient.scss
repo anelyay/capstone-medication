@@ -1,0 +1,30 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.patient {
+  width: 100%;
+  @include flex(center, center);
+  @include direction(column);
+
+  @include tablet{
+    @include flex(center, center)
+  }
+
+  &__title{
+    @include tablet{
+        font-size: 1.75rem;
+        margin-top: 0.5rem;
+    }
+  }
+
+  &__medlist {
+    @include direction(column);
+    gap: 1rem;
+    @include tablet {
+      @include flex(center, center);
+      @include direction(row);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+  }
+}

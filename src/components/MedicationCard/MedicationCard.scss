@@ -1,0 +1,67 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.card {
+  background-color: $card-background-color;
+  padding: 2rem 1rem;
+  border-radius: 15px;
+  @include flex(Center, center);
+  @include direction(column);
+  box-shadow: 2px 3px 6px -1px rgba(0, 0, 0, 0.6);
+  border: 2px solid $background-color;
+  width: 14rem;
+  gap: 2rem;
+
+  @include tablet{
+    width: 12rem,
+  }
+
+  &__top {
+    @include flex(center, center);
+    @include direction(column);
+    gap: 0.25rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  &__schedule {
+    @include flex(center, center);
+    gap: 1rem;
+  }
+  &__timebox{
+    @include direction(column);
+    gap: 0.5rem;
+  }
+
+  &__time {
+    margin: 0;
+  }
+
+  &__compliance {
+    margin: 0;
+  }
+
+  &__button{
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url(../../assets/images/taken.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  &__expand{
+    font-size: 0.65rem;
+  }
+}
