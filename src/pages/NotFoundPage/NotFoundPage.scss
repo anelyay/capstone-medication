@@ -1,0 +1,25 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.notfound {
+  @include flex(center, center);
+  @include direction(column);
+  padding: 2rem 0;
+
+  &__title {
+    color: $invalid-font-color;
+    font-size: 1.5rem;
+
+    @include tablet{
+        font-size: 3rem;
+        margin: 0rem;
+    }
+  }
+
+  &__image{
+    width: 20rem;
+    @include tablet{
+        width: 40rem;
+    }
+  }
+}
