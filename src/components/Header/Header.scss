@@ -12,7 +12,7 @@
     @include tablet {
       @include direction(row);
       @include flex(space-between, center);
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
     @include desktop {
         width: 63.75rem;
