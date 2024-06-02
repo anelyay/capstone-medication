@@ -1,7 +1,14 @@
 import "./LoginPage.scss";
 import logo from "../../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    navigate("/");
+  };
+
   return (
     <div className="login">
       <div className="login__pattern"></div>
@@ -28,7 +35,11 @@ export default function LoginPage() {
               <label className="login__label">Password:</label>
               <input className="login__input" type="password" name="password" />
             </div>
-            <button type="submit" className="login__button">
+            <button
+              type="submit"
+              className="login__button"
+              onClick={handleSubmit}
+            >
               enter
             </button>
           </form>

@@ -1,8 +1,9 @@
 import "./Header.scss";
 import logo from "../../assets/images/logo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
   const location = useLocation();
   const hideHeader = ["/login"];
   const showHeader = !hideHeader.includes(location.pathname);
@@ -10,6 +11,14 @@ export default function Header() {
   if (!showHeader) {
     return null;
   }
+
+  const handleHome = (event) => {
+    navigate("/");
+  };
+  const handleProfile = (event) => {
+    navigate("/profile");
+  };
+
   return (
     <header className="header">
       <div className="header__container">
@@ -20,8 +29,12 @@ export default function Header() {
           </div>
         </Link>
         <nav className="header__nav">
-          <button className="header__navlink">home</button>
-          <button className="header__navlink">profile</button>
+          <button className="header__navlink" onClick={handleHome}>
+            home
+          </button>
+          <button className="header__navlink" onClick={handleProfile}>
+            profile
+          </button>
         </nav>
       </div>
     </header>

@@ -33,12 +33,10 @@
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(0.9);
   }
 
   @include tablet {
     width: 10rem;
   }
 }
-
-
