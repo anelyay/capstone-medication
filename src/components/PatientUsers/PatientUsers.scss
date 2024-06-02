@@ -6,9 +6,19 @@
   border-radius: 20px;
   padding: 0.5rem;
   background-color: $card-patient-color;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  width: 100%;
+  // min-width: 18rem;
+  // max-width: 30rem ;
+  // width: auto;
 
+  @include tablet {
+    width: 30%;
+  }
+
+  @include desktop {
+    width: 25%;
+  }
 
   &__title{
     text-align: center;
@@ -29,4 +39,6 @@
     text-decoration: underline;
     font-size: 0.9rem;
   }
+
+
 }
