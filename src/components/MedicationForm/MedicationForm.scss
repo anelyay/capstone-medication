@@ -1,0 +1,12 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+
+.add-med {
+  @include flex(center, center);
+  &__wrap {
+    margin: 1rem;
+  }
+  &__title {
+  }
+}

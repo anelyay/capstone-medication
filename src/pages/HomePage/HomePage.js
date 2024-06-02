@@ -8,9 +8,9 @@ export default function HomePage() {
         <h1 className="home__title">Today's Medications</h1>
 
         <div className="home__patientlist">
-            <Patient/>
+          <Patient />
+          <Patient />
         </div>
-
       </div>
     </main>
   );

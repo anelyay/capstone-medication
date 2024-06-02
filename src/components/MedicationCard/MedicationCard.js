@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export default function MedicationCard() {
   return (
     <Link to="/medication">
-      {" "}
       <section className="card">
         <div className="card__top">
           <h3 className="card__title">Dienogest</h3>

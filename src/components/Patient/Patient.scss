@@ -6,14 +6,15 @@
   @include flex(center, center);
   @include direction(column);
 
-  @include tablet{
-    @include flex(center, center)
+  @include tablet {
+    @include flex(center, center);
   }
 
-  &__title{
-    @include tablet{
-        font-size: 1.75rem;
-        margin-top: 0.5rem;
+  &__title {
+    text-decoration: underline;
+    @include tablet {
+      font-size: 1.75rem;
+      margin-top: 0.5rem;
     }
   }
 

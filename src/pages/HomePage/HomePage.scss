@@ -30,9 +30,11 @@
     width: 100%;
     padding: 0 3rem;
     @include flex(center, center);
+    @include direction(column);
+    gap: 5rem;
 
     @include tablet {
-      @include direction(row);
+      @include direction(column);
     }
   }
 }

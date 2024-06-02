@@ -8,10 +8,7 @@ export default function Patient() {
       <div className="patient__medlist">
         <MedicationCard />
         <MedicationCard />
-        <MedicationCard />
-        <MedicationCard />
-        <MedicationCard />
-        <MedicationCard />
+
       </div>
     </div>
   );
