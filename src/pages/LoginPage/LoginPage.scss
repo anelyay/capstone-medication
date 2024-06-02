@@ -19,8 +19,6 @@
         margin: 0;
     }
   }
-  &__section {
-  }
 
   &__wrap {
     padding: 1rem 0;
@@ -53,7 +51,6 @@
   &__form-container {
     padding: 1rem 2rem;
     width: 100%;
-    // border-top: $border;
 
     @include tablet {
       padding: 1rem 6rem;

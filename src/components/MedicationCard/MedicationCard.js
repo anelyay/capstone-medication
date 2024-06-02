@@ -21,7 +21,7 @@ export default function MedicationCard() {
       </div>
       </section>
 
-      {/* <div className="card__expand">more details</div> */}
+      <div className="card__expand">more details</div>
     </section>
   );
 }
