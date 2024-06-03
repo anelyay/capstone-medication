@@ -27,7 +27,7 @@ export default function UserForm({
               type="date"
               id="dob"
               name="dob"
-              className={`${className}__input`}
+              className={`${className}__date`}
             />
           </div>
 

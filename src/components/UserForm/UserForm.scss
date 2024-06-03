@@ -25,6 +25,19 @@
     @include input;
     margin-bottom: 1rem;
     width: 100%;
+    background-color: $card-patient-color;
+  }
+
+  &__date {
+    @extend .edit__input;
+    background-image: url(../../assets/icons/icons8-calendar-48.png);
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 0.65rem auto;
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      display: none;
+    }
   }
 
   &__buttons {
@@ -46,7 +59,8 @@
   }
 }
 
-.add {  &__wrap {
+.add {
+  &__wrap {
     @include flex(center, center);
     @include direction(column);
     padding: 0.5rem;
@@ -69,6 +83,7 @@
     @include input;
     margin-bottom: 1rem;
     width: 100%;
+    background-color: $card-patient-color;
   }
 
   &__buttons {

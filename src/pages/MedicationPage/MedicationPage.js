@@ -7,12 +7,12 @@ export default function MedicationPage() {
 
       <div className="medication__card">
         <div className="medication__title-box">
-          <h2 className="medication__title">Dienogest</h2>
+          <h2 className="medication__title">Vitamin B12</h2>
         </div>
 
         <div className="medication__columns">
           <div className="medication__details">
-            <p className="medication__dose"> 2mg </p>
+            <p className="medication__dose"> 250mcg </p>
 
             <p className="medication__schedule"></p>
           </div>
@@ -22,7 +22,7 @@ export default function MedicationPage() {
 
           <div className="medication__more">
             <p className="medication__more-title">
-                More Informations
+                {/* More Information */}
             </p>
           </div>
         </div>

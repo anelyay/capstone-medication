@@ -6,7 +6,7 @@ export default function AddProfile() {
   const navigate = useNavigate();
 
   const handleSecond = (event) => {
-    navigate("/");
+    navigate("/profile");
   };
   return (
     <>

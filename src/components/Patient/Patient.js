@@ -14,6 +14,9 @@ export default function Patient() {
       <div className="patient__medlist">
         <MedicationCard />
         <MedicationCard />
+        <MedicationCard />
+        <MedicationCard />
+        <MedicationCard />
       </div>
       <button className="patient__button" onClick={handleClick}>
         add a new medication
