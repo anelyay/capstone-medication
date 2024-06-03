@@ -7,7 +7,7 @@ export default function EditProfile() {
       <UserForm
         className="edit"
         title="Edit Profile"
-        buttonName="edit"
+        buttonName="submit"
         buttonSecond="delete"
       />
     </>

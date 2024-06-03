@@ -68,4 +68,14 @@
       align-self: start;
     }
   }
+
+  &__buttons {
+    @include flex(center, center);
+    @include direction(row);
+    gap: 1rem;
+
+    @include tablet {
+      gap: 8rem;
+    }
+  }
 }

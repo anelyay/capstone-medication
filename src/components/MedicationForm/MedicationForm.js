@@ -1,7 +1,13 @@
 import { useState } from "react";
 import "./MedicationForm.scss";
 
-export default function MedicationForm({ className, title }) {
+export default function MedicationForm({
+  className,
+  title,
+  buttonName,
+  buttonSecond,
+  handleSecond,
+}) {
   const scheduleOptions = [
     { label: "once a day", times: 1 },
     { label: "twice a day", times: 2 },
@@ -98,7 +104,18 @@ export default function MedicationForm({ className, title }) {
             />
           </div>
 
-          <button className={`${className}__button`}>ADD</button>
+          <div className={`${className}__buttons`}>
+            <button
+              type="button"
+              className={`${className}__button`}
+              onClick={handleSecond}
+            >
+              {buttonSecond}
+            </button>
+            <button type="submit" className={`${className}__button`}>
+              {buttonName}
+            </button>
+          </div>
         </form>
       </div>
     </div>
