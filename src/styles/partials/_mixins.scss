@@ -40,3 +40,16 @@
     width: 10rem;
   }
 }
+
+@mixin input {
+  border: $border;
+  border-radius: 50px;
+  height: 2rem;
+  background-color: $input-color;
+  padding-left: 0.75rem;
+
+
+  @include tablet {
+    width: 28rem;
+  }
+}

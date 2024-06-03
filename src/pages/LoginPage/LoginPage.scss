@@ -14,9 +14,9 @@
     background-size: contain;
     background-position: center;
 
-    @include desktop{
-        height: 100vh;
-        margin: 0;
+    @include desktop {
+      height: 100vh;
+      margin: 0;
     }
   }
 
@@ -30,16 +30,16 @@
       @include direction(row);
     }
 
-    @include desktop{
-        @include direction (column)
-;    }
+    @include desktop {
+      @include direction(column);
+    }
   }
 
   &__logo {
     width: 10rem;
 
-    @include desktop{
-        width: 15rem;
+    @include desktop {
+      width: 15rem;
     }
   }
 
@@ -88,17 +88,11 @@
   }
 
   &__label {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 
   &__input {
-    border: $border;
-    border-radius: 50px;
-    height: 2rem;
-
-    @include tablet {
-      width: 28rem;
-    }
+    @include input;
   }
 
   &__button {
