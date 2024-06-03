@@ -12,7 +12,6 @@ export default function MedicationForm({ className, title }) {
   const [selectedSchedule, setSelectedSchedule] = useState("");
   const [selectedTimes, setSelectedTimes] = useState(null);
 
-
   const handleScheduleChange = (event) => {
     const selectedOption = scheduleOptions.find(
       (option) => option.label === event.target.value
@@ -46,40 +45,58 @@ export default function MedicationForm({ className, title }) {
       <div className={`${className}__wrap`}>
         <h2 className={`${className}__title`}>{title}</h2>
         <form className={`${className}__form`}>
-          <label className={`${className}__label`}>Medication Name</label>
-          <input
-            id="medicationName"
-            name="medicationName"
-            className={`${className}__input`}
-          />
-          <label className={`${className}__label`}>Dose</label>
-          <input id="dose" name="dose" className={`${className}__input`} />
-          <label className={`${className}__label`}>Schedule</label>
-          <select
-            id="schedule"
-            name="schedule"
-            className={`${className}__schedule`}
-            value={selectedSchedule}
-            onChange={handleScheduleChange}
-          >
-            <option className={`${className}__option`} hidden disabled value="">
-              Please select
-            </option>
-            {scheduleOptions.map((option, index) => (
-              <option key={index} value={option.label}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <div className={`${className}__times`}>{renderTimeInputs()}</div>
+          <div className={`${className}__box`}>
+            <label className={`${className}__label`}>Medication Name</label>
+            <input
+              id="medicationName"
+              name="medicationName"
+              className={`${className}__input`}
+            />
+          </div>
 
-          <label className={`${className}__label`}>Quantity</label>
-          <input
-            id="quantity"
-            name="quantity"
-            type="number"
-            className={`${className}__input`}
-          />
+          <div className={`${className}__box`}>
+            <label className={`${className}__label`}>Dose</label>
+            <input id="dose" name="dose" className={`${className}__input`} />
+          </div>
+
+          <div className={`${className}__box`}>
+            <label className={`${className}__label`}>Schedule</label>
+            <select
+              id="schedule"
+              name="schedule"
+              className={`${className}__schedule`}
+              value={selectedSchedule}
+              onChange={handleScheduleChange}
+            >
+              <option
+                className={`${className}__option`}
+                hidden
+                disabled
+                value=""
+              >
+                Please select
+              </option>
+              {scheduleOptions.map((option, index) => (
+                <option key={index} value={option.label}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={`${className}__box`}>
+            <div className={`${className}__times`}>{renderTimeInputs()}</div>
+          </div>
+
+          <div className={`${className}__box`}>
+            <label className={`${className}__label`}>Quantity</label>
+            <input
+              id="quantity"
+              name="quantity"
+              type="number"
+              className={`${className}__input`}
+            />
+          </div>
 
           <button className={`${className}__button`}>ADD</button>
         </form>

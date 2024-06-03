@@ -9,6 +9,8 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AddMedication from "./pages/AddMedication/AddMedication";
 import EditMedication from "./pages/EditMedication/EditMedication";
 import Footer from "./components/Footer/Footer";
+import AddProfile from "./pages/AddProfile/AddProfile";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -19,8 +21,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/medication" element={<MedicationPage />} />
         <Route path="/medication/add" element={<AddMedication />} />
-        <Route path="/medication/1/edit" element={<EditMedication />} />
+        <Route path="/medication/id/edit" element={<EditMedication />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/add" element={<AddProfile />} />
+        <Route path="/profile/id/edit" element={<EditProfile />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

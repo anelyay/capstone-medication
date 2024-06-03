@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "./PatientUsers.scss";
 
 export default function PatientUsers() {
+  const navigate = useNavigate();
+
+  const handleClick = (event) => {
+    navigate("id/edit");
+  };
   return (
     <div className="user">
       <h2 className="user__title">Lady Cat</h2>
@@ -10,7 +16,10 @@ export default function PatientUsers() {
         <h3 className="user__label">Primary Doctor: Dr. Meow</h3>
         <h3 className="user__label">Allergies: NKDA</h3>
       </div>
-      <h3 className="user__link">Past Medications</h3>
+      <h3 className="user__link" onClick={handleClick}>
+        edit a profile
+      </h3>
+      {/* <h3 className="user__link">Past Medications</h3> */}
     </div>
   );
 }

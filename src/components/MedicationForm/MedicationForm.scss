@@ -16,16 +16,21 @@
     @include direction(row);
     @include flex(center, baseline);
     flex-wrap: wrap;
+
+    @include tablet {
+      gap: 0.5rem;
+      @include direction(column);
+      flex-wrap: nowrap;
+    }
   }
 
   &__form {
     @include direction(column);
-    // @include flex(center, center);
     width: 100%;
 
-    // @include tablet{
-    //     width: 100%;
-    // }
+    @include tablet {
+      @include flex(center, center);
+    }
   }
 
   &__time {
