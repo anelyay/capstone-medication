@@ -8,8 +8,8 @@ export default function Patient() {
       <div className="patient__medlist">
         <MedicationCard />
         <MedicationCard />
-
       </div>
+      <button className="patient__button">add a new medication </button>
     </div>
   );
 }

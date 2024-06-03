@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./MedicationForm.scss";
 
-export default function MedicationForm({ className }) {
+export default function MedicationForm({ className, title }) {
   const scheduleOptions = [
     { label: "once a day", times: 1 },
     { label: "twice a day", times: 2 },
@@ -26,7 +26,7 @@ export default function MedicationForm({ className }) {
     const inputs = [];
     for (let i = 0; i < selectedTimes; i++) {
       inputs.push(
-        <div key={i}>
+        <div key={i} className={`${className}__time`}>
           <label className={`${className}__label`}>Time {i + 1}</label>
           <input
             type="time"
@@ -44,7 +44,7 @@ export default function MedicationForm({ className }) {
   return (
     <div className={className}>
       <div className={`${className}__wrap`}>
-        <h2 className={`${className}__title`}>Add Medication</h2>
+        <h2 className={`${className}__title`}>{title}</h2>
         <form className={`${className}__form`}>
           <label className={`${className}__label`}>Medication Name</label>
           <input
@@ -71,12 +71,13 @@ export default function MedicationForm({ className }) {
               </option>
             ))}
           </select>
-          {renderTimeInputs()}
+          <div className={`${className}__times`}>{renderTimeInputs()}</div>
 
           <label className={`${className}__label`}>Quantity</label>
           <input
             id="quantity"
             name="quantity"
+            type="number"
             className={`${className}__input`}
           />
 

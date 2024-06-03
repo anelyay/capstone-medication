@@ -7,6 +7,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import MedicationPage from "./pages/MedicationPage/MedicationPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AddMedication from "./pages/AddMedication/AddMedication";
+import EditMedication from "./pages/EditMedication/EditMedication";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -16,11 +18,12 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/medication" element={<MedicationPage />} />
-        <Route path="/medication/add" element={<AddMedication/>} />
+        <Route path="/medication/add" element={<AddMedication />} />
+        <Route path="/medication/1/edit" element={<EditMedication />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -28,4 +28,9 @@
       gap: 1.5rem;
     }
   }
+
+  &__button{
+    @include button-one;
+    margin-top: 2rem;
+  }
 }
