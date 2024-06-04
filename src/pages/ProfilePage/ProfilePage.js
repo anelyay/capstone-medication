@@ -2,8 +2,12 @@ import PatientUsers from "../../components/PatientUsers/PatientUsers";
 import otter from "../../assets/images/profile.png";
 import "./ProfilePage.scss";
 import { useNavigate } from "react-router-dom";
+import PatientAPI from "../../classes/patientAPI";
+import { useState, useEffect } from "react";
+
 
 export default function ProfilePage() {
+  const [patients, setPatients]=useState([])
   const navigate = useNavigate();
 
   const handleAdd = (event) => {
@@ -13,6 +17,19 @@ export default function ProfilePage() {
    const handleBack = (event) => {
      navigate("/");
    };
+  useEffect(() => {
+    const getPatients = async () => {
+      try {
+        const patientData = await PatientAPI.getPatients();
+        console.log(patientData);
+        setPatients(patientData);
+      } catch (error) {
+        console.error("Unable to get patients");
+      }
+    };
+    getPatients();
+  }, []);
+
 
   return (
     <div className="profile">
@@ -28,9 +45,9 @@ export default function ProfilePage() {
         <div className="profile__list">
           <h2 className="profile__heading">Your managed profiles:</h2>
           <div className="profile__patients">
-            <PatientUsers />
-            <PatientUsers />
-            <PatientUsers />
+            {patients.map((patient) => (
+              <PatientUsers key={patient.id} patient={patient} />
+            ))}
           </div>
         </div>
         <div className="profile__settings">
