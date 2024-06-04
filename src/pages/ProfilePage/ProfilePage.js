@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 
 export default function ProfilePage() {
-  const [patients, setPatients]=useState([])
+  const [users, setUsers]=useState([])
   const navigate = useNavigate();
 
   const handleAdd = (event) => {
@@ -18,16 +18,16 @@ export default function ProfilePage() {
      navigate("/");
    };
   useEffect(() => {
-    const getPatients = async () => {
+    const getUsers = async () => {
       try {
-        const patientData = await PatientAPI.getPatients();
-        console.log(patientData);
-        setPatients(patientData);
+        const userData = await PatientAPI.getPatients();
+        console.log(userData);
+        setUsers(userData);
       } catch (error) {
         console.error("Unable to get patients");
       }
     };
-    getPatients();
+    getUsers();
   }, []);
 
 
@@ -45,8 +45,8 @@ export default function ProfilePage() {
         <div className="profile__list">
           <h2 className="profile__heading">Your managed profiles:</h2>
           <div className="profile__patients">
-            {patients.map((patient) => (
-              <PatientUsers key={patient.id} patient={patient} />
+            {users.map((user) => (
+              <PatientUsers key={user.id} patient={user} />
             ))}
           </div>
         </div>

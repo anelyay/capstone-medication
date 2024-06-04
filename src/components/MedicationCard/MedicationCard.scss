@@ -60,6 +60,12 @@
     background-position: center;
     background-repeat: no-repeat;
     border: none;
+
+    &--totake{
+      @extend .card__button;
+          background-image: url(../../assets/images/totake.png);
+
+    }
   }
 
   &__expand{
