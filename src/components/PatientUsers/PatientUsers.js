@@ -5,7 +5,7 @@ export default function PatientUsers({patient}) {
   const navigate = useNavigate();
 
   const handleClick = (event) => {
-    navigate("id/edit");
+    navigate(`${patient.id}/edit`);
   };
 
   const calculateAge = (dob) => {

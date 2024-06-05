@@ -24,7 +24,7 @@ function App() {
         <Route path="/medication/id/edit" element={<EditMedication />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/add" element={<AddProfile />} />
-        <Route path="/profile/id/edit" element={<EditProfile />} />
+        <Route path="/profile/:id/edit" element={<EditProfile />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
