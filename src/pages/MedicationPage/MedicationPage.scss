@@ -2,4 +2,10 @@
 @use "../../styles/partials/variables" as *;
 
 .medication {
+
+    &__wrap{
+        padding: 1rem;
+        @include flex(center, center);
+        @include direction(column);
+    }
 }

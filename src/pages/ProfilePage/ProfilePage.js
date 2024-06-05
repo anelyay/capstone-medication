@@ -17,6 +17,7 @@ export default function ProfilePage() {
    const handleBack = (event) => {
      navigate("/");
    };
+   
   useEffect(() => {
     const getUsers = async () => {
       try {

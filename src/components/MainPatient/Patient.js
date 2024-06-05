@@ -35,7 +35,10 @@ export default function Patient({ patient }) {
       <div className="patient__medlist">
         {medications ? (
           medications.map((medication) => (
-            <MedicationCard key={medication.id} medication={medication} />
+            <MedicationCard
+              key={`${medication.id}-${medication.med_time}`}
+              medication={medication}
+            />
           ))
         ) : (
           <p>Loading medications...</p>
