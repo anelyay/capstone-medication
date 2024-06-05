@@ -2,10 +2,59 @@
 @use "../../styles/partials/variables" as *;
 
 .medication {
+  &__card {
+    width: 100%;
+    padding: 1rem;
+    @include flex(center, center);
+    @include direction(column);
+  }
 
-    &__wrap{
-        padding: 1rem;
-        @include flex(center, center);
-        @include direction(column);
+  &__wrap {
+    @include direction(row);
+  }
+  &__picture {
+    @include flex(center, center);
+  }
+
+  &__image {
+    width: 10rem;
+
+    @include tablet {
+      width: 14rem;
     }
+  }
+
+  &__title-box {
+    @include flex(center, center);
+    @include direction(column);
+  }
+
+  &__title {
+    text-decoration: underline;
+  }
+
+  &__heading {
+    text-decoration: underline;
+    padding-top: 1rem;
+  }
+
+  &__text {
+    font-size: 1.1rem;
+  }
+
+  &__buttons {
+    @include flex(center, center);
+    @include direction(row);
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+
+    @include tablet {
+      gap: 8rem;
+    }
+  }
+
+  &__button {
+    @include button-one;
+  }
 }

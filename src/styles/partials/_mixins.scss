@@ -32,6 +32,11 @@
   color: $button-font-color;
   cursor: pointer;
 
+  &--delete{
+      background-color: $red-color;
+
+  }
+
   &:hover {
     transform: scale(0.9);
   }
