@@ -10,9 +10,14 @@ class PatientAPI {
     return response.data;
   }
 
-  static async addPatient(patient) {
-    const response = await axiosInstance.post("/patients", patient);
-    return response.data;
+  static async addPatient(patientData) {
+    try {
+      const response = await axiosInstance.post("/patients", patientData);
+      return response.data;
+    } catch (error) {
+      console.error("Error adding patient:", error);
+      throw error;
+    }
   }
 
   static async getSinglePatient(id) {

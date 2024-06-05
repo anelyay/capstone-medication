@@ -1,6 +1,7 @@
 import UserForm from "../../components/UserForm/UserForm";
 import "./AddProfile.scss";
 import { useNavigate } from "react-router-dom";
+import PatientAPI from "../../classes/patientAPI";
 
 export default function AddProfile() {
   const navigate = useNavigate();
@@ -8,6 +9,17 @@ export default function AddProfile() {
   const handleSecond = (event) => {
     navigate("/profile");
   };
+
+   const handleSubmit = async (formData) => {
+     try {
+       const userData = await PatientAPI.addPatient(formData);
+       console.log(userData);
+       navigate("/profile"); ///??? maybe
+     } catch (error) {
+       console.error("Unable to add patient:", error);
+     }
+   };
+
   return (
     <>
       <UserForm
@@ -16,6 +28,13 @@ export default function AddProfile() {
         buttonName="add"
         buttonSecond="go back"
         handleSecond={handleSecond}
+        onSubmit={handleSubmit}
+        initialData={{
+          patient_name: "",
+          patient_dob: "",
+          patient_md: "",
+          patient_allergy: "",
+        }}
       />
     </>
   );
