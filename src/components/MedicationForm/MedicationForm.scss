@@ -81,7 +81,7 @@
 }
 
 .edit-med {
-    @include flex(center, center);
+  @include flex(center, center);
 
   &__wrap {
     margin: 1rem;
@@ -136,6 +136,7 @@
   &__button {
     @include button-one;
     margin-top: 1rem;
+
   }
 
   &__label {

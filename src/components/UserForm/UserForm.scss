@@ -52,6 +52,10 @@
 
   &__button {
     @include button-one;
+
+    &--delete {
+      background-color: $red-color;
+    }
   }
 
   &__box {
@@ -60,7 +64,7 @@
 }
 
 .add {
-   &__wrap {
+  &__wrap {
     @include flex(center, center);
     @include direction(column);
     padding: 0.5rem;

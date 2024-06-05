@@ -9,39 +9,50 @@ export default function EditProfile() {
   const { id } = useParams();
   const [initialData, setInitialData] = useState(null);
 
- useEffect(() => {
-   const getPatient = async () => {
-     try {
-       const userData = await PatientAPI.getSinglePatient(id);
-       setInitialData(userData);
-     } catch (error) {
-       console.error("Unable to get patient:", error);
-     }
-   };
+  useEffect(() => {
+    const getPatient = async () => {
+      try {
+        const userData = await PatientAPI.getSinglePatient(id);
+        setInitialData(userData);
+      } catch (error) {
+        console.error("Unable to get patient:", error);
+      }
+    };
 
-   getPatient();
- }, [id]);
+    getPatient();
+  }, [id]);
 
- const handleSubmit = async (formData) => {
-   try {
-     const userData = await PatientAPI.updatePatient(id, formData);
-     console.log(userData);
-     navigate("/profile");
-   } catch (error) {
-     console.error("Unable to update patient:", error);
-   }
- };
+  const handleSecond = async () => {
+    try {
+      await PatientAPI.deletePatient(id);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Unable to get patient:", error);
+    }
+  };
+
+  const handleSubmit = async (formData) => {
+    try {
+      const userData = await PatientAPI.updatePatient(id, formData);
+      console.log(userData);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Unable to update patient:", error);
+    }
+  };
   return (
     <>
-       {initialData && (
+      {initialData && (
         <UserForm
           className="edit"
           title="Edit Profile"
           buttonName="submit"
           buttonSecond="delete"
+          handleSecond={handleSecond}
           onSubmit={handleSubmit}
           initialData={initialData}
-      />)}
+        />
+      )}
     </>
   );
 }

@@ -91,7 +91,7 @@ const handleChange = (event) => {
           <div className={`${className}__buttons`}>
             <button
               type="button"
-              className={`${className}__button`}
+              className={`${className}__button edit__button--delete`}
               onClick={handleSecond}
             >
               {buttonSecond}
