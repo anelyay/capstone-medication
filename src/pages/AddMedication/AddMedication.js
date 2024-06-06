@@ -22,9 +22,7 @@ const convertTimeTo24HourFormat = (time) => {
 
 const handleAddMedication = async (formData) => {
   try {
-    // Check if schedule exists and is an array
     if (formData.schedule && Array.isArray(formData.schedule)) {
-      // Convert time format before sending the request
       const convertedFormData = {
         ...formData,
         schedule: formData.schedule.map((entry) => ({
@@ -32,8 +30,6 @@ const handleAddMedication = async (formData) => {
           med_time: convertTimeTo24HourFormat(entry.med_time),
         })),
       };
-
-      // Send the converted form data to the API
       const userData = await MedicationAPI.addMedication(convertedFormData);
       console.log(userData);
       navigate("/profile");

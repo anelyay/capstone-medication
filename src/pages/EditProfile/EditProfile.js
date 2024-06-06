@@ -27,7 +27,7 @@ export default function EditProfile() {
       await PatientAPI.deletePatient(id);
       navigate("/profile");
     } catch (error) {
-      console.error("Unable to get patient:", error);
+      console.error("Unable to delete patient:", error);
     }
   };
 

@@ -8,10 +8,13 @@ export default function MedicationForm({
   buttonName,
   buttonSecond,
   handleSecond,
-  medication,
+  initialData,
   onSubmit,
+  patientId: propPatientId,
 }) {
-  const { patientId } = useParams();
+  const { patientId: urlPatientId } = useParams();
+
+  const patientId = propPatientId !== undefined ? propPatientId : urlPatientId;
 
   const scheduleOptions = [
     { label: "once a day", times: 1 },
@@ -20,27 +23,33 @@ export default function MedicationForm({
     { label: "four times a day", times: 4 },
   ];
 
-  const [medicationName, setMedicationName] = useState("");
-  const [dose, setDose] = useState("");
-  const [notes, setNotes] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  useEffect(() => {
+    console.log("Patient ID:", propPatientId);
+  }, [propPatientId]);
+
+  const [medicationName, setMedicationName] = useState(
+    initialData?.med_name || ""
+  );
+  const [dose, setDose] = useState(initialData?.med_dose || "");
+  const [notes, setNotes] = useState(initialData?.notes || "");
+  const [quantity, setQuantity] = useState(initialData?.quantity || 0);
   const [selectedSchedule, setSelectedSchedule] = useState("");
   const [selectedTimes, setSelectedTimes] = useState(null);
   const [times, setTimes] = useState([]);
 
   useEffect(() => {
-    if (medication) {
-      setMedicationName(medication.med_name);
-      setDose(medication.med_dose);
-      setQuantity(medication.quantity);
+    if (initialData) {
+      setMedicationName(initialData.med_name);
+      setDose(initialData.med_dose);
+      setQuantity(initialData.quantity);
       const schedule = scheduleOptions.find(
-        (option) => option.times === medication.schedule.length
+        (option) => option.times === initialData.schedule.length
       );
       setSelectedSchedule(schedule ? schedule.label : "");
       setSelectedTimes(schedule ? schedule.times : null);
-      setTimes(medication.schedule.map((entry) => entry.med_time));
+      setTimes(initialData.schedule.map((entry) => entry.med_time));
     }
-  }, [medication]);
+  }, [initialData]);
 
   const handleScheduleChange = (event) => {
     const selectedOption = scheduleOptions.find(
@@ -57,21 +66,19 @@ export default function MedicationForm({
     setTimes(newTimes);
   };
 
-
-const handleSubmit = (event) => {
-  event.preventDefault();
-  const formData = {
-    patient_id: patientId,
-    med_name: medicationName,
-    med_dose: dose,
-    quantity,
-    notes, // Include notes field
-    schedule: times.map((time) => ({ med_time: time, med_taken: false })),
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = {
+      patient_id: patientId,
+      med_name: medicationName,
+      med_dose: dose,
+      quantity,
+      notes, // Include notes field
+      schedule: times.map((time) => ({ med_time: time, med_taken: false })),
+    };
+    console.log("Form Data:", formData);
+    onSubmit(formData);
   };
-   console.log("Form Data:", formData);
-  onSubmit(formData);
-};
-
 
   const renderTimeInputs = () => {
     if (selectedTimes === null) return null;
