@@ -23,10 +23,6 @@ export default function MedicationForm({
     { label: "four times a day", times: 4 },
   ];
 
-  useEffect(() => {
-    console.log("Patient ID:", propPatientId);
-  }, [propPatientId]);
-
   const [medicationName, setMedicationName] = useState(
     initialData?.med_name || ""
   );
@@ -42,6 +38,7 @@ export default function MedicationForm({
       setMedicationName(initialData.med_name);
       setDose(initialData.med_dose);
       setQuantity(initialData.quantity);
+      setNotes(initialData.notes);
       const schedule = scheduleOptions.find(
         (option) => option.times === initialData.schedule.length
       );
@@ -73,7 +70,7 @@ export default function MedicationForm({
       med_name: medicationName,
       med_dose: dose,
       quantity,
-      notes, // Include notes field
+      notes,
       schedule: times.map((time) => ({ med_time: time, med_taken: false })),
     };
     console.log("Form Data:", formData);

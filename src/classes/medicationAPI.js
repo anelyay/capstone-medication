@@ -37,6 +37,27 @@ class MedicationAPI {
     const response = await axiosInstance.delete(`/medications/${id}`);
     return response.data;
   }
+
+  static async markMedAsTaken(id, medication) {
+    try {
+      const response = await axiosInstance.put(
+        `medications/taken/${id}`,
+        medication
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+
+  static async getActivityLog(id) {
+    try {
+      const response = await axiosInstance.get(`medications/log/${id}`);
+      return response.data;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
 }
 
 export default MedicationAPI;

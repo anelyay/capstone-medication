@@ -7,6 +7,7 @@ import otterMedication from "../../assets/images/med_otter.png";
 export default function MedicationPage() {
   const { id } = useParams();
   const [medication, setMedication] = useState();
+  const [activityLog, setActivityLog] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +20,18 @@ export default function MedicationPage() {
         console.error("Unable to get medication");
       }
     };
+
+    const getActivityLog = async ()=>{
+      try {
+        const logData = await MedicationAPI.getActivityLog(id);
+        setActivityLog(logData);
+        console.log(logData);
+      } catch (error) {
+        console.error("Unable to get an activity log");
+      }
+    }
     getMedication();
+    getActivityLog();
   }, [id]);
 
   if (!medication) {
@@ -41,6 +53,8 @@ export default function MedicationPage() {
   const handleBack = (event) => {
     navigate(`/`);
   };
+
+
 
   return (
     <div className="medication">
@@ -82,16 +96,21 @@ export default function MedicationPage() {
               </div>
             )}
 
-            {/* {medication.activityLog && (
-            <div className="medication__activity-log">
-              <h3 className="medication__heading">Activity Log:</h3>
-              <ul className="medication__activity-list">
-                {medication.activityLog.map((log, index) => (
-                  <li key={index}>
-                    <p>Taken At: {log.taken_at}</p>
-                    <p>Quantity: {log.quantity}</p>
-                  </li>
-                ))} */}
+            {activityLog && (
+              <div className="medication__activity-log">
+                <h3 className="medication__heading">Activity Logs:</h3>
+                <div className="medication__activity-list">
+                  {activityLog.map((log, index) => (
+                    <div key={index}>
+                      <p>Taken At: {log.log_time}</p>
+                      <p>Quantity: {log.quantity}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="medication__picture"></div>
           </div>
 
           <div className="medication__picture">

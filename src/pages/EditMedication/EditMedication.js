@@ -81,10 +81,7 @@ export default function EditMedication() {
        ...formData,
        schedule: convertedTimes,
      };
-     console.log(convertedTimes);
      const medData = await MedicationAPI.updateMedication(id, updatedFormData);
-     console.log(medData);
-
      navigate("/");
     } catch (error) {
       console.error("Unable to update medication:", error);
