@@ -35,9 +35,13 @@ export default function MedicationPage() {
   });
 
   const navigateEdit = (event) => {
-    // navigate(`/medication/${id}/edit`);
-    navigate(`/medication/id/edit`);
+    navigate(`/medication/${id}/edit`);
   };
+
+  const handleBack = (event) => {
+    navigate(`/`);
+  };
+
   return (
     <div className="medication">
       <div className="medication__card">
@@ -102,10 +106,10 @@ export default function MedicationPage() {
         <div className="medication__buttons">
           <button
             type="button"
-            className="medication__button medication__button--delete"
-            // onClick={handleDelete}
+            className="medication__button"
+            onClick={handleBack}
           >
-            delete
+            go back
           </button>
           <button
             type="button"

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import MedicationForm from "../../components/MedicationForm/MedicationForm";
 import "./AddMedication.scss";
+import MedicationAPI from "../../classes/medicationAPI";
 
 export default function AddMedication() {
   const navigate = useNavigate();
@@ -9,6 +10,42 @@ export default function AddMedication() {
     navigate("/");
   };
 
+const convertTimeTo24HourFormat = (time) => {
+  const [hour, minute, period] = time.split(/[:\s]/);
+  let convertedHour = parseInt(hour, 10);
+  if (period && period.toUpperCase() === "PM" && convertedHour < 12) {
+    convertedHour += 12;
+  }
+  const paddedHour = convertedHour.toString().padStart(2, "0");
+  return `${paddedHour}:${minute}`;
+};
+
+const handleAddMedication = async (formData) => {
+  try {
+    // Check if schedule exists and is an array
+    if (formData.schedule && Array.isArray(formData.schedule)) {
+      // Convert time format before sending the request
+      const convertedFormData = {
+        ...formData,
+        schedule: formData.schedule.map((entry) => ({
+          ...entry,
+          med_time: convertTimeTo24HourFormat(entry.med_time),
+        })),
+      };
+
+      // Send the converted form data to the API
+      const userData = await MedicationAPI.addMedication(convertedFormData);
+      console.log(userData);
+      navigate("/profile");
+    } else {
+      throw new Error("Schedule data is invalid");
+    }
+  } catch (error) {
+    console.error("Unable to add patient:", error);
+  }
+};
+
+
   return (
     <MedicationForm
       className="add-med"
@@ -16,6 +53,7 @@ export default function AddMedication() {
       buttonName="add"
       buttonSecond="go back"
       handleSecond={handleSecond}
+      onSubmit={handleAddMedication}
     />
   );
 }
