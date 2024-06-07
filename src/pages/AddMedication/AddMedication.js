@@ -32,7 +32,7 @@ const handleAddMedication = async (formData) => {
       };
       const userData = await MedicationAPI.addMedication(convertedFormData);
       console.log(userData);
-      navigate("/profile");
+      navigate("/");
     } else {
       throw new Error("Schedule data is invalid");
     }

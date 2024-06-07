@@ -1,6 +1,14 @@
 import "./Footer.scss";
+import { useLocation } from "react-router-dom";
 
 export default function Footer() {
+  // const location = useLocation();
+  // const hideFooter = ["/login"];
+  // const showFooter = !hideFooter.includes(location.pathname);
+
+  // if (!showFooter) {
+  //   return null;
+  // }
   return (
     <footer className="footer">
       <div className="footer__wrap">

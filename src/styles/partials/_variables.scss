@@ -2,19 +2,24 @@ $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1280px;
 
 $background-color: #606c38;
+$white-background-color: #fbfbf2;
+
 // $card-background-color: #e9edc9;
-// $card-background-color: #f4a261;
-$card-background-color: #f8ad9d;
+$card-background-color: #f4a261;
+// $card-background-color: #f8ad9d;
 
 // $card-patient-color: #e6ccb2;
-$card-patient-color: #e8ac65;
+$card-patient-color: #a3b18a;
+
 $input-color: #dde7c7;
-$input-color-user: #f9dcc4;
+
+// $input-color-user: #f9dcc4;
+$input-color-user: #dde7c7;
+
 $red-color: #e76f51;
 
 $main-font-color: #283618;
 $button-font-color: #FFFFFF;
 $invalid-font-color: #A9B7C0;
-
 
 $border:1px solid $background-color;

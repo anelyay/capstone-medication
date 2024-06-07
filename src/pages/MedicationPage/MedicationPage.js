@@ -21,7 +21,7 @@ export default function MedicationPage() {
       }
     };
 
-    const getActivityLog = async ()=>{
+    const getActivityLog = async () => {
       try {
         const logData = await MedicationAPI.getActivityLog(id);
         setActivityLog(logData);
@@ -29,7 +29,7 @@ export default function MedicationPage() {
       } catch (error) {
         console.error("Unable to get an activity log");
       }
-    }
+    };
     getMedication();
     getActivityLog();
   }, [id]);
@@ -46,6 +46,14 @@ export default function MedicationPage() {
     return 0;
   });
 
+  // const sortedLogs = activityLog.sort((a, b) => {
+  //   const timeA = a.log_time;
+  //   const timeB = b.log_time;
+  //   if (timeA > timeB) return -1;
+  //   if (timeA < timeB) return 1;
+  //   return 0;
+  // });
+
   const navigateEdit = (event) => {
     navigate(`/medication/${id}/edit`);
   };
@@ -53,8 +61,6 @@ export default function MedicationPage() {
   const handleBack = (event) => {
     navigate(`/`);
   };
-
-
 
   return (
     <div className="medication">
@@ -64,18 +70,23 @@ export default function MedicationPage() {
         </div>
         <div className="medication__wrap">
           <div className="medication__container">
-            <div className="medication__details">
-              <h3 className="medication__heading">Details:</h3>
-              <p className="medication__text">Dose: {medication.med_dose}</p>
-              <p className="medication__text">
-                Quantity: {medication.quantity}
-              </p>
+            <div className="medication__wrapping">
+              <div className="medication__box">
+                <h3 className="medication__heading">dose:</h3>
+                <p className="medication__text">{medication.med_dose}</p>
+              </div>
+
+              <div className="medication__box">
+                <h3 className="medication__heading"> current quantity:</h3>
+                <p className="medication__text medication__text-quantity">
+                  {medication.quantity}
+                </p>
+              </div>
             </div>
 
-            <div className="medication__schedule-box">
-              <h3 className="medication__heading">Schedule:</h3>
-              {Array.isArray(medication.schedule) &&
-              medication.schedule.length > 0 ? (
+            <div className="medication__middlebox">
+              <h3 className="medication__heading">schedule:</h3>
+              {medication.schedule && medication.schedule.length > 0 ? (
                 sortedSchedule.map((time, index) => (
                   <p
                     key={`${time.med_time}-${index}`}
@@ -90,54 +101,54 @@ export default function MedicationPage() {
             </div>
 
             {medication.notes && (
-              <div className="medication__more">
-                <h3 className="medication__heading">Notes:</h3>
+              <div className="medication__box">
+                <h3 className="medication__heading">notes:</h3>
                 <p className="medication__text">{medication.notes}</p>
               </div>
             )}
 
             {activityLog && (
-              <div className="medication__activity-log">
-                <h3 className="medication__heading">Activity Logs:</h3>
-                <div className="medication__activity-list">
-                  {activityLog.map((log, index) => (
-                    <div key={index}>
-                      <p>Taken At: {log.log_time}</p>
-                      <p>Quantity: {log.quantity}</p>
-                    </div>
-                  ))}
+              <div className="medication__box-log">
+                <div className="medication__headerbox">
+                  <h3 className="medication__heading">history:</h3>
+                  <h3 className="medication__heading">quantity:</h3>
                 </div>
+                {/* <div className="medication__activity-list"> */}
+                {activityLog.map((log, index) => (
+                  <div className="medication__wrapping" key={index}>
+                    <p className="medication__text">{log.log_time}</p>
+                    <p className="medication__text">{log.quantity}</p>
+                  </div>
+                ))}
+                {/* </div> */}
               </div>
             )}
-
-            <div className="medication__picture"></div>
           </div>
-
+          {/*
           <div className="medication__picture">
             <img
               src={otterMedication}
               alt="otter with a pill"
               className="medication__image"
             />
-          </div>
+          </div> */}
         </div>
-
-        <div className="medication__buttons">
-          <button
-            type="button"
-            className="medication__button"
-            onClick={handleBack}
-          >
-            go back
-          </button>
-          <button
-            type="button"
-            className="medication__button"
-            onClick={navigateEdit}
-          >
-            edit
-          </button>
-        </div>
+      </div>
+      <div className="medication__buttons">
+        <button
+          type="button"
+          className="medication__button"
+          onClick={handleBack}
+        >
+          go back
+        </button>
+        <button
+          type="button"
+          className="medication__button"
+          onClick={navigateEdit}
+        >
+          edit
+        </button>
       </div>
     </div>
   );

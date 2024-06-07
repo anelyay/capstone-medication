@@ -39,8 +39,14 @@
   }
 
   &__heading {
-    font-style: italic;
-    font-size: 1.3rem;
+    // font-style: italic;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 1rem;
+
+    @include tablet {
+      font-size: 2rem;
+    }
   }
 
   &__picture {
@@ -103,6 +109,7 @@
 
     @include tablet {
       @include direction(row);
+      @include flex(center, center);
       gap: 1rem;
     }
   }
