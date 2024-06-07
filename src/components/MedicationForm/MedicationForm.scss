@@ -11,6 +11,12 @@
     @include direction(column);
   }
 
+  &__title {
+    @include tablet {
+      font-size: 2rem;
+    }
+  }
+
   &__times {
     gap: 1rem;
     @include direction(row);
@@ -90,6 +96,12 @@
     @include direction(column);
   }
 
+  &__title {
+    @include tablet {
+      font-size: 2rem;
+    }
+  }
+
   &__times {
     gap: 1rem;
     @include direction(row);
@@ -137,6 +149,10 @@
     @include button-one;
     margin-top: 1rem;
 
+    &--delete {
+      @include button-one;
+      background-color: $red-color;
+    }
   }
 
   &__label {

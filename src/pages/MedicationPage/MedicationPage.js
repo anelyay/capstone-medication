@@ -116,22 +116,22 @@ export default function MedicationPage() {
                 {/* <div className="medication__activity-list"> */}
                 {activityLog.map((log, index) => (
                   <div className="medication__wrapping" key={index}>
-                    <p className="medication__text">{log.log_time}</p>
-                    <p className="medication__text">{log.quantity}</p>
+                    <p className="medication__text-history">{log.log_time}</p>
+                    <p className="medication__text-history">{log.quantity}</p>
                   </div>
                 ))}
                 {/* </div> */}
               </div>
             )}
           </div>
-          {/*
+
           <div className="medication__picture">
             <img
               src={otterMedication}
               alt="otter with a pill"
               className="medication__image"
             />
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="medication__buttons">

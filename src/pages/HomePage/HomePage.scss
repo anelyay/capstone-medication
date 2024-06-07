@@ -31,10 +31,11 @@
     padding: 0 3rem;
     @include flex(center, center);
     @include direction(column);
-    gap: 5rem;
+    gap: 3rem;
 
     @include tablet {
       @include direction(column);
+      gap: 4rem;
     }
   }
 }

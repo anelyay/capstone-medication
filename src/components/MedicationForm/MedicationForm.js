@@ -181,7 +181,7 @@ export default function MedicationForm({
           <div className={`${className}__buttons`}>
             <button
               type="button"
-              className={`${className}__button edit-med--delete`}
+              className={`${className}__button edit-med__button--delete`}
               onClick={handleSecond}
             >
               {buttonSecond}
