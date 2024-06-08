@@ -34,7 +34,7 @@ const handleAddMedication = async (formData) => {
       };
       const userData = await MedicationAPI.addMedication(convertedFormData);
       console.log(userData);
-      navigate("/profile");
+      navigate("/");
     } else {
       throw new Error("Schedule data is invalid");
     }
@@ -43,13 +43,13 @@ const handleAddMedication = async (formData) => {
   }
 };
 ///////////////////
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json())
-      .then((response) => setData(response.message));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api")
+  //     .then((response) => response.json())
+  //     .then((response) => setData(response.message));
+  // }, []);
 
 
   return (
@@ -62,11 +62,11 @@ const handleAddMedication = async (formData) => {
         handleSecond={handleSecond}
         onSubmit={handleAddMedication}
       />
-      <div className="App">
+      {/* <div className="App">
         <WebcamImage />
-      </div>
+      </div> */}
 
-      <p>{!data ? "Loading..." : data}</p>
+      {/* <p>{!data ? "Loading..." : data}</p> */}
     </>
   );
 }

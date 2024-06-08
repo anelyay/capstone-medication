@@ -9,7 +9,7 @@ export default function EditMedication() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [initialData, setInitialData] = useState();
-  const [patientId, setPatientId] = useState(null);
+  const [patientId, setPatientId] = useState();
   const [patients, setPatients] = useState("");
 
   useEffect(() => {

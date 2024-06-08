@@ -11,6 +11,7 @@ import EditMedication from "./pages/EditMedication/EditMedication";
 import Footer from "./components/Footer/Footer";
 import AddProfile from "./pages/AddProfile/AddProfile";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import Scan from "./pages/ScanMedication/ScanMedication";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/add" element={<AddProfile />} />
         <Route path="/profile/:id/edit" element={<EditProfile />} />
+        <Route path="/text" element={<Scan />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

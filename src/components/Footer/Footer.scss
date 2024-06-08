@@ -4,28 +4,42 @@
 .footer {
     background-color:$background-color ;
     color: white;
+    margin-top: 1rem;
 
-  &__wrap {
-    @include direction(column);
-    margin-top: 2rem;
-    padding: 1rem;
-    width: 100%;
 
-    @include tablet {
-      @include direction(row);
-      @include flex(center, baseline);
-      padding: 2rem;
-      gap: 6rem;
-    }
-  }
+  // &__wrap {
+  //   @include direction(column);
+  //   margin-top: 2rem;
+  //   padding: 1rem;
+  //   width: 100%;
+
+  //   @include tablet {
+  //     @include direction(row);
+  //     @include flex(space-between, baseline);
+  //     padding: 2rem;
+  //     gap: 6rem;
+  //   }
+  //   @include desktop {
+  //     width: 63.75rem;
+  //     padding: 1rem 8rem;
+  //   }
+  // }
 
   &__title {
     // text-decoration: underline;
     margin: 0.5rem 0;
+    font-size: 1rem;
   }
 
   &__text {
     margin: 0.5rem 0;
+    font-size: 0.6rem;
+  }
+
+  &__copyright{
+          @include flex(center, center);
+          padding: 1.5rem 0;
+
   }
 
 //   &__box {

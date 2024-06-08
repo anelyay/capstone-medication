@@ -2,16 +2,39 @@
 @use "../../styles/partials/variables" as *;
 
 .medication {
+  width: 100%;
+  @include flex(center, center);
+  @include direction(column);
+  margin-top: 1rem;
+
   &__card {
-    width: 100%;
+    width: 90%;
     padding: 1rem;
     @include flex(center, center);
     @include direction(column);
+    background-color: $card-background-color;
+    // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    box-shadow: $box-shadow;
+    border-radius: 50px;
+
+    @include tablet {
+      width: 25rem;
+    }
   }
 
   &__wrap {
-    @include direction(row);
+    @include direction(column);
+
+    @include tablet {
+      // @include direction(row);
+    }
   }
+
+  &__container {
+    width: 100%;
+    // gap: 1rem;
+  }
+
   &__picture {
     @include flex(center, center);
   }
@@ -24,22 +47,70 @@
     }
   }
 
+  &__middlebox {
+    margin-bottom: 0.75rem;
+  }
+
   &__title-box {
     @include flex(center, center);
     @include direction(column);
   }
 
+  // &__activity-list {
+  //    @include direction(column);
+  //    gap: -1rem;
+  // }
+
   &__title {
-    text-decoration: underline;
+    // text-decoration: underline;
+    font-size: 1.6rem;
+    margin: 0.5rem 0;
+
+    @include tablet {
+      font-size: 2rem;
+    }
+  }
+
+  &__wrapping {
+    @include flex(space-between, center);
+    gap: 5rem;
   }
 
   &__heading {
-    text-decoration: underline;
-    padding-top: 1rem;
+    font-size: 0.7rem;
+    margin: 0.5rem 0;
+    color: $white-background-color;
+
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+
+  &__headerbox {
+    @include flex(space-between, center);
+    margin-bottom: -0.5rem;
   }
 
   &__text {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+
+    @include tablet {
+      font-size: 1.1rem;
+    }
+
+    &-quantity {
+      text-align: right;
+      font-size: 1rem;
+
+      @include tablet {
+        font-size: 1.1rem;
+      }
+    }
+
+    &-history {
+      margin: 0.5rem 0 0 0;
+    }
   }
 
   &__buttons {
@@ -47,7 +118,7 @@
     @include direction(row);
     gap: 1rem;
     width: 100%;
-    margin-top: 1rem;
+    padding: 1rem 0.5rem 0 0.5rem;
 
     @include tablet {
       gap: 8rem;

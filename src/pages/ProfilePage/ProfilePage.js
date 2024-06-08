@@ -17,7 +17,7 @@ export default function ProfilePage() {
    const handleBack = (event) => {
      navigate("/");
    };
-   
+
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -64,7 +64,7 @@ export default function ProfilePage() {
               go back
             </button>
             <button className="profile__action" onClick={handleAdd}>
-              add a managed profile
+              add a profile
             </button>
           </div>
         </div>
