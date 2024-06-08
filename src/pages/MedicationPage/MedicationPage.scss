@@ -37,13 +37,37 @@
 
   &__picture {
     @include flex(center, center);
+    position: relative;
   }
 
   &__image {
-    width: 10rem;
+    width: 12rem;
 
     @include tablet {
       width: 14rem;
+    }
+  }
+
+  &__bubble {
+    width: 4rem;
+    position: absolute;
+    right: 9.5rem;
+    bottom: 7rem;
+
+    @include tablet {
+      right: 11.5rem;
+      bottom: 8rem;
+    }
+  }
+
+  &__id {
+    position: absolute;
+    right: 11.2rem;
+    bottom: 7.8rem;
+
+    @include tablet {
+      right: 13.2rem;
+      bottom: 8.8rem;
     }
   }
 

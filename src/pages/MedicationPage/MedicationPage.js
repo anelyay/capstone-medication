@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import MedicationAPI from "../../classes/medicationAPI";
 import { useNavigate, useParams } from "react-router-dom";
 import otterMedication from "../../assets/images/med_otter.png";
+import bubbleSpeech from "../../assets/images/bubble.png";
 
 export default function MedicationPage() {
   const { id } = useParams();
   const [medication, setMedication] = useState();
   const [activityLog, setActivityLog] = useState();
+  const [showAllLogs, setShowAllLogs] = useState(false);
+  const [bubble, setBubble] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,13 +49,13 @@ export default function MedicationPage() {
     return 0;
   });
 
-  // const sortedLogs = activityLog.sort((a, b) => {
-  //   const timeA = a.log_time;
-  //   const timeB = b.log_time;
-  //   if (timeA > timeB) return -1;
-  //   if (timeA < timeB) return 1;
-  //   return 0;
-  // });
+  const sortedActivityLog = activityLog
+    ? activityLog.sort((a, b) => {
+        const timeA = new Date(a.log_time);
+        const timeB = new Date(b.log_time);
+        return timeB - timeA;
+      })
+    : [];
 
   const navigateEdit = (event) => {
     navigate(`/medication/${id}/edit`);
@@ -61,6 +64,18 @@ export default function MedicationPage() {
   const handleBack = (event) => {
     navigate(`/`);
   };
+
+  const toggleShowAllLogs = () => {
+    setShowAllLogs(!showAllLogs);
+  };
+
+  const logsToShow = showAllLogs
+    ? sortedActivityLog
+    : sortedActivityLog.slice(0, 3);
+
+  const showId = (event) => {
+    setBubble(true);
+  }
 
   return (
     <div className="medication">
@@ -114,22 +129,41 @@ export default function MedicationPage() {
                   <h3 className="medication__heading">quantity:</h3>
                 </div>
                 {/* <div className="medication__activity-list"> */}
-                {activityLog.map((log, index) => (
+                {logsToShow.map((log, index) => (
                   <div className="medication__wrapping" key={index}>
                     <p className="medication__text-history">{log.log_time}</p>
                     <p className="medication__text-history">{log.quantity}</p>
                   </div>
                 ))}
+                {sortedActivityLog.length > 3 && (
+                  <button
+                    className="medication__button-show-more"
+                    onClick={toggleShowAllLogs}
+                  >
+                    {showAllLogs ? "show less" : "show more"}
+                  </button>
+                )}
                 {/* </div> */}
               </div>
             )}
           </div>
 
           <div className="medication__picture">
+            {bubble && (
+              <img
+                src={bubbleSpeech}
+                alt="bubble speech"
+                className="medication__bubble"
+              />
+            )}
+            {bubble && (
+              <p className="medication__id">{medication.medication_id}</p>
+            )}
             <img
               src={otterMedication}
               alt="otter with a pill"
               className="medication__image"
+              onClick={showId}
             />
           </div>
         </div>
