@@ -1,4 +1,4 @@
-import PatientUsers from "../../components/PatientUsers/PatientUsers";
+import PatientUsers from "../../components/PatientCard/PatientCard";
 import otter from "../../assets/images/profile.png";
 import "./ProfilePage.scss";
 import { useNavigate } from "react-router-dom";
