@@ -140,7 +140,7 @@ const sortedActivityLog = activityLog
               </div>
             )}
 
-            {activityLog && (
+            {activityLog && activityLog.length > 0 && (
               <div className="medication__box-log">
                 <h2 className="medication__header">History</h2>
                 <div className="medication__headerbox">
