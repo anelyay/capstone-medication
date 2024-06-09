@@ -28,14 +28,16 @@
 
   &__patientlist {
     width: 100%;
-    padding: 0 3rem;
+    padding: 0 1rem;
     @include flex(center, center);
     @include direction(column);
     gap: 3rem;
+    margin-bottom: 2rem;
 
     @include tablet {
       @include direction(column);
       gap: 4rem;
+      padding: 0;
     }
   }
 }

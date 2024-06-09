@@ -1,4 +1,4 @@
-import Patient from "../../components/MainPatient/Patient";
+import Patient from "../../components/MainPatient/MainPatient";
 import "./HomePage.scss";
 import { useState, useEffect } from "react";
 import PatientAPI from "../../classes/patientAPI";

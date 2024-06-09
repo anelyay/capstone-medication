@@ -4,16 +4,15 @@
 .card {
   background-color: $card-background-color;
   padding: 2rem 1rem;
-  border-radius: 35px;
+  border-radius: 50px;
   @include flex(Center, center);
   @include direction(column);
-  box-shadow: 2px 3px 6px -1px rgba(0, 0, 0, 0.6);
-  // border: 2px solid $background-color;
+  box-shadow: $box-shadow;
   width: 14rem;
   gap: 2rem;
 
   @include tablet{
-    width: 12rem,
+    width: 14rem;
   }
 
   &__top {
@@ -35,8 +34,9 @@
 
   &__schedule {
     @include flex(center, center);
-    gap: 1rem;
+    gap: 2rem;
   }
+
   &__timebox{
     @include direction(column);
     gap: 0.5rem;
@@ -59,7 +59,9 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    box-shadow: $box-shadow;
     border: none;
+    cursor: pointer;
 
     &--totake{
       @extend .card__button;

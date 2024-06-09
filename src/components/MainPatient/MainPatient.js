@@ -1,4 +1,4 @@
-import "./Patient.scss";
+import "./MainPatient.scss";
 import MedicationCard from "../MedicationCard/MedicationCard";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
