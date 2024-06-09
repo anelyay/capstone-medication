@@ -28,7 +28,6 @@ class PatientAPI {
   static async updatePatient(id, patient) {
     try {
       const response = await axiosInstance.put(`/patients/${id}`, patient);
-      console.log(patient);
       return response.data;
     } catch (error) {
       console.log(error.response.data);

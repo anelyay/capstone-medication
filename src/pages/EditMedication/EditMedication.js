@@ -8,16 +8,15 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function EditMedication() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [initialData, setInitialData] = useState();
-  const [patientId, setPatientId] = useState();
-  const [patients, setPatients] = useState("");
+  const [initialData, setInitialData] = useState(null);
+  const [patientId, setPatientId] = useState(null);
+  const [patients, setPatients] = useState([]);
 
   useEffect(() => {
     const getMedication = async () => {
       try {
         const medData = await MedicationAPI.getSingleMedication(id);
-        setInitialData(medData);
-        console.log(medData);
+        setInitialData(medData || {});
       } catch (error) {
         console.error("Unable to get medication:", error);
       }
@@ -30,8 +29,7 @@ export default function EditMedication() {
     const getPatients = async () => {
       try {
         const allPatients = await PatientAPI.getPatients();
-        setPatients(allPatients);
-        console.log(allPatients);
+        setPatients(allPatients || []);
       } catch (error) {
         console.error("Unable to get patients:", error);
       }
@@ -56,7 +54,7 @@ export default function EditMedication() {
       await MedicationAPI.deleteMedication(id);
       navigate("/");
     } catch (error) {
-      console.error("Unable to delete patient:", error);
+      console.error("Unable to delete medication:", error);
     }
   };
 
@@ -72,23 +70,24 @@ export default function EditMedication() {
 
   const handleSubmit = async (formData) => {
     try {
-     const convertedTimes = formData.schedule.map((entry) => ({
-       ...entry,
-       med_time: convertTimeTo24HourFormat(entry.med_time),
-     }));
+      const convertedTimes = formData.schedule.map((entry) => ({
+        ...entry,
+        med_time: convertTimeTo24HourFormat(entry.med_time),
+      }));
 
-     const updatedFormData = {
-       ...formData,
-       schedule: convertedTimes,
-     };
-     const medData = await MedicationAPI.updateMedication(id, updatedFormData);
-     navigate("/");
+      const updatedFormData = {
+        ...formData,
+        schedule: convertedTimes,
+      };
+      await MedicationAPI.updateMedication(id, updatedFormData);
+      navigate("/");
     } catch (error) {
       console.error("Unable to update medication:", error);
     }
   };
 
   return (
+    initialData && (
     <MedicationForm
       className="edit-med"
       title="Edit Medication"
@@ -99,5 +98,6 @@ export default function EditMedication() {
       onSubmit={handleSubmit}
       patientId={patientId}
     />
+    )
   );
 }

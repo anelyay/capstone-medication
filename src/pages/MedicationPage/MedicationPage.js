@@ -17,7 +17,6 @@ export default function MedicationPage() {
     const getMedication = async () => {
       try {
         const medicationData = await MedicationAPI.getSingleMedication(id);
-        console.log(medicationData);
         setMedication(medicationData);
       } catch (error) {
         console.error("Unable to get medication");
@@ -28,7 +27,6 @@ export default function MedicationPage() {
       try {
         const logData = await MedicationAPI.getActivityLog(id);
         setActivityLog(logData);
-        console.log(logData);
       } catch (error) {
         console.error("Unable to get an activity log");
       }
@@ -49,13 +47,31 @@ export default function MedicationPage() {
     return 0;
   });
 
-  const sortedActivityLog = activityLog
-    ? activityLog.sort((a, b) => {
+const sortedActivityLog = activityLog
+  ? activityLog
+      .sort((a, b) => {
         const timeA = new Date(a.log_time);
         const timeB = new Date(b.log_time);
         return timeB - timeA;
       })
-    : [];
+      .map((entry) => {
+        const date = new Date(entry.log_time);
+        const formattedDate = date.toLocaleString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+        const formattedTime = date.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: false,
+        });
+        return { ...entry, log_time: `${formattedDate} | ${formattedTime}` };
+      })
+  : [];
+
+
+
 
   const navigateEdit = (event) => {
     navigate(`/medication/${id}/edit`);
@@ -65,7 +81,7 @@ export default function MedicationPage() {
     navigate(`/`);
   };
 
-  const toggleShowAllLogs = () => {
+  const showLogs = () => {
     setShowAllLogs(!showAllLogs);
   };
 
@@ -101,18 +117,20 @@ export default function MedicationPage() {
 
             <div className="medication__middlebox">
               <h3 className="medication__heading">schedule:</h3>
-              {medication.schedule && medication.schedule.length > 0 ? (
-                sortedSchedule.map((time, index) => (
-                  <p
-                    key={`${time.med_time}-${index}`}
-                    className="medication__text"
-                  >
-                    time: {time.med_time}
-                  </p>
-                ))
-              ) : (
-                <p>No schedule available</p>
-              )}
+              <div className="medication__times">
+                {medication.schedule && medication.schedule.length > 0 ? (
+                  sortedSchedule.map((time, index) => (
+                    <p
+                      key={`${time.med_time}-${index}`}
+                      className="medication__text"
+                    >
+                      {time.med_time}
+                    </p>
+                  ))
+                ) : (
+                  <p>No schedule available</p>
+                )}
+              </div>
             </div>
 
             {medication.notes && (
@@ -124,11 +142,11 @@ export default function MedicationPage() {
 
             {activityLog && (
               <div className="medication__box-log">
+                <h2 className="medication__header">History</h2>
                 <div className="medication__headerbox">
-                  <h3 className="medication__heading">history:</h3>
+                  <h3 className="medication__heading">date:</h3>
                   <h3 className="medication__heading">quantity:</h3>
                 </div>
-                {/* <div className="medication__activity-list"> */}
                 {logsToShow.map((log, index) => (
                   <div className="medication__wrapping" key={index}>
                     <p className="medication__text-history">{log.log_time}</p>
@@ -136,14 +154,15 @@ export default function MedicationPage() {
                   </div>
                 ))}
                 {sortedActivityLog.length > 3 && (
-                  <button
-                    className="medication__button-show-more"
-                    onClick={toggleShowAllLogs}
-                  >
-                    {showAllLogs ? "show less" : "show more"}
-                  </button>
+                  <div className="medication__showbox">
+                    <button
+                      className="medication__show-more"
+                      onClick={showLogs}
+                    >
+                      {showAllLogs ? "show less" : "show more"}
+                    </button>
+                  </div>
                 )}
-                {/* </div> */}
               </div>
             )}
           </div>
@@ -157,7 +176,7 @@ export default function MedicationPage() {
               />
             )}
             {bubble && (
-              <p className="medication__id">{medication.medication_id}</p>
+              <p className="medication__id">id: {medication.medication_id}</p>
             )}
             <img
               src={otterMedication}

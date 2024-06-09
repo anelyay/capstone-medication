@@ -26,7 +26,6 @@ class MedicationAPI {
         `/medications/${id}`,
         medication
       );
-      console.log(medication);
       return response.data;
     } catch (error) {
       console.log(error.response.data);
