@@ -10,6 +10,49 @@ Otter Pill is a responsive web application designed to simplify medication manag
 
 Many people struggle to remember to take their medications on schedule, leading to missed doses and potential health complications. Otter Pill tackles this issue by offering a convenient and intuitive solution for managing medications.
 
+### Installation
+
+1.  git clone this repository and open in VScode or 
+
+```
+git clone https://github.com/AanelyaA/capstone-medication
+cd capstone-medication
+```
+
+
+2.  Once the repository is cloned, you can open it in Visual Studio Code by navigating to the directory and typing
+```
+code .
+````
+in the terminal. This command opens the current directory in Visual Studio Code.
+
+
+3. Install dependencies:
+```
+npm i
+```
+
+4. follow this link to install the server and follow the instructions provided.
+   [https://github.com/AanelyaA/medication-server](url)
+
+
+5. Start the application using:
+```
+npm start
+```
+
+6. (Optional) NFC Functionality Instructions:
+   To utilize the NFC functionality:
+    - Ensure you have an NFC application capable of reading and writing NFC tags (e.g., "NFC Tools").
+    - Read the NFC tag to verify it is clear.
+    - Write the following URL to the NFC tag:
+      ```
+      http://yourIPAddress:8080/medications/nfc?id=IDMED&time=MEDTIME&taken=true
+- Replace yourIPAddress with the IP address of your server and IDMED with the medication ID obtained from the medication detail page by pressing the otter image. MEDTIME should be the time you wish to set for the medication (e.g., 14:30).
+- Once configured, tap the phone on the NFC tag and press the link when prompted.
+- The medication status should update to "TAKEN" accordingly.
+
+   
 ### User Profile
 
 - Individuals managing their own medications.
