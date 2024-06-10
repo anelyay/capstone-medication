@@ -1,6 +1,6 @@
 # Project Title
 
-Otter Pill
+Otter Pill 🦦 💊
 
 ## Overview
 
