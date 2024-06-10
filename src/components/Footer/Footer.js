@@ -3,8 +3,7 @@ import { useLocation } from "react-router-dom";
 import meds from "../../assets/images/meds.png";
 import github from "../../assets/icons/github.png";
 import email from "../../assets/icons/email.png";
-import pills from "../../assets/images/pills.png"
-
+import pills from "../../assets/images/pills.png";
 
 export default function Footer() {
   const location = useLocation();
@@ -21,13 +20,17 @@ export default function Footer() {
         <div className="footer__pillbox">
           <img className="footer__pill" src={pills} alt="pills" />
         </div>
-        <h3 className="footer__title">Stay Otterly Connected!</h3>
+        <h3 className="footer__title">Stay Otterly Connected</h3>
         <div className="footer__container">
           <div className="footer__box">
-            <p className="footer__text">Follow us on:</p>
+            <p className="footer__text">Reach out:</p>
             <div className="footer__iconbox">
-              <img className="footer__icon" src={email} alt="email icon" />
-              <img className="footer__icon" src={github} alt="github icon" />
+              <a href="mailto:yerzhanova.anelya@gmail.com">
+                <img className="footer__icon" src={email} alt="email icon" />
+              </a>
+              <a href="https://github.com/AanelyaA">
+                <img className="footer__icon" src={github} alt="github icon" />
+              </a>
             </div>
           </div>
 
