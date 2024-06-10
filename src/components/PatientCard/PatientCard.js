@@ -65,10 +65,10 @@ export default function PatientUsers({ patient }) {
               <p className="user__text">{patient.patient_md}</p>
             </div>
 
-            <div className="user__box">
+            {patient.patient_allergy && <div className="user__box">
               <h3 className="user__label">Allergies:</h3>
               <p className="user__text">{patient.patient_allergy}</p>
-            </div>
+            </div>}
           </div>
 
           <div className="user__link">

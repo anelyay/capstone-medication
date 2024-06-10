@@ -22,28 +22,28 @@ export default function MedicationForm({
     { label: "four times a day", times: 4 },
   ];
 
- const [medicationName, setMedicationName] = useState("");
- const [dose, setDose] = useState("");
- const [notes, setNotes] = useState("");
- const [quantity, setQuantity] = useState(0);
- const [selectedSchedule, setSelectedSchedule] = useState("");
- const [selectedTimes, setSelectedTimes] = useState(null);
- const [times, setTimes] = useState([]);
+  const [medicationName, setMedicationName] = useState("");
+  const [dose, setDose] = useState("");
+  const [notes, setNotes] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [selectedSchedule, setSelectedSchedule] = useState("");
+  const [selectedTimes, setSelectedTimes] = useState(null);
+  const [times, setTimes] = useState([]);
 
- useEffect(() => {
-   if (initialData) {
-     setMedicationName(initialData.med_name || "");
-     setDose(initialData.med_dose || "");
-     setNotes(initialData.notes || "");
-     setQuantity(initialData.quantity || 0);
-     const schedule = scheduleOptions.find(
-       (option) => option.times === initialData.schedule.length
-     );
-     setSelectedSchedule(schedule ? schedule.label : "");
-     setSelectedTimes(schedule ? schedule.times : null);
-     setTimes(initialData.schedule.map((entry) => entry.med_time) || []);
-   }
- }, [initialData]);
+  useEffect(() => {
+    if (initialData) {
+      setMedicationName(initialData.med_name || "");
+      setDose(initialData.med_dose || "");
+      setNotes(initialData.notes || "");
+      setQuantity(initialData.quantity || 0);
+      const schedule = scheduleOptions.find(
+        (option) => option.times === initialData.schedule.length
+      );
+      setSelectedSchedule(schedule ? schedule.label : "");
+      setSelectedTimes(schedule ? schedule.times : null);
+      setTimes(initialData.schedule.map((entry) => entry.med_time) || []);
+    }
+  }, [initialData]);
 
   const handleScheduleChange = (event) => {
     const selectedOption = scheduleOptions.find(
@@ -81,6 +81,7 @@ export default function MedicationForm({
         <div key={i} className={`${className}__time`}>
           <label className={`${className}__label`}>Time {i + 1}</label>
           <input
+            required
             type="time"
             id={`time-${i}`}
             name={`time-${i}`}
@@ -102,6 +103,8 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Medication Name</label>
             <input
+              required
+              placeholder="Please enter the medication name"
               id="medicationName"
               name="medicationName"
               className={`${className}__input`}
@@ -113,6 +116,8 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Dose</label>
             <input
+              required
+              placeholder="Please enter the medication dose"
               id="dose"
               name="dose"
               className={`${className}__input`}
@@ -124,6 +129,7 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Notes</label>
             <input
+              placeholder="Please enter any additional notes (optional)"
               id="notes"
               name="notes"
               className={`${className}__input`}
@@ -135,6 +141,7 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Schedule</label>
             <select
+              required
               id="schedule"
               name="schedule"
               className={`${className}__schedule`}
@@ -164,9 +171,12 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Quantity</label>
             <input
+              required
+              placeholder="Please enter the medication quantity"
               id="quantity"
               name="quantity"
               type="number"
+              min="1"
               className={`${className}__input`}
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}

@@ -23,13 +23,13 @@ export default function UserForm({
     }
   }, [initialData]);
 
-const handleChange = (event) => {
-  const { name, value } = event.target;
-  setFormData({
-    ...formData,
-    [name]: value,
-  });
-};
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,6 +46,8 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Name</label>
             <input
+              required
+              placeholder="Please enter the name"
               id="patient_name"
               name="patient_name"
               className={`${className}__input`}
@@ -57,6 +59,7 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Date of Birth</label>
             <input
+              required
               type="date"
               id="patient_dob"
               name="patient_dob"
@@ -69,6 +72,8 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Primary Doctor</label>
             <input
+              required
+              placeholder="Please enter the name of Primary Doctor"
               id="patient_md"
               name="patient_md"
               className={`${className}__input`}
@@ -80,6 +85,7 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Allergies</label>
             <input
+              placeholder="Please enter allergies (optional)"
               id="patient_allergy"
               name="patient_allergy"
               className={`${className}__input`}

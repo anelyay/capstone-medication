@@ -8,17 +8,6 @@
   background-color: $card-patient-color;
   box-shadow: $box-shadow;
   width: 14rem;
-  // min-width: 18rem;
-  // max-width: 30rem ;
-  // width: auto;
-
-  @include tablet {
-    // width: 30%;
-  }
-
-  @include desktop {
-    width: 25%;
-  }
 
   &__title {
     text-align: center;

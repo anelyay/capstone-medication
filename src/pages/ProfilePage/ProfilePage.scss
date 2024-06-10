@@ -86,7 +86,7 @@
     @include tablet {
       flex-wrap: wrap;
       @include direction(row);
-      @include flex(center, start);
+      @include flex(center, center);
     }
 
     @include desktop {
@@ -132,5 +132,14 @@
 
   &__action {
     @include button-one;
+
+  &-back{
+    @include button-one;
+    order: 1;
+
+    @include tablet{
+      order:0;
+    }
   }
+}
 }

@@ -14,7 +14,6 @@ export default function MedicationCard({ medication }) {
         med_time: medication.med_time,
         med_taken: true,
       });
-
     } catch (error) {
       console.error(error);
     }
@@ -23,7 +22,9 @@ export default function MedicationCard({ medication }) {
   return (
     <section className="card">
       <div className="card__top">
-        <h3 className="card__title">{medication.med_name}</h3>
+        <Link to={`/medication/${medication.id}`}>
+          <h3 className="card__title">{medication.med_name}</h3>
+        </Link>
         <h4 className="card__subtitle"> {medication.med_dose}</h4>
       </div>
 
@@ -48,7 +49,7 @@ export default function MedicationCard({ medication }) {
         </div>
       </section>
       <Link to={`/medication/${medication.id}`}>
-        <div className="card__expand">more details</div>
+        <div className="card__expand">details</div>
       </Link>
     </section>
   );

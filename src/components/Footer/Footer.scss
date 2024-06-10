@@ -2,51 +2,99 @@
 @use "../../styles/partials/variables" as *;
 
 .footer {
-    background-color:$background-color ;
-    color: white;
+  background-color: $background-color;
+  color: white;
+  margin-top: 1rem;
+  @include flex(center, center);
+  @include direction(column);
+
+  &__wrap {
+    @include direction(column);
+    @include flex(center, center);
     margin-top: 1rem;
-    
+    padding: 0 1rem;
+    width: 21rem;
+    position: relative;
+  }
 
+  &__container {
+    @include flex(space-between, baseline);
+    gap: 1rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
 
-  // &__wrap {
-  //   @include direction(column);
-  //   margin-top: 2rem;
-  //   padding: 1rem;
-  //   width: 100%;
+    @include tablet {
+    }
+  }
 
-  //   @include tablet {
-  //     @include direction(row);
-  //     @include flex(space-between, baseline);
-  //     padding: 2rem;
-  //     gap: 6rem;
-  //   }
-  //   @include desktop {
-  //     width: 63.75rem;
-  //     padding: 1rem 8rem;
-  //   }
-  // }
+  &__iconbox {
+    @include flex(space-between, center);
+  }
+
+  &__imagebox {
+    @include flex(center, center);
+    position: relative;
+  }
 
   &__title {
-    // text-decoration: underline;
     margin: 0.5rem 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
+
+    @include tablet {
+      font-size: 1.6rem;
+    }
   }
 
   &__text {
     margin: 0.5rem 0;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+
+    @include tablet {
+      font-size: 1rem;
+    }
   }
 
-  &__copyright{
-          @include flex(center, center);
-          padding: 1.5rem 0;
-
+  &__legal {
+    font-size: 0.7rem;
   }
 
-//   &__box {
-//     margin: 0;
-//     @include tablet {
-//       @include direction(column);
-//     }
-//   }
+  &__copyright {
+    @include flex(center, center);
+    padding: 1.5rem 0;
+  }
+
+  &__image {
+    width: 5rem;
+    @include tablet {
+      position: absolute;
+      right: -17rem;
+      bottom: 0rem;
+    }
+  }
+
+  &__pill {
+    display: none;
+    @include tablet {
+      display: block;
+      position: absolute;
+      width: 4rem;
+      left: -6rem;
+      top: 3.5rem;
+    }
+  }
+
+  &__icon {
+    width: 1.55rem;
+
+    @include tablet {
+      width: 2rem;
+    }
+  }
+
+  //   &__box {
+  //     margin: 0;
+  //     @include tablet {
+  //       @include direction(column);
+  //     }
+  //   }
 }
