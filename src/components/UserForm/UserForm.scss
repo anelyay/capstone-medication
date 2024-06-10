@@ -16,6 +16,23 @@
     }
   }
 
+  &__header {
+    position: relative;
+  }
+
+  &__arrow {
+    width: 1.3rem;
+    position: absolute;
+    top: 1.4rem;
+    left: -2rem;
+    cursor: pointer;
+
+    @include tablet{
+      top: 2rem;
+      // left: -5rem;
+    }
+  }
+
   &__form {
     @include direction(column);
     width: 100%;

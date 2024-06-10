@@ -31,6 +31,10 @@ export default function EditProfile() {
     }
   };
 
+  const handleBack = async () => {
+      navigate("/profile");
+  };
+
   const handleSubmit = async (formData) => {
     try {
       const userData = await PatientAPI.updatePatient(id, formData);
@@ -51,6 +55,7 @@ export default function EditProfile() {
             handleSecond={handleSecond}
             onSubmit={handleSubmit}
             initialData={initialData}
+            handleBack={handleBack}
           />
         </div>
       )}

@@ -12,7 +12,7 @@ Many people struggle to remember to take their medications on schedule, leading 
 
 ### Installation
 
-1.  git clone this repository and open in VScode or 
+1.  git clone this repository and open in VScode or
 
 ```
 git clone https://github.com/AanelyaA/capstone-medication
@@ -52,7 +52,7 @@ npm start
 - Once configured, tap the phone on the NFC tag and press the link when prompted.
 - The medication status should update to "TAKEN" accordingly.
 
-   
+
 ### User Profile
 
 - Individuals managing their own medications.
@@ -89,7 +89,6 @@ Server Libraries: Knex, Express, Cron
 - Medication Edit Page: Edit medication details like dose, schedule, notes. Also allows to delete a medication if needed.
 - Profile Page: Overview of all managed profiles (for a child, grandparent, yourself).
 - Profile Edit Page: Edit profile details like name, allergies, primary doctor, date of birth. Also allows to delete a profile if needed.
-- Register Page: User registration for creating an account.
 - Login Page: User login for accessing the application.
 
 ### Mockups
@@ -173,7 +172,7 @@ Time-Permitting: Otter Pill will utilize JWT (JSON Web Token) authentication for
 Scan Medication/text recognition:
 - Integrate a text recognition feature to allow users to scan medication bottle.
 - This will allow a user to mark that medication as "taken" or can be used to create a new medication if it is not yet in the data.
-- 
+-
 Lab Tracker:
 - Integrate with lab result providers to allow users to securely import and store their lab test results within the app.
 - Display historical lab results alongside medication data for a more comprehensive view of a user's health.
