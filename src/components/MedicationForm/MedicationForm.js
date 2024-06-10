@@ -51,7 +51,7 @@ export default function MedicationForm({
     );
     setSelectedSchedule(event.target.value);
     setSelectedTimes(selectedOption ? selectedOption.times : null);
-    setTimes(Array(selectedOption ? selectedOption.times : 0).fill("")); //>>>
+    setTimes(Array(selectedOption ? selectedOption.times : 0).fill(""));
   };
 
   const handleTimeChange = (index, value) => {
