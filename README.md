@@ -97,8 +97,13 @@ Server Libraries: Knex, Express, Cron
 ![login](./src/assets/mockups/login.png)
 ![homepage](./src/assets/mockups/homepage.png)
 ![medication-view](./src/assets/mockups/medication-view.png)
-![medication-edit](./src/assets/mockups/medication-edit.png)
 ![add-medication](./src/assets/mockups/add-medication.png)
+
+### Screenshots
+
+![screenshots](./src/assets/screenshots/desktop-home.png)
+![screenshots](./src/assets/screenshots/desktop-profilepage.png)
+- more in the assets/screenshots folder
 
 ### Data
 
