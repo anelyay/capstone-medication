@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./MedicationCard.scss";
 import { Link } from "react-router-dom";
 import MedicationAPI from "../../classes/medicationAPI";

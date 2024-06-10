@@ -12,7 +12,7 @@ import Footer from "./components/Footer/Footer";
 import AddProfile from "./pages/AddProfile/AddProfile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Header />
@@ -31,5 +31,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;
