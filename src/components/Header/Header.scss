@@ -3,6 +3,7 @@
 
 .header {
   @include flex(center, center);
+  margin-top: 0.5rem;
 
   &__container {
     @include direction(column);

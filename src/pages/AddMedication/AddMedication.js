@@ -42,13 +42,15 @@ const handleAddMedication = async (formData) => {
 
 
   return (
-    <MedicationForm
-      className="add-med"
-      title="Add Medication"
-      buttonName="add"
-      buttonSecond="go back"
-      handleSecond={handleSecond}
-      onSubmit={handleAddMedication}
-    />
+    <div className="page-add-med">
+      <MedicationForm
+        className="add-med"
+        title="Add Medication"
+        buttonName="add"
+        buttonSecond="go back"
+        handleSecond={handleSecond}
+        onSubmit={handleAddMedication}
+      />
+    </div>
   );
 }

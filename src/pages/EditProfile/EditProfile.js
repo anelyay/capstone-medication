@@ -42,15 +42,17 @@ export default function EditProfile() {
   return (
     <>
       {initialData && (
-        <UserForm
-          className="edit"
-          title="Edit Profile"
-          buttonName="submit"
-          buttonSecond="delete"
-          handleSecond={handleSecond}
-          onSubmit={handleSubmit}
-          initialData={initialData}
-        />
+        <div className="page-edit-profile">
+          <UserForm
+            className="edit"
+            title="Edit Profile"
+            buttonName="submit"
+            buttonSecond="delete"
+            handleSecond={handleSecond}
+            onSubmit={handleSubmit}
+            initialData={initialData}
+          />
+        </div>
       )}
     </>
   );

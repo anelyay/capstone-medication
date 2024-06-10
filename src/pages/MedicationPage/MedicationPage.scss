@@ -5,7 +5,7 @@
   width: 100%;
   @include flex(center, center);
   @include direction(column);
-  margin-top: 1rem;
+  margin: 1rem 0 3rem 0;
 
   &__card {
     width: 18rem;
@@ -47,10 +47,24 @@
     position: absolute;
     right: 10rem;
     bottom: 7rem;
+    animation: vapor 1.5s ease-in;
 
     @include tablet {
       right: 13rem;
       bottom: 8rem;
+    }
+  }
+
+  @keyframes vapor {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
     }
   }
 
@@ -59,6 +73,7 @@
     right: 11.5rem;
     bottom: 8.25rem;
     font-size: 0.7rem;
+    animation: vapor 1.5s ease-in;
 
     @include tablet {
       right: 14.5rem;
@@ -74,7 +89,6 @@
     @include flex(center, center);
     @include direction(column);
   }
-
 
   &__title {
     font-size: 1.6rem;
@@ -98,6 +112,10 @@
     font-size: 0.7rem;
     margin: 0.5rem 0;
     color: $white-background-color;
+
+    &--schedule {
+      margin-bottom: 0;
+    }
 
     @include tablet {
       font-size: 0.8rem;
@@ -167,7 +185,7 @@
     @include flex(center, center);
   }
 
-  &__times{
+  &__times {
     @include direction(row);
     gap: 2rem;
   }

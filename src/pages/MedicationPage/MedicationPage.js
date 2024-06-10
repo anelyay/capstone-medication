@@ -116,7 +116,9 @@ const sortedActivityLog = activityLog
             </div>
 
             <div className="medication__middlebox">
-              <h3 className="medication__heading">schedule:</h3>
+              <h3 className="medication__heading medication__heading--schedule">
+                schedule:
+              </h3>
               <div className="medication__times">
                 {medication.schedule && medication.schedule.length > 0 ? (
                   sortedSchedule.map((time, index) => (

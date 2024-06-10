@@ -2,17 +2,17 @@
 @use "../../styles/partials/variables" as *;
 
 .profile {
-  margin: 2rem 1rem;
+  margin: 2rem 1rem 5rem 1rem;
 
   @include tablet {
-    margin: 0.5rem 2rem 4rem 2rem;
+    margin: 0.5rem 2rem 7rem 2rem;
   }
 
   @include desktop {
     @include flex(center, center);
     padding: 0rem 8rem;
     margin-top: 0;
-    margin-bottom: 6rem;
+    margin-bottom: 9rem;
   }
 
   &__wrap {
@@ -133,13 +133,13 @@
   &__action {
     @include button-one;
 
-  &-back{
-    @include button-one;
-    order: 1;
+    &-back {
+      @include button-one;
+      order: 1;
 
-    @include tablet{
-      order:0;
+      @include tablet {
+        order: 0;
+      }
     }
   }
-}
 }

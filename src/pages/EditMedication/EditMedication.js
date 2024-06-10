@@ -88,16 +88,18 @@ export default function EditMedication() {
 
   return (
     initialData && (
-    <MedicationForm
-      className="edit-med"
-      title="Edit Medication"
-      buttonName="submit"
-      buttonSecond="delete"
-      handleSecond={handleSecond}
-      initialData={initialData}
-      onSubmit={handleSubmit}
-      patientId={patientId}
-    />
+      <div className="page-edit-med">
+        <MedicationForm
+          className="edit-med"
+          title="Edit Medication"
+          buttonName="submit"
+          buttonSecond="delete"
+          handleSecond={handleSecond}
+          initialData={initialData}
+          onSubmit={handleSubmit}
+          patientId={patientId}
+        />
+      </div>
     )
   );
 }

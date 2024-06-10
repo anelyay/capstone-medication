@@ -20,7 +20,7 @@ export default function AddProfile() {
    };
 
   return (
-    <>
+    <div className="page-add-profile">
       <UserForm
         className="add"
         title="Add Profile"
@@ -35,6 +35,6 @@ export default function AddProfile() {
           patient_allergy: "",
         }}
       />
-    </>
+    </div>
   );
 }
