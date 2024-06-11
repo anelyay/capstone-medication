@@ -73,11 +73,11 @@ const sortedActivityLog = activityLog
 
 
 
-  const navigateEdit = (event) => {
+  const navigateEdit = () => {
     navigate(`/medication/${id}/edit`);
   };
 
-  const handleBack = (event) => {
+  const handleBack = () => {
     navigate(`/`);
   };
 
@@ -89,7 +89,7 @@ const sortedActivityLog = activityLog
     ? sortedActivityLog
     : sortedActivityLog.slice(0, 3);
 
-  const showId = (event) => {
+  const showId = () => {
     setBubble(true);
   }
 

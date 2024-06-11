@@ -1,0 +1,170 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.details {
+  width: 100%;
+  @include flex(center, center);
+  @include direction(column);
+  margin: 1rem 0 3rem 0;
+
+  &__card {
+    width: 18rem;
+    padding: 0 1rem 1rem 1rem;
+    @include flex(center, center);
+    @include direction(column);
+    background-color: $card-background-color;
+    box-shadow: $box-shadow;
+    border-radius: 50px;
+
+    @include tablet {
+      width: 25rem;
+    }
+  }
+
+  &__wrap {
+    width: 100%;
+    @include direction(row);
+    @include flex(space-between, center);
+  }
+
+  &__container {
+    width: 100%;
+  }
+
+  &__picture {
+    @include flex(center, center);
+    position: relative;
+  }
+
+  &__image {
+    width: 8rem;
+
+    @include tablet {
+      width: 14rem;
+    }
+  }
+
+  &__middlebox {
+    margin-bottom: 0.75rem;
+  }
+
+  &__title-box {
+    @include flex(center, center);
+    @include direction(column);
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    margin: 0.75rem 0 0 0;
+
+    @include tablet {
+      font-size: 2rem;
+    }
+  }
+
+  &__wrapping {
+    @include flex(space-between, center);
+    gap: 2.8rem;
+
+    @include tablet {
+      gap: 6.4rem;
+    }
+  }
+
+  &__heading {
+    font-size: 0.7rem;
+    margin: 0.5rem 0;
+    color: $white-background-color;
+
+    &-main {
+      @extend .details__heading;
+      width: 4.5rem;
+
+      @include tablet {
+        width: 5.4rem;
+      }
+    }
+
+    @include tablet {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 1.3rem;
+  }
+
+  &__headerbox {
+    @include flex(space-between, center);
+    margin-bottom: -0.5rem;
+  }
+
+  &__wrapper {
+    padding-bottom: 0.75rem;
+  }
+
+  &__text {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+
+    @include tablet {
+      font-size: 1.1rem;
+    }
+
+    &-quantity {
+      text-align: right;
+      font-size: 1rem;
+
+      @include tablet {
+        font-size: 1.1rem;
+      }
+    }
+
+    &-med {
+      margin: 0.5rem 0 0 0;
+      font-size: 0.9rem;
+    }
+
+    &-name {
+      @extend .details__text-med;
+      width: 4rem;
+    }
+  }
+
+  &__buttons {
+    @include flex(center, center);
+    @include direction(row);
+    gap: 1rem;
+    width: 100%;
+    padding: 2rem 0.5rem 0 0.5rem;
+
+    @include tablet {
+      gap: 5rem;
+    }
+  }
+
+  &__button {
+    @include button-one;
+  }
+
+  &__show-more {
+    @include button-two;
+    border-radius: 50px;
+    border: none;
+    color: $white-background-color;
+    background-color: $background-color;
+    height: 1.3rem;
+    margin-top: 1rem;
+  }
+
+  &__showbox {
+    @include flex(center, center);
+  }
+
+  &__times {
+    @include direction(row);
+    gap: 2rem;
+  }
+}
