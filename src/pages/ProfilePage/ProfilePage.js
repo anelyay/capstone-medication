@@ -1,4 +1,4 @@
-import PatientUsers from "../../components/PatientCard/PatientCard";
+import PatientCard from "../../components/PatientCard/PatientCard";
 import otter from "../../assets/images/profile.png";
 import "./ProfilePage.scss";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ export default function ProfilePage() {
           <h2 className="profile__heading">Your managed profiles:</h2>
           <div className="profile__patients">
             {users.map((user) => (
-              <PatientUsers key={user.id} patient={user} />
+              <PatientCard key={user.id} patient={user} />
             ))}
           </div>
         </div>
