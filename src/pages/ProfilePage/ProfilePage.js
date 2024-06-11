@@ -38,7 +38,7 @@ export default function ProfilePage() {
             alt="otter profile pic"
             className="profile__picture"
           />
-          <h1 className="profile__title">hello Otter</h1>
+          <h1 className="profile__title">hello Anelya</h1>
         </div>
         <div className="profile__list">
           <h2 className="profile__heading">Your managed profiles:</h2>

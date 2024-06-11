@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./PatientCard.scss";
 
 export default function PatientUsers({ patient }) {
@@ -45,8 +45,9 @@ export default function PatientUsers({ patient }) {
 
   return (
     <div className="user" onClick={handleDetails}>
+      <Link to={`/${patient.id}`}>
       <h2 className="user__title">{patient.patient_name}</h2>
-
+      </Link>
       <div className="user__container">
         <div className="user__birth">
           <div className="user__box">

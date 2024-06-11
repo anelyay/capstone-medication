@@ -17,18 +17,20 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/medication/:id" element={<MedicationPage />} />
-        <Route path="/medication/:patientId/add" element={<AddMedication />} />
-        <Route path="/medication/:id/edit" element={<EditMedication />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile/add" element={<AddProfile />} />
-        <Route path="/profile/:id/edit" element={<EditProfile />} />
-        <Route path="/profile/details/:id" element={<ProfileDetailsPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <div className="route">
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/medication/:id" element={<MedicationPage />} />
+          <Route path="/medication/:patientId/add" element={<AddMedication />}/>
+          <Route path="/medication/:id/edit" element={<EditMedication />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/add" element={<AddProfile />} />
+          <Route path="/profile/:id/edit" element={<EditProfile />} />
+          <Route path="/profile/details/:id" element={<ProfileDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   );

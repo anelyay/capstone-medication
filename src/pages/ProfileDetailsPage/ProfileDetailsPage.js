@@ -49,6 +49,14 @@ export default function ProfileDetailsPage() {
     fetchData();
   }, [id]);
 
+  const handleBack = () => {
+    navigate("/profile")
+  }
+
+   const navigateEdit = () => {
+     navigate(`/profile/${patient.id}/edit`);
+   };
+
   const calculateAge = (dob) => {
     const dobDate = new Date(dob);
     const ageDiffMs = Date.now() - dobDate.getTime();
@@ -162,14 +170,14 @@ export default function ProfileDetailsPage() {
         <button
           type="button"
           className="details__button"
-          //   onClick={handleBack}
+            onClick={handleBack}
         >
           go back
         </button>
         <button
           type="button"
           className="details__button"
-          //   onClick={navigateEdit}
+            onClick={navigateEdit}
         >
           edit
         </button>

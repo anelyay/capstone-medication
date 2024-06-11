@@ -144,7 +144,7 @@ const sortedActivityLog = activityLog
 
             {activityLog && activityLog.length > 0 && (
               <div className="medication__box-log">
-                <h2 className="medication__header">History</h2>
+                <h2 className="medication__header">Compliance History</h2>
                 <div className="medication__headerbox">
                   <h3 className="medication__heading">date:</h3>
                   <h3 className="medication__heading">quantity:</h3>
