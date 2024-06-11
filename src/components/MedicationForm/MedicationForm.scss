@@ -18,6 +18,22 @@
     }
   }
 
+    &__header {
+    position: relative;
+  }
+
+  &__arrow {
+    width: 1.3rem;
+    position: absolute;
+    top: 1.4rem;
+    left: -2rem;
+    cursor: pointer;
+
+    @include tablet{
+      top: 2rem;
+    }
+  }
+
   &__times {
     gap: 1rem;
     @include direction(row);
@@ -107,6 +123,23 @@
       font-size: 2rem;
     }
   }
+
+    &__header {
+    position: relative;
+  }
+
+  &__arrow {
+    width: 1.3rem;
+    position: absolute;
+    top: 1.4rem;
+    left: -2rem;
+    cursor: pointer;
+
+    @include tablet{
+      top: 2rem;
+    }
+  }
+
 
   &__times {
     gap: 1rem;

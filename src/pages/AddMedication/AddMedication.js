@@ -49,6 +49,7 @@ const handleAddMedication = async (formData) => {
         buttonName="add"
         buttonSecond="go back"
         handleSecond={handleSecond}
+        handleBack={handleSecond}
         onSubmit={handleAddMedication}
       />
     </div>

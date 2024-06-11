@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./MedicationForm.scss";
 import { useParams } from "react-router-dom";
+import backArrow from "../../assets/icons/back-arrow.png"
 
 export default function MedicationForm({
   className,
@@ -8,6 +9,7 @@ export default function MedicationForm({
   buttonName,
   buttonSecond,
   handleSecond,
+  handleBack,
   initialData,
   onSubmit,
   patientId: propPatientId,
@@ -98,7 +100,15 @@ export default function MedicationForm({
   return (
     <div className={className}>
       <div className={`${className}__wrap`}>
-        <h2 className={`${className}__title`}>{title}</h2>
+        <div className={`${className}__header`}>
+          <img
+            src={backArrow}
+            alt="back arrow"
+            onClick={handleBack}
+            className={`${className}__arrow`}
+          />
+          <h2 className={`${className}__title`}>{title}</h2>
+        </div>{" "}
         <form className={`${className}__form`} onSubmit={handleSubmit}>
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Medication Name</label>

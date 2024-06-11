@@ -58,6 +58,10 @@ export default function EditMedication() {
     }
   };
 
+  const handleBack = (event) => {
+    navigate(`/medication/${id}`);
+  };
+
   const convertTimeTo24HourFormat = (time) => {
     const [hour, minute, period] = time.split(/[:\s]/);
     let convertedHour = parseInt(hour, 10);
@@ -98,6 +102,7 @@ export default function EditMedication() {
           initialData={initialData}
           onSubmit={handleSubmit}
           patientId={patientId}
+          handleBack={handleBack}
         />
       </div>
     )

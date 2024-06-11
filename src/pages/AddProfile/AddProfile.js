@@ -27,6 +27,7 @@ export default function AddProfile() {
         buttonName="add"
         buttonSecond="go back"
         handleSecond={handleSecond}
+        handleBack={handleSecond}
         onSubmit={handleSubmit}
         initialData={{
           patient_name: "",
