@@ -58,10 +58,6 @@ export default function EditMedication() {
     }
   };
 
-  const handleSecond = (event) => {
-    ///i want the delete component to appear
-  }
-
   const handleBack = (event) => {
     navigate(`/medication/${id}`);
   };
@@ -88,7 +84,7 @@ export default function EditMedication() {
         schedule: convertedTimes,
       };
       await MedicationAPI.updateMedication(id, updatedFormData);
-      navigate("/");
+      navigate(`/medication/${id}`);
     } catch (error) {
       console.error("Unable to update medication:", error);
     }
@@ -102,12 +98,12 @@ export default function EditMedication() {
           title="Edit Medication"
           buttonName="submit"
           buttonSecond="delete"
-          handleSecond={handleSecond}
           initialData={initialData}
           onSubmit={handleSubmit}
           patientId={patientId}
           handleBack={handleBack}
           handleDeleteButton={handleDeleteButton}
+          isEdit={true}
         />
       </div>
     )

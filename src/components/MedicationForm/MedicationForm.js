@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./MedicationForm.scss";
 import { useParams } from "react-router-dom";
-import backArrow from "../../assets/icons/back-arrow.png"
+import backArrow from "../../assets/icons/back-arrow.png";
 import DeleteAlert from "../DeleteAlert/DeleteAlert";
 
 export default function MedicationForm({
@@ -14,6 +14,7 @@ export default function MedicationForm({
   initialData,
   handleDeleteButton,
   onSubmit,
+  isEdit,
   patientId: propPatientId,
 }) {
   const { patientId: urlPatientId } = useParams();
@@ -65,12 +66,13 @@ export default function MedicationForm({
     setTimes(newTimes);
   };
 
-  const handleSecondClick = () => {
+  const handleSecondClick = (event) => {
+    event.preventDefault();
     setShowDeleteAlert(true);
-    handleSecond();
   };
 
-  const handleHideDeleteAlert = () => {
+  const handleHideDeleteAlert = (event) => {
+    event.preventDefault();
     setShowDeleteAlert(false);
   };
 
@@ -121,7 +123,9 @@ export default function MedicationForm({
           />
           <h2 className={`${className}__title`}>{title}</h2>
         </div>{" "}
-        <form className={`${className}__form`} onSubmit={handleSubmit}>
+        <form className={`${className}__form`}
+        onSubmit={handleSubmit}
+        >
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Medication Name</label>
             <input
@@ -203,7 +207,7 @@ export default function MedicationForm({
             <button
               type="button"
               className={`${className}__button edit-med__button--delete`}
-              onClick={handleSecondClick}
+              onClick={isEdit ? handleSecondClick : handleSecond}
             >
               {buttonSecond}
             </button>

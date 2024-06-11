@@ -6,12 +6,14 @@ export default function DeleteAlert({ handleDeleteButton, handleHide }) {
       <p className="delete__title">Are you sure you want to delete?</p>
       <div className="delete__select">
         <button
+          type="button"
           className="delete__option delete__option--yes"
           onClick={handleDeleteButton}
         >
           yes
         </button>
         <button
+          type="button"
           className="delete__option delete__option--no"
           onClick={handleHide}
         >
