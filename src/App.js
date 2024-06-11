@@ -13,7 +13,7 @@ import AddProfile from "./pages/AddProfile/AddProfile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import Scan from "./pages/ScanMedication/ScanMedication";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Header />
@@ -33,5 +33,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

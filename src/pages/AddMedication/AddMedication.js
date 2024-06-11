@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import MedicationForm from "../../components/MedicationForm/MedicationForm";
 import "./AddMedication.scss";
 import MedicationAPI from "../../classes/medicationAPI";
-import { useState, useEffect } from "react";
-import WebcamImage from "../../components/WebCam/WebCam";
+
 
 export default function AddMedication() {
   const navigate = useNavigate();
@@ -33,7 +32,6 @@ const handleAddMedication = async (formData) => {
         })),
       };
       const userData = await MedicationAPI.addMedication(convertedFormData);
-      console.log(userData);
       navigate("/");
     } else {
       throw new Error("Schedule data is invalid");
@@ -42,31 +40,18 @@ const handleAddMedication = async (formData) => {
     console.error("Unable to add patient:", error);
   }
 };
-///////////////////
-  // const [data, setData] = useState(null);
-
-  // useEffect(() => {
-  //   fetch("/api")
-  //     .then((response) => response.json())
-  //     .then((response) => setData(response.message));
-  // }, []);
-
 
   return (
-    <>
+      <div className="page-add-med">
       <MedicationForm
-        className="add-med"
-        title="Add Medication"
-        buttonName="add"
-        buttonSecond="go back"
-        handleSecond={handleSecond}
+          className="add-med"
+          title="Add Medication"
+          buttonName="add"
+          buttonSecond="go back"
+          handleSecond={handleSecond}
+          handleBack={handleSecond}
         onSubmit={handleAddMedication}
-      />
-      {/* <div className="App">
-        <WebcamImage />
-      </div> */}
-
-      {/* <p>{!data ? "Loading..." : data}</p> */}
-    </>
+        />
+    </div>
   );
 }

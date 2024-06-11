@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./MedicationForm.scss";
 import { useParams } from "react-router-dom";
+import backArrow from "../../assets/icons/back-arrow.png";
+import DeleteAlert from "../DeleteAlert/DeleteAlert";
 
 export default function MedicationForm({
   className,
@@ -8,12 +10,14 @@ export default function MedicationForm({
   buttonName,
   buttonSecond,
   handleSecond,
+  handleBack,
   initialData,
+  handleDeleteButton,
   onSubmit,
+  isEdit,
   patientId: propPatientId,
 }) {
   const { patientId: urlPatientId } = useParams();
-
   const patientId = propPatientId !== undefined ? propPatientId : urlPatientId;
 
   const scheduleOptions = [
@@ -23,28 +27,27 @@ export default function MedicationForm({
     { label: "four times a day", times: 4 },
   ];
 
-  const [medicationName, setMedicationName] = useState(
-    initialData?.med_name || ""
-  );
-  const [dose, setDose] = useState(initialData?.med_dose || "");
-  const [notes, setNotes] = useState(initialData?.notes || "");
-  const [quantity, setQuantity] = useState(initialData?.quantity || 0);
+  const [medicationName, setMedicationName] = useState("");
+  const [dose, setDose] = useState("");
+  const [notes, setNotes] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [selectedSchedule, setSelectedSchedule] = useState("");
   const [selectedTimes, setSelectedTimes] = useState(null);
   const [times, setTimes] = useState([]);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   useEffect(() => {
     if (initialData) {
-      setMedicationName(initialData.med_name);
-      setDose(initialData.med_dose);
-      setQuantity(initialData.quantity);
-      setNotes(initialData.notes);
+      setMedicationName(initialData.med_name || "");
+      setDose(initialData.med_dose || "");
+      setNotes(initialData.notes || "");
+      setQuantity(initialData.quantity || 0);
       const schedule = scheduleOptions.find(
         (option) => option.times === initialData.schedule.length
       );
       setSelectedSchedule(schedule ? schedule.label : "");
       setSelectedTimes(schedule ? schedule.times : null);
-      setTimes(initialData.schedule.map((entry) => entry.med_time));
+      setTimes(initialData.schedule.map((entry) => entry.med_time) || []);
     }
   }, [initialData]);
 
@@ -54,13 +57,23 @@ export default function MedicationForm({
     );
     setSelectedSchedule(event.target.value);
     setSelectedTimes(selectedOption ? selectedOption.times : null);
-    setTimes(Array(selectedOption ? selectedOption.times : 0).fill("")); //>>>
+    setTimes(Array(selectedOption ? selectedOption.times : 0).fill(""));
   };
 
   const handleTimeChange = (index, value) => {
     const newTimes = [...times];
     newTimes[index] = value;
     setTimes(newTimes);
+  };
+
+  const handleSecondClick = (event) => {
+    event.preventDefault();
+    setShowDeleteAlert(true);
+  };
+
+  const handleHideDeleteAlert = (event) => {
+    event.preventDefault();
+    setShowDeleteAlert(false);
   };
 
   const handleSubmit = (event) => {
@@ -73,7 +86,6 @@ export default function MedicationForm({
       notes,
       schedule: times.map((time) => ({ med_time: time, med_taken: false })),
     };
-    console.log("Form Data:", formData);
     onSubmit(formData);
   };
 
@@ -85,13 +97,13 @@ export default function MedicationForm({
         <div key={i} className={`${className}__time`}>
           <label className={`${className}__label`}>Time {i + 1}</label>
           <input
+            required
             type="time"
             id={`time-${i}`}
             name={`time-${i}`}
             className={`${className}__input`}
             value={times[i]}
             onChange={(e) => handleTimeChange(i, e.target.value)}
-            step="900"
           />
         </div>
       );
@@ -102,11 +114,23 @@ export default function MedicationForm({
   return (
     <div className={className}>
       <div className={`${className}__wrap`}>
-        <h2 className={`${className}__title`}>{title}</h2>
-        <form className={`${className}__form`} onSubmit={handleSubmit}>
+        <div className={`${className}__header`}>
+          <img
+            src={backArrow}
+            alt="back arrow"
+            onClick={handleBack}
+            className={`${className}__arrow`}
+          />
+          <h2 className={`${className}__title`}>{title}</h2>
+        </div>{" "}
+        <form className={`${className}__form`}
+        onSubmit={handleSubmit}
+        >
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Medication Name</label>
             <input
+              required
+              placeholder="Please enter the medication name"
               id="medicationName"
               name="medicationName"
               className={`${className}__input`}
@@ -114,10 +138,11 @@ export default function MedicationForm({
               onChange={(e) => setMedicationName(e.target.value)}
             />
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Dose</label>
             <input
+              required
+              placeholder="Please enter the medication dose"
               id="dose"
               name="dose"
               className={`${className}__input`}
@@ -125,10 +150,10 @@ export default function MedicationForm({
               onChange={(e) => setDose(e.target.value)}
             />
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Notes</label>
             <input
+              placeholder="Please enter any additional notes (optional)"
               id="notes"
               name="notes"
               className={`${className}__input`}
@@ -136,10 +161,10 @@ export default function MedicationForm({
               onChange={(e) => setNotes(e.target.value)}
             />
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Schedule</label>
             <select
+              required
               id="schedule"
               name="schedule"
               className={`${className}__schedule`}
@@ -161,28 +186,28 @@ export default function MedicationForm({
               ))}
             </select>
           </div>
-
           <div className={`${className}__box`}>
             <div className={`${className}__times`}>{renderTimeInputs()}</div>
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Quantity</label>
             <input
+              required
+              placeholder="Please enter the medication quantity"
               id="quantity"
               name="quantity"
               type="number"
+              min="1"
               className={`${className}__input`}
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
-
           <div className={`${className}__buttons`}>
             <button
               type="button"
               className={`${className}__button edit-med__button--delete`}
-              onClick={handleSecond}
+              onClick={isEdit ? handleSecondClick : handleSecond}
             >
               {buttonSecond}
             </button>
@@ -190,6 +215,12 @@ export default function MedicationForm({
               {buttonName}
             </button>
           </div>
+          {showDeleteAlert && (
+            <DeleteAlert
+              handleDeleteButton={handleDeleteButton}
+              handleHide={handleHideDeleteAlert}
+            />
+          )}
         </form>
       </div>
     </div>

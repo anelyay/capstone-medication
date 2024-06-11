@@ -5,15 +5,14 @@
   width: 100%;
   @include flex(center, center);
   @include direction(column);
-  margin-top: 1rem;
+  margin: 1rem 0 3rem 0;
 
   &__card {
-    width: 90%;
+    width: 18rem;
     padding: 1rem;
     @include flex(center, center);
     @include direction(column);
     background-color: $card-background-color;
-    // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     box-shadow: $box-shadow;
     border-radius: 50px;
 
@@ -24,26 +23,61 @@
 
   &__wrap {
     @include direction(column);
-
-    @include tablet {
-      // @include direction(row);
-    }
   }
 
   &__container {
     width: 100%;
-    // gap: 1rem;
   }
 
   &__picture {
     @include flex(center, center);
+    position: relative;
   }
 
   &__image {
-    width: 10rem;
+    width: 12rem;
 
     @include tablet {
       width: 14rem;
+    }
+  }
+
+  &__bubble {
+    width: 4rem;
+    position: absolute;
+    right: 10rem;
+    bottom: 7rem;
+    animation: vapor 1.5s ease-in;
+
+    @include tablet {
+      right: 13rem;
+      bottom: 8rem;
+    }
+  }
+
+  @keyframes vapor {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  &__id {
+    position: absolute;
+    right: 11.5rem;
+    bottom: 8.25rem;
+    font-size: 0.7rem;
+    animation: vapor 1.5s ease-in;
+
+    @include tablet {
+      right: 14.5rem;
+      bottom: 9.3rem;
     }
   }
 
@@ -56,15 +90,9 @@
     @include direction(column);
   }
 
-  // &__activity-list {
-  //    @include direction(column);
-  //    gap: -1rem;
-  // }
-
   &__title {
-    // text-decoration: underline;
     font-size: 1.6rem;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 1rem 0;
 
     @include tablet {
       font-size: 2rem;
@@ -74,6 +102,10 @@
   &__wrapping {
     @include flex(space-between, center);
     gap: 5rem;
+
+    @include tablet {
+      gap: 10rem;
+    }
   }
 
   &__heading {
@@ -81,9 +113,19 @@
     margin: 0.5rem 0;
     color: $white-background-color;
 
-    @include tablet {
-      font-size: 1rem;
+    &--schedule {
+      margin-bottom: 0;
     }
+
+    @include tablet {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin: 2rem 0 0 0;
+    font-size: 1.3rem;
   }
 
   &__headerbox {
@@ -118,14 +160,34 @@
     @include direction(row);
     gap: 1rem;
     width: 100%;
-    padding: 1rem 0.5rem 0 0.5rem;
+    padding: 2rem 0.5rem 0 0.5rem;
 
     @include tablet {
-      gap: 8rem;
+      gap: 5rem;
     }
   }
 
   &__button {
     @include button-one;
+  }
+
+  &__show-more {
+    @include button-two;
+    border-radius: 50px;
+    border: none;
+    color: $white-background-color;
+    background-color: $background-color;
+    height: 1.3rem;
+    margin-top: 1rem;
+  }
+
+  &__showbox {
+    @include flex(center, center);
+  }
+
+  &__times {
+    @include direction(row);
+    gap: 2rem;
+  
   }
 }

@@ -29,11 +29,21 @@ export default function LoginPage() {
           <form className="login__form">
             <div className="login__form-box">
               <label className="login__label">Username:</label>
-              <input className="login__input" type="text" name="username" />
+              <input
+                className="login__input"
+                type="text"
+                name="username"
+                placeholder="Please enter your email"
+              />
             </div>
             <div className="login__form-box">
               <label className="login__label">Password:</label>
-              <input className="login__input" type="password" name="password" />
+              <input
+                className="login__input"
+                type="password"
+                name="password"
+                placeholder="Please enter your password"
+              />
             </div>
             <button
               type="submit"

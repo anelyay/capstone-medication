@@ -22,7 +22,7 @@ export default function EditProfile() {
     getPatient();
   }, [id]);
 
-  const handleSecond = async () => {
+  const handleDeleteButton = async () => {
     try {
       await PatientAPI.deletePatient(id);
       navigate("/profile");
@@ -31,10 +31,13 @@ export default function EditProfile() {
     }
   };
 
+  const handleBack = async () => {
+      navigate("/profile");
+  };
+
   const handleSubmit = async (formData) => {
     try {
       const userData = await PatientAPI.updatePatient(id, formData);
-      console.log(userData);
       navigate("/profile");
     } catch (error) {
       console.error("Unable to update patient:", error);
@@ -43,15 +46,19 @@ export default function EditProfile() {
   return (
     <>
       {initialData && (
-        <UserForm
-          className="edit"
-          title="Edit Profile"
-          buttonName="submit"
-          buttonSecond="delete"
-          handleSecond={handleSecond}
-          onSubmit={handleSubmit}
-          initialData={initialData}
-        />
+        <div className="page-edit-profile">
+          <UserForm
+            className="edit"
+            title="Edit Profile"
+            buttonName="submit"
+            buttonSecond="delete"
+            handleDeleteButton={handleDeleteButton}
+            onSubmit={handleSubmit}
+            initialData={initialData}
+            handleBack={handleBack}
+            isEdit={true}
+          />
+        </div>
       )}
     </>
   );

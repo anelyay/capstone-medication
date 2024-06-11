@@ -12,6 +12,7 @@
 
   &__title {
     text-decoration: underline;
+
     @include tablet {
       font-size: 1.75rem;
       margin-top: 0.5rem;
@@ -21,20 +22,21 @@
   &__medlist {
     @include direction(column);
     gap: 1rem;
+
     @include tablet {
       @include flex(center, center);
       @include direction(row);
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 1rem;
+    }
+
+    @include desktop {
+      gap: 3rem;
     }
   }
 
-  &__button{
+  &__button {
     @include button-one;
     margin-top: 2rem;
-    // background-color: $card-patient-color;
-    // color: $main-font-color;
-    height: 3rem;
-
   }
 }

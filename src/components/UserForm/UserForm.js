@@ -1,5 +1,7 @@
 import "./UserForm.scss";
 import { useState, useEffect } from "react";
+import backArrow from "../../assets/icons/back-arrow.png";
+import DeleteAlert from "../DeleteAlert/DeleteAlert";
 
 export default function UserForm({
   className,
@@ -9,6 +11,9 @@ export default function UserForm({
   handleSecond,
   onSubmit,
   initialData,
+  handleBack,
+  handleDeleteButton,
+  isEdit,
 }) {
   const [formData, setFormData] = useState({
     patient_name: "",
@@ -16,6 +21,7 @@ export default function UserForm({
     patient_md: "",
     patient_allergy: "",
   });
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -23,13 +29,13 @@ export default function UserForm({
     }
   }, [initialData]);
 
-const handleChange = (event) => {
-  const { name, value } = event.target;
-  setFormData({
-    ...formData,
-    [name]: value,
-  });
-};
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,14 +44,34 @@ const handleChange = (event) => {
     }
   };
 
+  const handleSecondClick = (event) => {
+    event.preventDefault();
+    setShowDeleteAlert(true);
+  };
+
+  const handleHide = (event) => {
+    event.preventDefault();
+    setShowDeleteAlert(false);
+  };
+
   return (
     <div className={className}>
       <div className={`${className}__wrap`}>
-        <h2 className={`${className}__title`}>{title}</h2>
+        <div className={`${className}__header`}>
+          <img
+            src={backArrow}
+            alt="back arrow"
+            onClick={handleBack}
+            className={`${className}__arrow`}
+          />
+          <h2 className={`${className}__title`}>{title}</h2>
+        </div>
         <form className={`${className}__form`} onSubmit={handleSubmit}>
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Name</label>
             <input
+              required
+              placeholder="Please enter the name"
               id="patient_name"
               name="patient_name"
               className={`${className}__input`}
@@ -57,6 +83,7 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Date of Birth</label>
             <input
+              required
               type="date"
               id="patient_dob"
               name="patient_dob"
@@ -69,6 +96,8 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Primary Doctor</label>
             <input
+              required
+              placeholder="Please enter the name of Primary Doctor"
               id="patient_md"
               name="patient_md"
               className={`${className}__input`}
@@ -80,6 +109,7 @@ const handleChange = (event) => {
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Allergies</label>
             <input
+              placeholder="Please enter allergies (optional)"
               id="patient_allergy"
               name="patient_allergy"
               className={`${className}__input`}
@@ -92,7 +122,7 @@ const handleChange = (event) => {
             <button
               type="button"
               className={`${className}__button edit__button--delete`}
-              onClick={handleSecond}
+              onClick={isEdit ? handleSecondClick : handleSecond}
             >
               {buttonSecond}
             </button>
@@ -100,6 +130,12 @@ const handleChange = (event) => {
               {buttonName}
             </button>
           </div>
+          {showDeleteAlert && (
+            <DeleteAlert
+              handleDeleteButton={handleDeleteButton}
+              handleHide={handleHide}
+            />
+          )}
         </form>
       </div>
     </div>

@@ -13,21 +13,21 @@ export default function AddProfile() {
    const handleSubmit = async (formData) => {
      try {
        const userData = await PatientAPI.addPatient(formData);
-       console.log(userData);
-       navigate("/profile"); ///??? maybe
+       navigate("/profile");
      } catch (error) {
        console.error("Unable to add patient:", error);
      }
    };
 
   return (
-    <>
+    <div className="page-add-profile">
       <UserForm
         className="add"
         title="Add Profile"
         buttonName="add"
         buttonSecond="go back"
         handleSecond={handleSecond}
+        handleBack={handleSecond}
         onSubmit={handleSubmit}
         initialData={{
           patient_name: "",
@@ -36,6 +36,6 @@ export default function AddProfile() {
           patient_allergy: "",
         }}
       />
-    </>
+    </div>
   );
 }
