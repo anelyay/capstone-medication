@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./MedicationForm.scss";
 import { useParams } from "react-router-dom";
 import backArrow from "../../assets/icons/back-arrow.png"
+import DeleteAlert from "../DeleteAlert/DeleteAlert";
 
 export default function MedicationForm({
   className,
@@ -11,6 +12,7 @@ export default function MedicationForm({
   handleSecond,
   handleBack,
   initialData,
+  handleDeleteButton,
   onSubmit,
   patientId: propPatientId,
 }) {
@@ -31,6 +33,7 @@ export default function MedicationForm({
   const [selectedSchedule, setSelectedSchedule] = useState("");
   const [selectedTimes, setSelectedTimes] = useState(null);
   const [times, setTimes] = useState([]);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -60,6 +63,15 @@ export default function MedicationForm({
     const newTimes = [...times];
     newTimes[index] = value;
     setTimes(newTimes);
+  };
+
+  const handleSecondClick = () => {
+    setShowDeleteAlert(true);
+    handleSecond();
+  };
+
+  const handleHideDeleteAlert = () => {
+    setShowDeleteAlert(false);
   };
 
   const handleSubmit = (event) => {
@@ -122,7 +134,6 @@ export default function MedicationForm({
               onChange={(e) => setMedicationName(e.target.value)}
             />
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Dose</label>
             <input
@@ -135,7 +146,6 @@ export default function MedicationForm({
               onChange={(e) => setDose(e.target.value)}
             />
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Notes</label>
             <input
@@ -147,7 +157,6 @@ export default function MedicationForm({
               onChange={(e) => setNotes(e.target.value)}
             />
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Schedule</label>
             <select
@@ -173,11 +182,9 @@ export default function MedicationForm({
               ))}
             </select>
           </div>
-
           <div className={`${className}__box`}>
             <div className={`${className}__times`}>{renderTimeInputs()}</div>
           </div>
-
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Quantity</label>
             <input
@@ -192,12 +199,11 @@ export default function MedicationForm({
               onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
-
           <div className={`${className}__buttons`}>
             <button
               type="button"
               className={`${className}__button edit-med__button--delete`}
-              onClick={handleSecond}
+              onClick={handleSecondClick}
             >
               {buttonSecond}
             </button>
@@ -205,6 +211,12 @@ export default function MedicationForm({
               {buttonName}
             </button>
           </div>
+          {showDeleteAlert && (
+            <DeleteAlert
+              handleDeleteButton={handleDeleteButton}
+              handleHide={handleHideDeleteAlert}
+            />
+          )}
         </form>
       </div>
     </div>

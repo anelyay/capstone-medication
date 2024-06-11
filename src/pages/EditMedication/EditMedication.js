@@ -49,7 +49,7 @@ export default function EditMedication() {
     }
   }, [initialData, patients]);
 
-  const handleSecond = async () => {
+  const handleDeleteButton = async () => {
     try {
       await MedicationAPI.deleteMedication(id);
       navigate("/");
@@ -57,6 +57,10 @@ export default function EditMedication() {
       console.error("Unable to delete medication:", error);
     }
   };
+
+  const handleSecond = (event) => {
+    ///i want the delete component to appear
+  }
 
   const handleBack = (event) => {
     navigate(`/medication/${id}`);
@@ -103,6 +107,7 @@ export default function EditMedication() {
           onSubmit={handleSubmit}
           patientId={patientId}
           handleBack={handleBack}
+          handleDeleteButton={handleDeleteButton}
         />
       </div>
     )
