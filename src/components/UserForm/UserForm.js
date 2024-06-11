@@ -1,6 +1,7 @@
 import "./UserForm.scss";
 import { useState, useEffect } from "react";
-import backArrow from "../../assets/icons/back-arrow.png"
+import backArrow from "../../assets/icons/back-arrow.png";
+import DeleteAlert from "../DeleteAlert/DeleteAlert";
 
 export default function UserForm({
   className,
@@ -10,7 +11,9 @@ export default function UserForm({
   handleSecond,
   onSubmit,
   initialData,
-  handleBack
+  handleBack,
+  handleDeleteButton,
+  isEdit,
 }) {
   const [formData, setFormData] = useState({
     patient_name: "",
@@ -18,6 +21,7 @@ export default function UserForm({
     patient_md: "",
     patient_allergy: "",
   });
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -38,6 +42,16 @@ export default function UserForm({
     if (onSubmit) {
       onSubmit(formData);
     }
+  };
+
+  const handleSecondClick = (event) => {
+    event.preventDefault();
+    setShowDeleteAlert(true);
+  };
+
+  const handleHide = (event) => {
+    event.preventDefault();
+    setShowDeleteAlert(false);
   };
 
   return (
@@ -108,7 +122,7 @@ export default function UserForm({
             <button
               type="button"
               className={`${className}__button edit__button--delete`}
-              onClick={handleSecond}
+              onClick={isEdit ? handleSecondClick : handleSecond}
             >
               {buttonSecond}
             </button>
@@ -116,6 +130,12 @@ export default function UserForm({
               {buttonName}
             </button>
           </div>
+          {showDeleteAlert && (
+            <DeleteAlert
+              handleDeleteButton={handleDeleteButton}
+              handleHide={handleHide}
+            />
+          )}
         </form>
       </div>
     </div>

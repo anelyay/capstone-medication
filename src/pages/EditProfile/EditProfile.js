@@ -22,7 +22,7 @@ export default function EditProfile() {
     getPatient();
   }, [id]);
 
-  const handleSecond = async () => {
+  const handleDeleteButton = async () => {
     try {
       await PatientAPI.deletePatient(id);
       navigate("/profile");
@@ -52,10 +52,11 @@ export default function EditProfile() {
             title="Edit Profile"
             buttonName="submit"
             buttonSecond="delete"
-            handleSecond={handleSecond}
+            handleDeleteButton={handleDeleteButton}
             onSubmit={handleSubmit}
             initialData={initialData}
             handleBack={handleBack}
+            isEdit={true}
           />
         </div>
       )}

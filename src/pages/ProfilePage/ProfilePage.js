@@ -9,11 +9,11 @@ export default function ProfilePage() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
-  const handleAdd = (event) => {
+  const handleAdd = () => {
     navigate("add");
   };
 
-  const handleBack = (event) => {
+  const handleBack = () => {
     navigate("/");
   };
 

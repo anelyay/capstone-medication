@@ -4,7 +4,7 @@ import "./PatientCard.scss";
 export default function PatientUsers({ patient }) {
   const navigate = useNavigate();
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     navigate(`${patient.id}/edit`);
   };
 
