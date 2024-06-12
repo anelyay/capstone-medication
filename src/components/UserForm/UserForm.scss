@@ -49,16 +49,15 @@
   }
 
   &__date {
-    @extend .edit__input;
-    background-image: url(../../assets/icons/icons8-calendar-48.png);
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 0.65rem auto;
+  @extend .edit__input;
     &::-webkit-calendar-picker-indicator {
-      opacity: 0;
-      display: none;
-    }
+      margin-right: 11rem;
+
+      @include tablet{
+        margin-right: 21rem;
+      }
   }
+}
 
   &__buttons {
     @include flex(center, center);
@@ -133,13 +132,12 @@
 
   &__date {
     @extend .edit__input;
-    background-image: url(../../assets/icons/icons8-calendar-48.png);
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 0.65rem auto;
     &::-webkit-calendar-picker-indicator {
-      opacity: 0;
-      display: none;
+      margin-right: 11rem;
+
+      @include tablet{
+        margin-right: 21rem;
+      }
     }
   }
 

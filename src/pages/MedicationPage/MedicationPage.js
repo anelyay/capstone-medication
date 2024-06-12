@@ -144,7 +144,7 @@ const sortedActivityLog = activityLog
               <div className="medication__box-log">
                 <h2 className="medication__header">Compliance History</h2>
                 <div className="medication__headerbox">
-                  <h3 className="medication__heading">date taken:</h3>
+                  <h3 className="medication__heading">administration date:</h3>
                   <h3 className="medication__heading">pills left:</h3>
                 </div>
                 {logsToShow.map((log, index) => (

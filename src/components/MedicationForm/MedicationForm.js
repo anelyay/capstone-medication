@@ -89,22 +89,47 @@ export default function MedicationForm({
     onSubmit(formData);
   };
 
+ const generateTimeOptions = (interval) => {
+    const options = [];
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    const end = new Date();
+    end.setHours(23, 59, 0, 0);
+
+    while (start <= end) {
+      const hours = start.getHours().toString().padStart(2, '0');
+      const minutes = start.getMinutes().toString().padStart(2, '0');
+      options.push(`${hours}:${minutes}`);
+      start.setMinutes(start.getMinutes() + interval);
+    }
+
+    return options;
+  };
+
   const renderTimeInputs = () => {
     if (selectedTimes === null) return null;
+    const timeOptions = generateTimeOptions(5); // 5-minute increments
     const inputs = [];
     for (let i = 0; i < selectedTimes; i++) {
       inputs.push(
         <div key={i} className={`${className}__time`}>
           <label className={`${className}__label`}>Time {i + 1}</label>
-          <input
+          <select
             required
-            type="time"
             id={`time-${i}`}
             name={`time-${i}`}
             className={`${className}__input`}
             value={times[i]}
             onChange={(e) => handleTimeChange(i, e.target.value)}
-          />
+          >
+            <option value="" hidden>Please select a time</option>
+            {timeOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
       );
     }

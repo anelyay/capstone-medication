@@ -12,6 +12,7 @@ export default function ProfileDetailsPage() {
   const [medError, setMedError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -99,6 +100,10 @@ export default function ProfileDetailsPage() {
     return `${month} ${day}, ${year}`;
   }
 
+  const handleAdd = () => {
+    navigate(`/medication/${id}/add`);
+  }
+
   if (loading) return <div>Loading...</div>;
   if (patientError) return <div>{patientError}</div>;
 
@@ -125,7 +130,11 @@ export default function ProfileDetailsPage() {
         <div className="details__wrap">
           <div className="details__box">
             <h3 className="details__heading">Allergies:</h3>
-            <p className="details__text">{patient.patient_allergy ? patient.patient_allergy : "no allergies entered"}</p>
+            <p className="details__text">
+              {patient.patient_allergy
+                ? patient.patient_allergy
+                : "no allergies entered"}
+            </p>
           </div>
 
           <div className="details__box">
@@ -168,7 +177,19 @@ export default function ProfileDetailsPage() {
               <p className="details__text-med">No medications yet</p>
             )}
           </div>
+
+          <div className="details__buttons">
+            <button
+              type="button"
+              className="details__button"
+              onClick={handleAdd}
+            >
+              add a new medication
+            </button>
+          </div>
+
         </div>
+
         <div className="details__picture">
           <img
             src={otterMed}
