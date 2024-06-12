@@ -6,9 +6,10 @@ import otterMed from "../../assets/images/otterholdspill.png";
 
 export default function ProfileDetailsPage() {
   const { id } = useParams();
-  const [patient, setPatient] = useState();
-  const [medications, setMedications] = useState();
-  const [error, setError] = useState(null);
+  const [patient, setPatient] = useState(null);
+  const [medications, setMedications] = useState([]);
+  const [patientError, setPatientError] = useState(null);
+  const [medError, setMedError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function ProfileDetailsPage() {
         setPatient(patientData);
       } catch (error) {
         console.error("Unable to get a patient", error);
-        setError("Unable to get patient details.");
+        setPatientError("Unable to get patient details.");
       }
     };
 
@@ -35,7 +36,7 @@ export default function ProfileDetailsPage() {
           "Unable to get medications for patient with that id",
           error
         );
-        setError("Unable to get medications.");
+        setMedError("Unable to get medications.");
       }
     };
 
@@ -54,7 +55,11 @@ export default function ProfileDetailsPage() {
   };
 
   const navigateEdit = () => {
-    navigate(`/profile/${patient.id}/edit`);
+    if (patient) {
+      navigate(`/profile/${patient.id}/edit`);
+    } else {
+      console.error("Patient data is not loaded yet.");
+    }
   };
 
   const calculateAge = (dob) => {
@@ -95,10 +100,7 @@ export default function ProfileDetailsPage() {
   }
 
   if (loading) return <div>Loading...</div>;
-
-//   const handleNavigate = () => {
-//     navigate(`medication/${med.med_id}`);
-//   };
+  if (patientError) return <div>{patientError}</div>;
 
   return (
     <div className="details">
@@ -123,7 +125,7 @@ export default function ProfileDetailsPage() {
         <div className="details__wrap">
           <div className="details__box">
             <h3 className="details__heading">Allergies:</h3>
-            <p className="details__text">{patient.patient_allergy}</p>
+            <p className="details__text">{patient.patient_allergy ? patient.patient_allergy : "no allergies entered"}</p>
           </div>
 
           <div className="details__box">
@@ -133,28 +135,38 @@ export default function ProfileDetailsPage() {
         </div>
 
         <div className="details__box-log">
-          <h2 className="details__header">All Medications</h2>
-          <div className="details__headerbox">
-            <h3 className="details__heading">added on:</h3>
-            <h3 className="details__heading-main">name:</h3>
-            <h3 className="details__heading">quantity:</h3>
-          </div>
-          <div className="details__wrapper">
-            {medications.map((med, index) => (
-              <div className="details__wrapping" key={index}>
-                <p className="details__text-med">
-                  {formatDateTimestamp(med.created_at)}
-                </p>
-                <p
-                  className="details__text-name"
-                  onClick={() =>navigate(`/medication/${med.id}`)
-                  }
-                >
-                  {med.med_name}
-                </p>
-                <p className="details__text-med">{med.quantity}</p>
+          {!medError && (
+            <>
+              <h2 className="details__header">All Medications</h2>
+              <div className="details__headerbox">
+                <h3 className="details__heading">added on:</h3>
+                <h3 className="details__heading-main">name:</h3>
+                <h3 className="details__heading">quantity:</h3>
               </div>
-            ))}
+            </>
+          )}
+
+          <div className="details__wrapper">
+            {medError ? (
+              <p className="details__text-med">No medications yet</p>
+            ) : medications.length > 0 ? (
+              medications.map((med, index) => (
+                <div className="details__wrapping" key={index}>
+                  <p className="details__text-med">
+                    {formatDateTimestamp(med.created_at)}
+                  </p>
+                  <p
+                    className="details__text-name"
+                    onClick={() => navigate(`/medication/${med.id}`)}
+                  >
+                    {med.med_name}
+                  </p>
+                  <p className="details__text-med">{med.quantity}</p>
+                </div>
+              ))
+            ) : (
+              <p className="details__text-med">No medications yet</p>
+            )}
           </div>
         </div>
         <div className="details__picture">
