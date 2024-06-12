@@ -2,6 +2,7 @@
 @use "../../styles/partials/variables" as *;
 
 .login {
+  background-color: $white-background-color;
   @include desktop {
     @include flex(center, center);
     @include direction(row);

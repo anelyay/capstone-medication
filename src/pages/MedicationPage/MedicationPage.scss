@@ -5,7 +5,7 @@
   width: 100%;
   @include flex(center, center);
   @include direction(column);
-  margin: 1rem 0 3rem 0;
+  margin: 1rem 0;
 
   &__card {
     width: 18rem;
@@ -101,7 +101,7 @@
 
   &__wrapping {
     @include flex(space-between, center);
-    gap: 5rem;
+    gap: 6rem;
 
     @include tablet {
       gap: 10rem;
@@ -134,11 +134,11 @@
   }
 
   &__text {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0.5rem 0;
 
     @include tablet {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     &-quantity {
@@ -146,12 +146,17 @@
       font-size: 1rem;
 
       @include tablet {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
     }
 
     &-history {
+      @extend .medication__text;
+      font-size: 0.9rem;
       margin: 0.5rem 0 0 0;
+      @include tablet {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -188,6 +193,5 @@
   &__times {
     @include direction(row);
     gap: 2rem;
-
   }
 }
