@@ -12,14 +12,12 @@ export default function ProfileDetailsPage() {
   const [medError, setMedError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const patientData = await PatientAPI.getSinglePatient(id);
-        console.log(patientData);
         setPatient(patientData);
       } catch (error) {
         console.error("Unable to get a patient", error);
@@ -31,7 +29,11 @@ export default function ProfileDetailsPage() {
       try {
         const medData = await PatientAPI.findMedicationsByPatient(id);
         console.log(medData);
-        setMedications(medData);
+        const uniqueMedications = medData.filter(
+          (medication, index, self) =>
+            index === self.findIndex((m) => m.med_name === medication.med_name)
+        );
+        setMedications(uniqueMedications);
       } catch (error) {
         console.error(
           "Unable to get medications for patient with that id",
@@ -102,7 +104,7 @@ export default function ProfileDetailsPage() {
 
   const handleAdd = () => {
     navigate(`/medication/${id}/add`);
-  }
+  };
 
   if (loading) return <div>Loading...</div>;
   if (patientError) return <div>{patientError}</div>;
@@ -187,7 +189,6 @@ export default function ProfileDetailsPage() {
               add a new medication
             </button>
           </div>
-
         </div>
 
         <div className="details__picture">
