@@ -36,11 +36,14 @@ useEffect(() => {
   getMedications();
 }, [patient.id]);
 
+const handleNavigate = () => {
+  navigate(`profile/details/${patient.id}`);
+}
 
 
   return (
     <div className="patient">
-      <h2 className="patient__title">For {patient.patient_name}:</h2>
+      <h2 className="patient__title" onClick={handleNavigate}>For {patient.patient_name}:</h2>
       <div className="patient__medlist">
         {medications ? (
           medications.map((medication) => (

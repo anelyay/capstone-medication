@@ -2,7 +2,7 @@ import "./ProfileDetailsPage.scss";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PatientAPI from "../../classes/patientAPI";
-import otterMed from "../../assets/images/otterholdspill.png"
+import otterMed from "../../assets/images/otterholdspill.png";
 
 export default function ProfileDetailsPage() {
   const { id } = useParams();
@@ -50,12 +50,12 @@ export default function ProfileDetailsPage() {
   }, [id]);
 
   const handleBack = () => {
-    navigate("/profile")
-  }
+    navigate("/profile");
+  };
 
-   const navigateEdit = () => {
-     navigate(`/profile/${patient.id}/edit`);
-   };
+  const navigateEdit = () => {
+    navigate(`/profile/${patient.id}/edit`);
+  };
 
   const calculateAge = (dob) => {
     const dobDate = new Date(dob);
@@ -94,18 +94,11 @@ export default function ProfileDetailsPage() {
     return `${month} ${day}, ${year}`;
   }
 
-  function formatTime(dateString) {
-    const options = {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-    };
-    const date = new Date(dateString);
-    return date.toLocaleTimeString(undefined, options);
-  }
-
   if (loading) return <div>Loading...</div>;
+
+//   const handleNavigate = () => {
+//     navigate(`medication/${med.med_id}`);
+//   };
 
   return (
     <div className="details">
@@ -142,8 +135,8 @@ export default function ProfileDetailsPage() {
         <div className="details__box-log">
           <h2 className="details__header">All Medications</h2>
           <div className="details__headerbox">
-            <h3 className="details__heading-main">added on:</h3>
-            <h3 className="details__heading">name:</h3>
+            <h3 className="details__heading">added on:</h3>
+            <h3 className="details__heading-main">name:</h3>
             <h3 className="details__heading">quantity:</h3>
           </div>
           <div className="details__wrapper">
@@ -152,7 +145,13 @@ export default function ProfileDetailsPage() {
                 <p className="details__text-med">
                   {formatDateTimestamp(med.created_at)}
                 </p>
-                <p className="details__text-name">{med.med_name}</p>
+                <p
+                  className="details__text-name"
+                  onClick={() =>navigate(`/medication/${med.id}`)
+                  }
+                >
+                  {med.med_name}
+                </p>
                 <p className="details__text-med">{med.quantity}</p>
               </div>
             ))}
@@ -167,17 +166,13 @@ export default function ProfileDetailsPage() {
         </div>
       </div>
       <div className="details__buttons">
-        <button
-          type="button"
-          className="details__button"
-            onClick={handleBack}
-        >
+        <button type="button" className="details__button" onClick={handleBack}>
           go back
         </button>
         <button
           type="button"
           className="details__button"
-            onClick={navigateEdit}
+          onClick={navigateEdit}
         >
           edit
         </button>

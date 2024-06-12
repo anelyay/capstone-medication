@@ -46,7 +46,7 @@ export default function PatientUsers({ patient }) {
   return (
     <div className="user" onClick={handleDetails}>
       <Link to={`/${patient.id}`}>
-      <h2 className="user__title">{patient.patient_name}</h2>
+        <h2 className="user__title">{patient.patient_name}</h2>
       </Link>
       <div className="user__container">
         <div className="user__birth">
@@ -77,10 +77,10 @@ export default function PatientUsers({ patient }) {
               </div>
             )}
           </div>
-
-          <div className="user__link">
-            <button className="user__button" onClick={handleClick} />
-          </div>
+        </div>
+        <div className="user__link">
+          {/* <button className="user__button" onClick={handleClick} /> */}
+          <p className="user__details">details</p>
         </div>
       </div>
     </div>

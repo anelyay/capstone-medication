@@ -78,10 +78,10 @@
 
     &-main {
       @extend .details__heading;
-      width: 4.5rem;
+      padding-left: 1.5rem;
 
       @include tablet {
-        width: 5.4rem;
+        padding-left: 1.5rem;
       }
     }
 
@@ -106,11 +106,11 @@
   }
 
   &__text {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0.5rem 0;
 
     @include tablet {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     &-quantity {
@@ -130,6 +130,8 @@
     &-name {
       @extend .details__text-med;
       width: 4rem;
+      cursor: pointer;
+      text-decoration: underline
     }
   }
 

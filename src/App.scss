@@ -19,6 +19,11 @@ textarea {
   font-family: "Questrial", sans-serif;
   color: $main-font-color;
   background-color: $white-background-color;
+  background-image: url("/assets/images/pattern.png");
+  background-repeat: repeat;
+  background-size: 15rem 15rem;
+  background-position: top center;
+  background-attachment: scroll;
 }
 
 a {

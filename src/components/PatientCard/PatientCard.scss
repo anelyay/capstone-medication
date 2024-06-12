@@ -10,8 +10,8 @@
 
   &__title {
     text-align: center;
-    margin: 0.75rem 0;
-    font-size: 1.5rem;
+    margin: 0.75rem 0 1rem 0;
+    font-size: 1.6rem;
   }
 
   &__container {
@@ -23,7 +23,7 @@
     @include direction(row);
     @include flex(space-between, end);
     width: 100%;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0;
   }
 
   &__label {
@@ -43,8 +43,8 @@
   }
 
   &__info {
-    @include flex(start, start);
-    @include direction(column);
+    @include flex(space-between, center);
+    @include direction(row);
     padding: 0 1rem;
     width: 100%;
     margin-top: 0.5rem;
@@ -52,7 +52,6 @@
   }
 
   &__button {
-    text-align: center;
     cursor: pointer;
     background-image: url(../../assets/icons/edit.png);
     background-position: center;
@@ -66,4 +65,14 @@
     margin-bottom: 0.5rem;
   }
 
+  &__details {
+    cursor: pointer;
+    margin: 0;
+    font-size: 0.65rem;
+    text-decoration: underline;
+  }
+
+  &__link{
+    margin: 0.5rem 0;
+  }
 }
