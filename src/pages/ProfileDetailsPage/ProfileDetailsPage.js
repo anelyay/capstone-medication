@@ -172,7 +172,9 @@ export default function ProfileDetailsPage() {
                   >
                     {med.med_name}
                   </p>
-                  <p className="details__text-med">{med.quantity}</p>
+                  <p className="details__text-med details__text-number">
+                    {med.quantity}
+                  </p>
                 </div>
               ))
             ) : (

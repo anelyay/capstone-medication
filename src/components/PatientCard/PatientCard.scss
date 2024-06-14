@@ -8,6 +8,11 @@
   background-color: $card-patient-color;
   box-shadow: $box-shadow;
   width: 14rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
   &__title {
     text-align: center;
@@ -73,7 +78,7 @@
     text-decoration: underline;
   }
 
-  &__link{
+  &__link {
     margin: 0.5rem 0;
   }
 }

@@ -32,7 +32,7 @@ export default function EditProfile() {
   };
 
   const handleBack = async () => {
-      navigate("/profile");
+    navigate(`/profile/details/${id}`);
   };
 
   const handleSubmit = async (formData) => {

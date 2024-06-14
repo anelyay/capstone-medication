@@ -90,26 +90,26 @@ export default function MedicationForm({
   };
 
  const generateTimeOptions = (interval) => {
-    const options = [];
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
+   const options = [];
+   const start = new Date();
+   start.setHours(6, 0, 0, 0); // Start at 6:00 AM
 
-    const end = new Date();
-    end.setHours(23, 59, 0, 0);
+   const end = new Date();
+   end.setHours(23, 59, 0, 0); // End at 12:00 AM (midnight)
 
-    while (start <= end) {
-      const hours = start.getHours().toString().padStart(2, '0');
-      const minutes = start.getMinutes().toString().padStart(2, '0');
-      options.push(`${hours}:${minutes}`);
-      start.setMinutes(start.getMinutes() + interval);
-    }
+   while (start <= end) {
+     const hours = start.getHours().toString().padStart(2, "0");
+     const minutes = start.getMinutes().toString().padStart(2, "0");
+     options.push(`${hours}:${minutes}`);
+     start.setMinutes(start.getMinutes() + interval);
+   }
 
-    return options;
-  };
+   return options;
+ };
 
   const renderTimeInputs = () => {
     if (selectedTimes === null) return null;
-    const timeOptions = generateTimeOptions(5); // 5-minute increments
+    const timeOptions = generateTimeOptions(15); // 5-minute increments
     const inputs = [];
     for (let i = 0; i < selectedTimes; i++) {
       inputs.push(
@@ -123,7 +123,9 @@ export default function MedicationForm({
             value={times[i]}
             onChange={(e) => handleTimeChange(i, e.target.value)}
           >
-            <option value="" hidden>Please select a time</option>
+            <option value="" hidden>
+              Please select a time
+            </option>
             {timeOptions.map((option, index) => (
               <option key={index} value={option}>
                 {option}
@@ -148,9 +150,7 @@ export default function MedicationForm({
           />
           <h2 className={`${className}__title`}>{title}</h2>
         </div>{" "}
-        <form className={`${className}__form`}
-        onSubmit={handleSubmit}
-        >
+        <form className={`${className}__form`} onSubmit={handleSubmit}>
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Medication Name</label>
             <input

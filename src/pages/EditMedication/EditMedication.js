@@ -58,7 +58,7 @@ export default function EditMedication() {
     }
   };
 
-  const handleBack = (event) => {
+  const handleBack = () => {
     navigate(`/medication/${id}`);
   };
 

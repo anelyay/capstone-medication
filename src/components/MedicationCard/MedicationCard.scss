@@ -10,8 +10,13 @@
   box-shadow: $box-shadow;
   width: 14rem;
   gap: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  @include tablet{
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  @include tablet {
     width: 14rem;
   }
 
@@ -37,7 +42,7 @@
     gap: 2rem;
   }
 
-  &__timebox{
+  &__timebox {
     @include direction(column);
     gap: 0.5rem;
   }
@@ -51,7 +56,7 @@
     font-weight: 800;
   }
 
-  &__button{
+  &__button {
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
@@ -63,14 +68,14 @@
     border: none;
     cursor: pointer;
 
-    &--totake{
+    &--totake {
       @extend .card__button;
-          background-image: url(../../assets/images/totake.png);
-
+      background-image: url(../../assets/images/totake.png);
     }
+
   }
 
-  &__expand{
+  &__expand {
     font-size: 0.65rem;
     text-decoration: underline;
   }
