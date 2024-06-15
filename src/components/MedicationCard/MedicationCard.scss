@@ -11,6 +11,7 @@
   width: 14rem;
   gap: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 5px double beige;
 
   &:hover {
     transform: scale(1.05);
