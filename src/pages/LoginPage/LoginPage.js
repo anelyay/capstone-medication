@@ -5,6 +5,18 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function LoginPage() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    verifyPassword: "",
+  });
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
   const [activeForm, setActiveForm] = useState("login");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -17,18 +29,31 @@ export default function LoginPage() {
     setSuccess(false);
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
   const handleSignSubmit = async (event) => {
     event.preventDefault();
 
-     const username = event.target.username.value;
-     const email = event.target.email.value;
-     const password = event.target.password.value;
-     const verifyPassword = event.target.verifyPassword.value;
+    const { username, email, password, verifyPassword } = formData;
 
-     if (password !== verifyPassword) {
-       setError("Passwords do not match");
-       return;
-     }
+    if (password !== verifyPassword) {
+      setError("Passwords do not match");
+      return;
+    }
     try {
       await axios.post("http://localhost:8080/auth/register", {
         username,
@@ -36,20 +61,37 @@ export default function LoginPage() {
         password,
       });
 
-
       setSuccess(true);
       setError(null);
-      event.target.reset();
-      setActiveForm("login")
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        verifyPassword: "",
+      });
+      setActiveForm("login");
     } catch (error) {
       setSuccess(false);
       setError(error.response?.data || "Signup failed");
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate("/");
+
+        const { email, password } = loginData;
+
+
+    try {
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        email, password
+      });
+
+      sessionStorage.setItem("token", response.data.token);
+      navigate("/");
+    } catch (error) {
+      setError(error.response.data);
+    }
   };
 
   return (
@@ -98,6 +140,8 @@ export default function LoginPage() {
                   className="login__input"
                   type="email"
                   name="email"
+                  value={loginData.email}
+                  onChange={handleLoginChange}
                   placeholder="Please enter your email"
                 />
               </div>
@@ -107,6 +151,8 @@ export default function LoginPage() {
                   className="login__input"
                   type="password"
                   name="password"
+                  value={loginData.password}
+                  onChange={handleLoginChange}
                   placeholder="Please enter your password"
                 />
               </div>
@@ -121,11 +167,6 @@ export default function LoginPage() {
             </form>
           )}
 
-
-
-
-
-
           {activeForm === "signup" && (
             <form className="login__form">
               <div className="login__form-box">
@@ -134,6 +175,8 @@ export default function LoginPage() {
                   className="login__input"
                   type="text"
                   name="username"
+                  value={formData.username}
+                  onChange={handleChange}
                   placeholder="Please enter your name"
                 />
               </div>
@@ -143,6 +186,8 @@ export default function LoginPage() {
                   className="login__input"
                   type="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Please enter your email"
                 />
               </div>
@@ -152,6 +197,8 @@ export default function LoginPage() {
                   className="login__input"
                   type="password"
                   name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder="Please enter your password"
                 />
               </div>
@@ -162,6 +209,8 @@ export default function LoginPage() {
                   className="login__input"
                   type="password"
                   name="verifyPassword"
+                  value={formData.verifyPassword}
+                  onChange={handleChange}
                   placeholder="Please re-enter your new password"
                 />
               </div>

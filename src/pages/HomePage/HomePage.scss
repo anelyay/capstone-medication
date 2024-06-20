@@ -50,7 +50,7 @@
   &__nopatients{
     @include flex(center, center);
     @include direction(column);
-    height: 15rem;
+    height: 10rem;
     gap: 1.75rem;
   }
 
