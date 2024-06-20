@@ -4,24 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function LoginPage() {
-  const [login, setLogin] = useState(true);
-  const [signup, setSignup] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(null);
-  const [errorSignup, setErrorSignup] = useState(null);
+  const [activeForm, setActiveForm] = useState("login");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setLogin(true);
-    setSignup(false);
-  };
-
-  const handleSignup = () => {
-    setLogin(false);
-    setSignup(true);
+  const handleActive = (formName) => {
+    setActiveForm(formName);
   };
 
   const handleSignSubmit = (event) => {
     event.preventDefault();
+    setError(null);
   };
 
   const handleSubmit = (event) => {
@@ -43,23 +36,31 @@ export default function LoginPage() {
           <div className="login__heading">
             <h1
               className={
-                login ? "login__subtitle" : "login__subtitle--inactive"
+                activeForm === "login"
+                  ? "login__subtitle"
+                  : "login__subtitle--inactive"
               }
-              onClick={handleLogin}
+              onClick={() => {
+                handleActive("login");
+              }}
             >
               log in
             </h1>
             <h1
               className={
-                signup ? "login__subtitle" : "login__subtitle--inactive"
+                activeForm === "signup"
+                  ? "login__subtitle"
+                  : "login__subtitle--inactive"
               }
-              onClick={handleSignup}
+              onClick={() => {
+                handleActive("signup");
+              }}
             >
               sign up
             </h1>
           </div>
 
-          {login && (
+          {activeForm === "login" && (
             <form className="login__form">
               <div className="login__form-box">
                 <label className="login__label">Username:</label>
@@ -86,11 +87,11 @@ export default function LoginPage() {
               >
                 enter
               </button>
-              {errorLogin && <div> {errorLogin} </div>}
+              {error && <div className="login__error"> {error} </div>}
             </form>
           )}
 
-          {signup && (
+          {activeForm === "signup" && (
             <form className="login__form">
               <div className="login__form-box">
                 <label className="login__label">Username:</label>
@@ -101,7 +102,6 @@ export default function LoginPage() {
                   placeholder="Please create a username"
                 />
               </div>
-
               <div className="login__form-box">
                 <label className="login__label">Email:</label>
                 <input
@@ -111,7 +111,6 @@ export default function LoginPage() {
                   placeholder="Please enter your email"
                 />
               </div>
-
               <div className="login__form-box">
                 <label className="login__label">Password:</label>
                 <input
@@ -121,7 +120,6 @@ export default function LoginPage() {
                   placeholder="Please enter your password"
                 />
               </div>
-
               <button
                 type="submit"
                 className="login__button"
@@ -129,7 +127,7 @@ export default function LoginPage() {
               >
                 sign up
               </button>
-              {errorSignup && <div> {errorSignup} </div>}
+              {error && <div className="login__error"> {error} </div>}
             </form>
           )}
         </div>
