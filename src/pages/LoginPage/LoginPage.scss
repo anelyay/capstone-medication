@@ -70,9 +70,13 @@
     margin: 0.5rem 0;
     font-weight: 800;
     font-size: 1.5rem;
+    text-decoration: underline;
+    cursor: pointer;
 
     &--inactive {
       font-weight: 400;
+      font-size: 1.5rem;
+      text-decoration: none;
     }
   }
 
