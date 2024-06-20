@@ -6,14 +6,19 @@ const axiosInstance = axios.create({
 
 class AuthAPI {
   static async getUser() {
-    const jwtToken = sessionStorage.getItem("token");
-
     try {
+      const jwtToken = sessionStorage.getItem("token");
+
+      if (!jwtToken) {
+        throw new Error("No token found");
+      }
+
       const response = await axiosInstance.get("/auth/users", {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },
       });
+
       return response.data;
     } catch (error) {
       console.error("Error fetching user:", error);

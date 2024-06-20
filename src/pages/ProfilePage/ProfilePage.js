@@ -27,7 +27,7 @@ export default function ProfilePage() {
         setUsers(userData);
         setIsLoading(false);
       } catch (error) {
-        console.error("Unable to get patients");
+        console.error("Unable to get patients", error);
         setIsLoading(false);
       }
     };
@@ -36,15 +36,8 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const jwtToken = sessionStorage.getItem("token");
-
-      if (!jwtToken) {
-        return navigate("/login");
-      }
-
       try {
         const response = await AuthAPI.getUser();
-
         setProfile(response);
       } catch (error) {
         if (error.response) {

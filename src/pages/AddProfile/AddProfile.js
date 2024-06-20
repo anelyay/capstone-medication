@@ -6,7 +6,7 @@ import PatientAPI from "../../classes/patientAPI";
 export default function AddProfile() {
   const navigate = useNavigate();
 
-  const handleSecond = (event) => {
+  const handleSecond = () => {
     navigate("/profile");
   };
 

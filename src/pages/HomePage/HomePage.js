@@ -16,13 +16,13 @@ export default function HomePage() {
         setPatients(userData);
         setIsLoading(false);
       } catch (error) {
-        console.error("Unable to get patients");
+        console.error(`Unable to get patients: ${error.message}`);
         setIsLoading(false);
       }
     };
-    getPatients();
-  }, []);
 
+    getPatients(); 
+  }, []);
   const addPatient = () => {
     navigate("/profile/add");
   };

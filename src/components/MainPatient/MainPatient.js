@@ -57,7 +57,7 @@ export default function Patient({ patient }) {
             />
           ))
         ) : (
-          <p>No medications to display</p>
+          <p>No active medications</p>
         )}
       </div>
       <button className="patient__button" onClick={handleClick}>

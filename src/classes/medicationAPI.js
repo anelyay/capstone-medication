@@ -1,8 +1,23 @@
 import axios from "axios";
 
+const getToken = () => sessionStorage.getItem("token");
+
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080",
 });
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 class MedicationAPI {
   static async getMedications() {
@@ -11,8 +26,13 @@ class MedicationAPI {
   }
 
   static async addMedication(medication) {
-    const response = await axiosInstance.post("/medications", medication);
-    return response.data;
+    try {
+      const response = await axiosInstance.post("/medications", medication);
+      return response.data;
+    } catch (error) {
+      console.log("Error adding medication:", error.response.data);
+      throw error;
+    }
   }
 
   static async getSingleMedication(id) {
@@ -40,7 +60,7 @@ class MedicationAPI {
   static async markMedAsTaken(id, medication) {
     try {
       const response = await axiosInstance.put(
-        `medications/taken/${id}`,
+        `/medications/taken/${id}`,
         medication
       );
       return response.data;
@@ -51,7 +71,7 @@ class MedicationAPI {
 
   static async getActivityLog(id) {
     try {
-      const response = await axiosInstance.get(`medications/log/${id}`);
+      const response = await axiosInstance.get(`/medications/log/${id}`);
       return response.data;
     } catch (error) {
       console.log(error.response.data);

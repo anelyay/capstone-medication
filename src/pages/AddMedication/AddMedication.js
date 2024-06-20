@@ -36,7 +36,7 @@ const handleAddMedication = async (formData) => {
       throw new Error("Schedule data is invalid");
     }
   } catch (error) {
-    console.error("Unable to add patient:", error);
+    console.error("Unable to add a medication:", error);
   }
 };
 

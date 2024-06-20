@@ -28,7 +28,6 @@ export default function ProfileDetailsPage() {
     const getMedications = async () => {
       try {
         const medData = await PatientAPI.findMedicationsByPatient(id);
-        console.log(medData);
         const uniqueMedications = medData.filter(
           (medication, index, self) =>
             index === self.findIndex((m) => m.med_name === medication.med_name)
