@@ -140,4 +140,8 @@
       }
     }
   }
+
+  &__nousers{
+    @include flex(center, center);
+  }
 }

@@ -41,12 +41,19 @@ export default function ProfilePage() {
           <h1 className="profile__title">hello Anelya</h1>
         </div>
         <div className="profile__list">
+          {users.length > 0 ? (
+          <>
           <h2 className="profile__heading">Your managed profiles:</h2>
           <div className="profile__patients">
-            {users.map((user) => (
+            { users.map((user) => (
               <PatientUsers key={user.id} patient={user} />
             ))}
-          </div>
+            </div>
+            </>
+            ): (
+              <div className="profile__nousers">
+                <h2>No Profiles Yet</h2>
+              </div>)}
         </div>
 
         <div className="profile__buttons">
