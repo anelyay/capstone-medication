@@ -74,8 +74,8 @@
     cursor: pointer;
 
     &--inactive {
+      @extend .login__subtitle;
       font-weight: 400;
-      font-size: 1.5rem;
       text-decoration: none;
     }
   }

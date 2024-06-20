@@ -2,19 +2,49 @@ import "./LoginPage.scss";
 import logo from "../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 export default function LoginPage() {
   const [activeForm, setActiveForm] = useState("login");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const handleActive = (formName) => {
     setActiveForm(formName);
+    setError(null);
+    setSuccess(false);
   };
 
-  const handleSignSubmit = (event) => {
+  const handleSignSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
+
+     const username = event.target.username.value;
+     const email = event.target.email.value;
+     const password = event.target.password.value;
+     const verifyPassword = event.target.verifyPassword.value;
+
+     if (password !== verifyPassword) {
+       setError("Passwords do not match");
+       return;
+     }
+    try {
+      await axios.post("http://localhost:8080/auth/register", {
+        username,
+        email,
+        password,
+      });
+
+
+      setSuccess(true);
+      setError(null);
+      event.target.reset();
+      setActiveForm("login")
+    } catch (error) {
+      setSuccess(false);
+      setError(error.response?.data || "Signup failed");
+    }
   };
 
   const handleSubmit = (event) => {
@@ -63,12 +93,12 @@ export default function LoginPage() {
           {activeForm === "login" && (
             <form className="login__form">
               <div className="login__form-box">
-                <label className="login__label">Username:</label>
+                <label className="login__label">Email:</label>
                 <input
                   className="login__input"
-                  type="text"
-                  name="username"
-                  placeholder="Please enter your username"
+                  type="email"
+                  name="email"
+                  placeholder="Please enter your email"
                 />
               </div>
               <div className="login__form-box">
@@ -91,15 +121,20 @@ export default function LoginPage() {
             </form>
           )}
 
+
+
+
+
+
           {activeForm === "signup" && (
             <form className="login__form">
               <div className="login__form-box">
-                <label className="login__label">Username:</label>
+                <label className="login__label">Name:</label>
                 <input
                   className="login__input"
                   type="text"
                   name="username"
-                  placeholder="Please create a username"
+                  placeholder="Please enter your name"
                 />
               </div>
               <div className="login__form-box">
@@ -120,6 +155,17 @@ export default function LoginPage() {
                   placeholder="Please enter your password"
                 />
               </div>
+
+              <div className="login__form-box">
+                <label className="login__label">Verify Password:</label>
+                <input
+                  className="login__input"
+                  type="password"
+                  name="verifyPassword"
+                  placeholder="Please re-enter your new password"
+                />
+              </div>
+
               <button
                 type="submit"
                 className="login__button"
