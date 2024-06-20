@@ -48,7 +48,7 @@ export default function Patient({ patient }) {
       </h2>
       <div className="patient__medlist">
         {loading ? (
-          <p>Loading medications...</p> // Show loading message while fetching data
+          <p>Loading medications...</p>
         ) : medications.length > 0 ? (
           medications.map((medication) => (
             <MedicationCard
