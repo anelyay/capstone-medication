@@ -141,7 +141,11 @@
     }
   }
 
-  &__nousers{
+  &__nousers {
+    @include flex(center, center);
+  }
+
+  &__loading {
     @include flex(center, center);
   }
 }

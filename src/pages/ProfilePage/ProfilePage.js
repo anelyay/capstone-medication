@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import PatientAPI from "../../classes/patientAPI";
 import AuthAPI from "../../classes/authAPI";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function ProfilePage() {
   const [users, setUsers] = useState([]);
   const [profile, setProfile] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleAdd = () => {
@@ -25,8 +25,10 @@ export default function ProfilePage() {
       try {
         const userData = await PatientAPI.getPatients();
         setUsers(userData);
+        setIsLoading(false);
       } catch (error) {
         console.error("Unable to get patients");
+        setIsLoading(false);
       }
     };
     getPatientsData();
@@ -34,17 +36,16 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-       const jwtToken = sessionStorage.getItem("token");
+      const jwtToken = sessionStorage.getItem("token");
 
-       if (!jwtToken) {
-         return navigate("/login");
-       }
+      if (!jwtToken) {
+        return navigate("/login");
+      }
 
       try {
         const response = await AuthAPI.getUser();
 
         setProfile(response);
-        console.log(response)
       } catch (error) {
         if (error.response) {
           console.error("Error fetching profile:", error);
@@ -77,7 +78,9 @@ export default function ProfilePage() {
           )}
         </div>
         <div className="profile__list">
-          {users.length > 0 ? (
+          {isLoading ? (
+            <div className="profile__loading">Loading ...</div>
+          ) : users.length > 0 ? (
             <>
               <h2 className="profile__heading">Your managed profiles:</h2>
               <div className="profile__patients">

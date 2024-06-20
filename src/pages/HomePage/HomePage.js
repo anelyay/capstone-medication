@@ -6,23 +6,26 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [patients, setPatients] = useState([]);
-  const navigate =useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPatients = async () => {
       try {
         const userData = await PatientAPI.getPatients();
         setPatients(userData);
+        setIsLoading(false);
       } catch (error) {
         console.error("Unable to get patients");
+        setIsLoading(false);
       }
     };
     getPatients();
   }, []);
 
-  const addPatient =() => {
-    navigate("/profile/add")
-  }
+  const addPatient = () => {
+    navigate("/profile/add");
+  };
 
   return (
     <main className="home">
@@ -30,7 +33,9 @@ export default function HomePage() {
         <h1 className="home__title">Today's Medications</h1>
 
         <div className="home__patientlist">
-          {patients.length > 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : patients.length > 0 ? (
             patients.map((patient) => (
               <Patient key={patient.id} patient={patient} />
             ))
