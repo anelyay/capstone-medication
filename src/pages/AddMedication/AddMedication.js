@@ -10,36 +10,35 @@ export default function AddMedication() {
     navigate("/");
   };
 
-const convertTimeTo24HourFormat = (time) => {
-  const [hour, minute, period] = time.split(/[:\s]/);
-  let convertedHour = parseInt(hour, 10);
-  if (period && period.toUpperCase() === "PM" && convertedHour < 12) {
-    convertedHour += 12;
-  }
-  const paddedHour = convertedHour.toString().padStart(2, "0");
-  return `${paddedHour}:${minute}`;
-};
-
-const handleAddMedication = async (formData) => {
-  try {
-    if (formData.schedule && Array.isArray(formData.schedule)) {
-      const convertedFormData = {
-        ...formData,
-        schedule: formData.schedule.map((entry) => ({
-          ...entry,
-          med_time: convertTimeTo24HourFormat(entry.med_time),
-        })),
-      };
-      const userData = await MedicationAPI.addMedication(convertedFormData);
-      navigate("/");
-    } else {
-      throw new Error("Schedule data is invalid");
+  const convertTimeTo24HourFormat = (time) => {
+    const [hour, minute, period] = time.split(/[:\s]/);
+    let convertedHour = parseInt(hour, 10);
+    if (period && period.toUpperCase() === "PM" && convertedHour < 12) {
+      convertedHour += 12;
     }
-  } catch (error) {
-    console.error("Unable to add a medication:", error);
-  }
-};
+    const paddedHour = convertedHour.toString().padStart(2, "0");
+    return `${paddedHour}:${minute}`;
+  };
 
+  const handleAddMedication = async (formData) => {
+    try {
+      if (formData.schedule && Array.isArray(formData.schedule)) {
+        const convertedFormData = {
+          ...formData,
+          schedule: formData.schedule.map((entry) => ({
+            ...entry,
+            med_time: convertTimeTo24HourFormat(entry.med_time),
+          })),
+        };
+        const userData = await MedicationAPI.addMedication(convertedFormData);
+        navigate("/");
+      } else {
+        throw new Error("Schedule data is invalid");
+      }
+    } catch (error) {
+      console.error("Unable to add a medication:", error);
+    }
+  };
 
   return (
     <div className="page-add-med">

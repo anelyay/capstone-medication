@@ -47,29 +47,28 @@ export default function MedicationPage() {
     return 0;
   });
 
-const sortedActivityLog = activityLog
-  ? activityLog
-      .sort((a, b) => {
-        const timeA = new Date(a.log_time);
-        const timeB = new Date(b.log_time);
-        return timeB - timeA;
-      })
-      .map((entry) => {
-        const date = new Date(entry.log_time);
-        const formattedDate = date.toLocaleString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        });
-        const formattedTime = date.toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "2-digit",
-          hour12: false,
-        });
-        return { ...entry, log_time: `${formattedDate} | ${formattedTime}` };
-      })
-  : [];
-
+  const sortedActivityLog = activityLog
+    ? activityLog
+        .sort((a, b) => {
+          const timeA = new Date(a.log_time);
+          const timeB = new Date(b.log_time);
+          return timeB - timeA;
+        })
+        .map((entry) => {
+          const date = new Date(entry.log_time);
+          const formattedDate = date.toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          });
+          const formattedTime = date.toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: false,
+          });
+          return { ...entry, log_time: `${formattedDate} | ${formattedTime}` };
+        })
+    : [];
 
   const navigateEdit = () => {
     navigate(`/medication/${id}/edit`);
@@ -89,7 +88,7 @@ const sortedActivityLog = activityLog
 
   const showId = () => {
     setBubble(true);
-  }
+  };
 
   return (
     <div className="medication">
