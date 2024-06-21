@@ -2,22 +2,22 @@
 @use "../../styles/partials/variables" as *;
 
 .login {
-  background-color: $white-background-color;
-  @include desktop {
-    @include flex(center, center);
-    @include direction(row);
-  }
+  // background-color: $white-background-color;
+  // @include desktop {
+  //   @include flex(center, center);
+  //   @include direction(row);
+  // }
   &__pattern {
     height: 20rem;
     width: 100vw;
     margin-top: -15rem;
-    background-image: url("../../assets/images/loginpattern.png");
+    // background-image: url("../../assets/images/loginpattern.png");
     background-size: contain;
     background-position: center;
 
     @include desktop {
-      height: 100vh;
-      margin: 0;
+      // height: 100vh;
+      // margin: 0;
     }
   }
 
@@ -31,9 +31,9 @@
       @include direction(row);
     }
 
-    @include desktop {
-      @include direction(column);
-    }
+    // @include desktop {
+    //   @include direction(column);
+    // }
   }
 
   &__logo {
@@ -98,7 +98,8 @@
 
   &__input {
     @include input;
-    background-color: #547b583b;
+    background-color: transparent;
+    // background-color: $white-background-color;
   }
 
   &__button {

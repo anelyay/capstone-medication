@@ -23,10 +23,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/medication/:id" element={<MedicationPage />} />
-          <Route
-            path="/medication/:patientId/add"
-            element={<AddMedication />}
-          />
+          <Route path="/medication/:patientId/add" element={<AddMedication />}/>
           <Route path="/medication/:id/edit" element={<EditMedication />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/add" element={<AddProfile />} />

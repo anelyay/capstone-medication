@@ -2,10 +2,18 @@ import "./Navbar.scss";
 import logout from "../../assets/icons/logout.png";
 import home from "../../assets/icons/home.png";
 import profile from "../../assets/icons/profile.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const hideHeader = ["/login"];
+  const showHeader = !hideHeader.includes(location.pathname);
+
+  if (!showHeader) {
+    return null;
+  }
 
   const handleHome = () => {
     navigate("/");
