@@ -1,23 +1,27 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.nav{
-    @include direction(row);
-    @include flex(space-between, center);
-    padding: 0.5rem 2rem;
-    z-index: 1;
-    background-color: #ccd5ae;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    border-top: 3px solid $background-color;
+.nav {
+  @include direction(row);
+  @include flex(space-between, center);
+  padding: 0.5rem 2rem;
+  z-index: 1;
+  background-color: $white-background-color;
+  background-image: url("/assets/images/pattern.png");
+  background-repeat: repeat;
+  background-size: 12rem 12rem;
 
-    @include tablet{
-        display: none;
-    }
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 3px solid $cool-color;
 
-    &__image{
-        width: 2rem;
-        cursor: pointer;
-    }
+  @include tablet {
+    display: none;
+  }
+
+  &__image {
+    width: 2rem;
+    cursor: pointer;
+  }
 }

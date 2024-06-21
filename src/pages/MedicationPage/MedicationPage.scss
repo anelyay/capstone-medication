@@ -47,7 +47,7 @@
     position: absolute;
     right: 10rem;
     bottom: 7rem;
-    animation: vapor 1.5s ease-in;
+    animation: vapor 1s ease-in;
 
     @include tablet {
       right: 13rem;
@@ -73,7 +73,7 @@
     right: 11.5rem;
     bottom: 8.25rem;
     font-size: 0.7rem;
-    animation: vapor 1.5s ease-in;
+    animation: vapor 1s ease-in;
 
     @include tablet {
       right: 14.5rem;
@@ -181,7 +181,7 @@
     border-radius: 50px;
     border: none;
     color: $white-background-color;
-    background-color: $background-color;
+    background-color: $cool-color;
     height: 1.3rem;
     margin-top: 1rem;
   }
