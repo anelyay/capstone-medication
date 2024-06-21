@@ -17,7 +17,7 @@
     border-radius: 50px;
 
     @include tablet {
-      width: 25rem;
+      width: 40rem;
     }
   }
 
@@ -27,11 +27,18 @@
 
   &__container {
     width: 100%;
+
+    @include tablet {
+      @include direction(row);
+      gap: 2.5rem;
+      margin-top: 1rem;
+    }
   }
 
   &__picture {
     @include flex(center, center);
     position: relative;
+    cursor: pointer;
   }
 
   &__image {
@@ -50,7 +57,7 @@
     animation: vapor 1s ease-in;
 
     @include tablet {
-      right: 13rem;
+      right: 21.5rem;
       bottom: 8rem;
     }
   }
@@ -76,7 +83,7 @@
     animation: vapor 1s ease-in;
 
     @include tablet {
-      right: 14.5rem;
+      right: 23rem;
       bottom: 9.3rem;
     }
   }
@@ -88,11 +95,17 @@
   &__title-box {
     @include flex(center, center);
     @include direction(column);
+    width: 100%;
+    border-bottom: 1px solid $cool-color;
+
+    @include tablet {
+      border: none;
+    }
   }
 
   &__title {
     font-size: 1.6rem;
-    margin: 0.5rem 0 1rem 0;
+    margin: 0.5rem 0;
 
     @include tablet {
       font-size: 2rem;
@@ -104,7 +117,7 @@
     gap: 6rem;
 
     @include tablet {
-      gap: 10rem;
+      gap: 7rem;
     }
   }
 
@@ -126,6 +139,10 @@
     text-align: center;
     margin: 1rem 0 0 0;
     font-size: 1.3rem;
+
+    @include tablet {
+      margin: 0 0 0.5rem 0;
+    }
   }
 
   &__headerbox {
@@ -177,13 +194,11 @@
   }
 
   &__show-more {
-    @include button-two;
-    border-radius: 50px;
     border: none;
-    color: $white-background-color;
-    background-color: $cool-color;
-    height: 1.3rem;
+    text-decoration: underline;
+    cursor: pointer;
     margin-top: 1rem;
+    font-size: 0.8rem;
   }
 
   &__showbox {
@@ -193,5 +208,12 @@
   &__times {
     @include direction(row);
     gap: 2rem;
+  }
+
+  &__box-log {
+    @include tablet {
+      border-left: 1px solid $cool-color;
+      padding-left: 2rem;
+    }
   }
 }

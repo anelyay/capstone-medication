@@ -98,37 +98,42 @@ export default function MedicationPage() {
         </div>
         <div className="medication__wrap">
           <div className="medication__container">
-            <div className="medication__wrapping">
-              <div className="medication__box">
-                <h3 className="medication__heading">dose:</h3>
-                <p className="medication__text">{medication.med_dose}</p>
-              </div>
+            <div className="medication__wrapper">
+              <h2 className="medication__header">Details</h2>
+              <div>
+                <div className="medication__wrapping">
+                  <div className="medication__box">
+                    <h3 className="medication__heading">dose:</h3>
+                    <p className="medication__text">{medication.med_dose}</p>
+                  </div>
 
-              <div className="medication__box">
-                <h3 className="medication__heading"> current quantity:</h3>
-                <p className="medication__text medication__text-quantity">
-                  {medication.quantity}
-                </p>
-              </div>
-            </div>
-
-            <div className="medication__middlebox">
-              <h3 className="medication__heading medication__heading--schedule">
-                schedule:
-              </h3>
-              <div className="medication__times">
-                {medication.schedule && medication.schedule.length > 0 ? (
-                  sortedSchedule.map((time, index) => (
-                    <p
-                      key={`${time.med_time}-${index}`}
-                      className="medication__text"
-                    >
-                      {time.med_time}
+                  <div className="medication__box">
+                    <h3 className="medication__heading"> current quantity:</h3>
+                    <p className="medication__text medication__text-quantity">
+                      {medication.quantity}
                     </p>
-                  ))
-                ) : (
-                  <p>No schedule available</p>
-                )}
+                  </div>
+                </div>
+
+                <div className="medication__middlebox">
+                  <h3 className="medication__heading medication__heading--schedule">
+                    schedule:
+                  </h3>
+                  <div className="medication__times">
+                    {medication.schedule && medication.schedule.length > 0 ? (
+                      sortedSchedule.map((time, index) => (
+                        <p
+                          key={`${time.med_time}-${index}`}
+                          className="medication__text"
+                        >
+                          {time.med_time}
+                        </p>
+                      ))
+                    ) : (
+                      <p>No schedule available</p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -154,12 +159,12 @@ export default function MedicationPage() {
                 ))}
                 {sortedActivityLog.length > 3 && (
                   <div className="medication__showbox">
-                    <button
+                    <p
                       className="medication__show-more"
                       onClick={showLogs}
                     >
                       {showAllLogs ? "show less" : "show more"}
-                    </button>
+                    </p>
                   </div>
                 )}
               </div>
