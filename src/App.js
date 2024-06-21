@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer";
 import AddProfile from "./pages/AddProfile/AddProfile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import ProfileDetailsPage from "./pages/ProfileDetailsPage/ProfileDetailsPage";
+import Navbar from "./components/Navbar/Navbar";
 
 export default function App() {
   return (
@@ -22,7 +23,10 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/medication/:id" element={<MedicationPage />} />
-          <Route path="/medication/:patientId/add" element={<AddMedication />}/>
+          <Route
+            path="/medication/:patientId/add"
+            element={<AddMedication />}
+          />
           <Route path="/medication/:id/edit" element={<EditMedication />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/add" element={<AddProfile />} />
@@ -31,6 +35,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+      <Navbar />
       <Footer />
     </BrowserRouter>
   );

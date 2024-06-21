@@ -43,6 +43,7 @@
     width: 100%;
     @include flex(space-between, center);
     gap: 1rem;}
+    cursor: pointer;
 
     @include tablet {
       width: auto;
@@ -51,5 +52,9 @@
 
   &__navlink {
     // @include button-one;
+  }
+
+  &__image {
+    width: 1.5rem;
   }
 }

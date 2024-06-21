@@ -1,0 +1,23 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.nav{
+    @include direction(row);
+    @include flex(space-between, center);
+    padding: 0.5rem 2rem;
+    z-index: 1;
+    background-color: #ccd5ae;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 3px solid $background-color;
+
+    @include tablet{
+        display: none;
+    }
+
+    &__image{
+        width: 2rem;
+        cursor: pointer;
+    }
+}

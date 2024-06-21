@@ -1,7 +1,9 @@
 import "./Header.scss";
 import logo from "../../assets/images/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import AuthAPI from "../../classes/authAPI";
+import logout from "../../assets/icons/logout.png";
+import home from "../../assets/icons/home.png";
+import profile from "../../assets/icons/profile.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ export default function Header() {
           </div>
         </Link>
         <nav className="header__nav">
-          <p className="header__navlink" onClick={handleHome}>
+          {/* <p className="header__navlink" onClick={handleHome}>
             home
           </p>
           <p className="header__navlink" onClick={handleProfile}>
@@ -48,7 +50,26 @@ export default function Header() {
           </p>
           <p className="header__navlink" onClick={handleLogout}>
             logout
-          </p>
+          </p> */}
+
+          <img
+            src={home}
+            alt="home"
+            className="header__image"
+            onClick={handleHome}
+          />
+          <img
+            src={profile}
+            alt="profile"
+            className="header__image"
+            onClick={handleProfile}
+          />
+          <img
+            src={logout}
+            alt="logout"
+            className="header__image"
+            onClick={handleLogout}
+          />
         </nav>
       </div>
     </header>

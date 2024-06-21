@@ -21,12 +21,12 @@
   }
 
   &__container {
-    @include direction(row);
-    @include flex(start, center);
-    gap: 1rem;
+    display: none;
 
     @include tablet {
       @include flex(end, center);
+      @include direction(row);
+      gap: 1rem;
       margin: 0 0.5rem;
     }
 
@@ -118,6 +118,7 @@
 
   &__buttons {
     @include direction(column);
+     @include flex(center, center);
     gap: 1rem;
     margin-top: 1.5rem;
 

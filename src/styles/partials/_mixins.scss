@@ -24,7 +24,7 @@
 }
 
 @mixin button-one {
-  width: 100%;
+  width: 14rem;
   border: none;
   height: 2rem;
   border-radius: 50px;
@@ -43,7 +43,7 @@
   &:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(45deg, #33441f, #606c38);
+    // background: linear-gradient(45deg, #33441f, #606c38);
   }
 
   @include tablet {
@@ -74,5 +74,5 @@
     width: 28rem;
   }
 
-  
+
 }
