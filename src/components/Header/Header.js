@@ -5,7 +5,7 @@ import logout from "../../assets/icons/logout.png";
 import home from "../../assets/icons/home.png";
 import profile from "../../assets/icons/profile.png";
 
-export default function Header() {
+export default function Header({ onLogout }) {
   const navigate = useNavigate();
   const location = useLocation();
   const hideHeader = ["/login"];
@@ -26,6 +26,7 @@ export default function Header() {
   const handleLogout = () => {
     try {
       sessionStorage.removeItem("token");
+      onLogout();
       navigate("/login");
     } catch (error) {
       console.error("Logout error:", error);

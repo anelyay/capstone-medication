@@ -4,7 +4,7 @@ import home from "../../assets/icons/home.png";
 import profile from "../../assets/icons/profile.png";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ onLogout }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,6 +26,7 @@ export default function Navbar() {
   const handleLogout = () => {
     try {
       sessionStorage.removeItem("token");
+      onLogout();
       navigate("/login");
     } catch (error) {
       console.error("Logout error:", error);

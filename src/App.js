@@ -14,18 +14,27 @@ import EditProfile from "./pages/EditProfile/EditProfile";
 import ProfileDetailsPage from "./pages/ProfileDetailsPage/ProfileDetailsPage";
 import Navbar from "./components/Navbar/Navbar";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 export default function App() {
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState(() => {
+    const savedSession = Cookies.get("session");
+    return savedSession ? JSON.parse(savedSession) : null;
+  });
 
   const handleLogin = (sessionData) => {
     setSession(sessionData);
+    Cookies.set("session", JSON.stringify(sessionData), { expires: 2 });
   };
 
+  const handleLogout = () => {
+    setSession(null);
+    Cookies.remove("session");
+  };
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header onLogout={handleLogout} />
       <div className="route">
         <Routes>
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
@@ -52,7 +61,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
-      <Navbar/>
+      <Navbar onLogout={handleLogout} />
       <Footer />
     </BrowserRouter>
   );

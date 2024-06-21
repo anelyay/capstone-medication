@@ -75,7 +75,7 @@ export default function ProfilePage() {
             <div className="profile__loading">Loading ...</div>
           ) : users.length > 0 ? (
             <>
-              <h2 className="profile__heading">Your managed profiles</h2>
+              <h2 className="profile__heading">Your managed profiles:</h2>
               <div className="profile__patients">
                 {users.map((user) => (
                   <PatientUsers key={user.id} patient={user} />
