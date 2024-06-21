@@ -25,6 +25,26 @@ class AuthAPI {
       throw error;
     }
   }
+
+  static async Register(credentials) {
+    try {
+      const response = await axiosInstance.post("/auth/register", credentials);
+      return response.data;
+    } catch (error) {
+      console.error("Error registering a user:", error);
+      throw error;
+    }
+  }
+
+  static async Login(credentials) {
+    try {
+      const response = await axiosInstance.post("/auth/login", credentials);
+      return response.data;
+    } catch (error) {
+      console.error("Error logging in a user:", error);
+      throw error;
+    }
+  }
 }
 
 export default AuthAPI;

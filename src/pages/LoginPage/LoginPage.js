@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import AuthAPI from "../../classes/authAPI";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -55,12 +56,7 @@ export default function LoginPage() {
       return;
     }
     try {
-      await axios.post("http://localhost:8080/auth/register", {
-        username,
-        email,
-        password,
-      });
-
+      await AuthAPI.Register({ username, email, password });
       setSuccess(true);
       setError(null);
       setFormData({
@@ -78,19 +74,15 @@ export default function LoginPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-        const { email, password } = loginData;
-
+    const { email, password } = loginData;
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
-        email, password
-      });
-
-      sessionStorage.setItem("token", response.data.token);
+      const response = await AuthAPI.Login({ email, password });
+      sessionStorage.setItem("token", response.token);
       navigate("/");
     } catch (error) {
-      setError(error.response.data);
+      console.error("Error logging in a user:", error);
+      setError(error.response?.data || "Error logging in");
     }
   };
 

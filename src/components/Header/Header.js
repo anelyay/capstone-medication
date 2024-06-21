@@ -1,6 +1,7 @@
 import "./Header.scss";
 import logo from "../../assets/images/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import AuthAPI from "../../classes/authAPI";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -12,11 +13,21 @@ export default function Header() {
     return null;
   }
 
-  const handleHome = (event) => {
+  const handleHome = () => {
     navigate("/");
   };
-  const handleProfile = (event) => {
+
+  const handleProfile = () => {
     navigate("/profile");
+  };
+
+  const handleLogout = () => {
+    try {
+      sessionStorage.removeItem("token");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   };
 
   return (
@@ -34,6 +45,9 @@ export default function Header() {
           </button>
           <button className="header__navlink" onClick={handleProfile}>
             profile
+          </button>
+          <button className="header__navlink" onClick={handleLogout}>
+            logout
           </button>
         </nav>
       </div>
