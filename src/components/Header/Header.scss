@@ -6,7 +6,6 @@
   padding-top: 0.5rem;
 
   &__container {
-
     @include direction(column);
     width: 100%;
     gap: 0.5rem;
@@ -18,7 +17,7 @@
       padding: 0 2rem;
     }
     @include desktop {
-        width: 63.75rem;
+      width: 63.75rem;
     }
   }
 
@@ -39,20 +38,18 @@
 
   &__nav {
     display: none;
-    @include tablet {
-    width: 100%;
-    @include flex(space-between, center);
-    gap: 1rem;}
-    cursor: pointer;
 
     @include tablet {
+      cursor: pointer;
       width: auto;
+      @include flex(space-between, center);
+      gap: 2rem;
     }
   }
 
-  &__navlink {
-    // @include button-one;
-  }
+  // &__navlink {
+  //   // @include button-one;
+  // }
 
   &__image {
     width: 1.5rem;
