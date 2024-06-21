@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import AuthAPI from "../../classes/authAPI";
 
-export default function LoginPage() {
+export default function LoginPage({onLogin}) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -65,7 +65,7 @@ export default function LoginPage() {
         password: "",
         verifyPassword: "",
       });
-      setActiveForm("login");
+      setTimeout(() => setActiveForm("login"), 2000);
     } catch (error) {
       setSuccess(false);
       setError(error.response?.data || "Signup failed");
@@ -79,6 +79,7 @@ export default function LoginPage() {
     try {
       const response = await AuthAPI.Login({ email, password });
       sessionStorage.setItem("token", response.token);
+      onLogin(response.token);
       navigate("/");
     } catch (error) {
       console.error("Error logging in a user:", error);
@@ -215,6 +216,9 @@ export default function LoginPage() {
                 sign up
               </button>
               {error && <div className="login__error"> {error} </div>}
+              {success && (
+                <div className="login__success"> Signup successful! </div>
+              )}
             </form>
           )}
         </div>
