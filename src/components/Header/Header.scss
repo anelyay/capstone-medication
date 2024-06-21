@@ -6,6 +6,7 @@
   padding-top: 0.5rem;
 
   &__container {
+
     @include direction(column);
     width: 100%;
     gap: 0.5rem;
@@ -37,9 +38,11 @@
   }
 
   &__nav {
+    display: none;
+    @include tablet {
     width: 100%;
     @include flex(space-between, center);
-    gap: 1rem;
+    gap: 1rem;}
 
     @include tablet {
       width: auto;

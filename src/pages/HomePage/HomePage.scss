@@ -9,7 +9,6 @@
     @include direction(column);
     @include flex(center, center);
     width: 100%;
-    padding: 1rem 0;
     margin-bottom: 2rem;
 
     @include tablet {

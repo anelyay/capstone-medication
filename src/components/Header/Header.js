@@ -40,15 +40,15 @@ export default function Header() {
           </div>
         </Link>
         <nav className="header__nav">
-          <button className="header__navlink" onClick={handleHome}>
+          <p className="header__navlink" onClick={handleHome}>
             home
-          </button>
-          <button className="header__navlink" onClick={handleProfile}>
+          </p>
+          <p className="header__navlink" onClick={handleProfile}>
             profile
-          </button>
-          <button className="header__navlink" onClick={handleLogout}>
+          </p>
+          <p className="header__navlink" onClick={handleLogout}>
             logout
-          </button>
+          </p>
         </nav>
       </div>
     </header>
