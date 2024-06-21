@@ -2,13 +2,11 @@
 @use "../../styles/partials/variables" as *;
 
 .footer {
-  background-image: linear-gradient(
-    120deg,
-    $background-color,
-    $main-font-color
-  );
-
-  color: white;
+  // background-image: linear-gradient(
+  //   120deg,
+  //   $background-color,
+  //   $main-font-color
+  // );
   margin-top: 1rem;
   @include flex(center, center);
   @include direction(column);

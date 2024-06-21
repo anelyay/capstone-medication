@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div className="footer__wrap">
+      {/* <div className="footer__wrap">
         <div className="footer__pillbox">
           <img className="footer__pill" src={pills} alt="pills" />
         </div>
@@ -47,7 +47,7 @@ export default function Footer() {
           src={meds}
           alt="medication bottle with pills"
         />
-      </div>
+      </div> */}
 
       <div className="footer__copyright">
         <p className="footer__legal">© 2024 Otter Pill. All rights reserved.</p>
