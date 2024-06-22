@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function UserInfo({ email, username }) {
   const [isForm, setIsForm] = useState(false);
   const [alert, setAlert] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: username,
     email: email,
@@ -42,6 +43,10 @@ export default function UserInfo({ email, username }) {
     setIsForm(false);
   };
 
+  const handleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
     <div className="user-info">
       <div className="user-info__container">
@@ -49,17 +54,47 @@ export default function UserInfo({ email, username }) {
 
         {!isForm && (
           <div className="user-info__wrapper">
-            <div className="user-info__box">
-              <p className="user-info__label">Name:</p>
-              <p className="user-info__text">{username}</p>
+            <div className="user-info__details">
+              <div className="user-info__details-box">
+                <div className="user-info__box">
+                  <p className="user-info__label">Name:</p>
+                  <p
+                    className={
+                      isVisible
+                        ? "user-info__text-visible"
+                        : "user-info__text-invisible"
+                    }
+                  >
+                    {username}
+                  </p>
+                </div>
+
+                <div className="user-info__box">
+                  <p className="user-info__label">Email:</p>
+                  <p
+                    className={
+                      isVisible
+                        ? "user-info__text-visible"
+                        : "user-info__text-invisible"
+                    }
+                  >
+                    {email}
+                  </p>
+                </div>
+              </div>
+
+              <div className="user-info__visibilitybox">
+                <button
+                  alt="visibility"
+                  onClick={handleVisibility}
+                  className={
+                    isVisible ? "user-info__visible" : "user-info__invisible"
+                  }
+                />
+              </div>
             </div>
 
-            <div className="user-info__box">
-              <p className="user-info__label">Email:</p>
-              <p className="user-info__text">{email}</p>
-            </div>
-
-            <button onClick={handleShowForm} className="user-info__button-edit">
+            <button onClick={handleShowForm} className="user-info__button">
               Edit
             </button>
           </div>
@@ -69,7 +104,7 @@ export default function UserInfo({ email, username }) {
           <form onSubmit={handleSubmit} className="user-info__form">
             <div className="user-info__group">
               <label htmlFor="username" className="user-info__label">
-                Username
+                Name
               </label>
               <input
                 type="text"
@@ -103,21 +138,25 @@ export default function UserInfo({ email, username }) {
                 type="password"
                 id="password"
                 name="password"
+                placeholder="enter a new password (optional)"
                 value={userInfo.password}
                 onChange={handleInputChange}
                 className="user-info__input"
               />
             </div>
 
-            <div>
+            <div className="user-info__buttons">
               <button
                 type="button"
                 onClick={handleCancel}
-                className="user-info__button-cancel"
+                className="user-info__button user-info__button-cancel"
               >
                 cancel
               </button>
-              <button type="submit" className="user-info__button-update">
+              <button
+                type="submit"
+                className="user-info__button user-info__button-update"
+              >
                 update
               </button>
             </div>
