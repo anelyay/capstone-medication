@@ -1,3 +1,4 @@
+///
 import { useState, useEffect } from "react";
 import "./MedicationForm.scss";
 import { useParams } from "react-router-dom";
@@ -49,7 +50,7 @@ export default function MedicationForm({
       setSelectedTimes(schedule ? schedule.times : null);
       setTimes(initialData.schedule.map((entry) => entry.med_time) || []);
     }
-  }, [initialData, scheduleOptions]);
+  }, [initialData]);
 
   const handleScheduleChange = (event) => {
     const selectedOption = scheduleOptions.find(
@@ -119,7 +120,7 @@ export default function MedicationForm({
             required
             id={`time-${i}`}
             name={`time-${i}`}
-            className={`${className}__input`}
+            className={`${className}__input ${className}__input-time `}
             value={times[i]}
             onChange={(e) => handleTimeChange(i, e.target.value)}
           >

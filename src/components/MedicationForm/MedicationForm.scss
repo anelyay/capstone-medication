@@ -1,7 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-
 .edit-med {
   @include flex(center, center);
   margin: 0 1rem;
@@ -19,27 +18,28 @@
     }
   }
 
-    &__header {
+  &__header {
     position: relative;
   }
 
   &__arrow {
     width: 1.3rem;
     position: absolute;
-    top: 1.4rem;
+    top: 1.5rem;
     left: -2rem;
     cursor: pointer;
 
-    @include tablet{
-      top: 2rem;
+    @include tablet {
+      top: 2.2rem;
     }
   }
 
   &__times {
     gap: 1rem;
     @include direction(row);
-    @include flex(center, baseline);
+    @include flex(start, baseline);
     flex-wrap: wrap;
+    width: 100%;
 
     @include tablet {
       gap: 0.5rem;
@@ -58,7 +58,8 @@
   }
 
   &__time {
-    @include flex(start, center);
+    width: 100%;
+    @include flex(start, start);
     @include direction(column);
     gap: 0.1rem;
   }
@@ -67,6 +68,14 @@
     @include input;
     margin-bottom: 1rem;
     width: 100%;
+
+    &-time {
+      background-image: url(../../assets/icons/down-arrow.png);
+      background-repeat: no-repeat;
+      background-position: right 0.7rem top 50%;
+      background-size: 0.65rem auto;
+      appearance: none;
+    }
   }
 
   &__schedule {
@@ -104,7 +113,7 @@
     gap: 1rem;
 
     @include tablet {
-      gap: 8rem;
+      // gap: 8rem;
     }
   }
 }
@@ -126,7 +135,7 @@
     }
   }
 
-    &__header {
+  &__header {
     position: relative;
   }
 
@@ -137,11 +146,10 @@
     left: -2rem;
     cursor: pointer;
 
-    @include tablet{
+    @include tablet {
       top: 2rem;
     }
   }
-
 
   &__times {
     gap: 1rem;
@@ -166,6 +174,7 @@
   }
 
   &__time {
+    width: 100%;
     @include flex(start, center);
     @include direction(column);
     gap: 0.1rem;
@@ -189,7 +198,6 @@
   &__button {
     @include button-one;
     margin-top: 1rem;
-
   }
 
   &__label {
