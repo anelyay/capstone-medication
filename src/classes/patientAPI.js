@@ -1,9 +1,10 @@
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
 const getToken = () => sessionStorage.getItem("token");
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: API_URL,
 });
 
 axiosInstance.interceptors.request.use(
