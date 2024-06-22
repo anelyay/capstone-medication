@@ -64,6 +64,11 @@ export default function LoginPage({onLogin}) {
         password: "",
         verifyPassword: "",
       });
+
+      setLoginData({
+        email: email,
+        password: ""
+      });
       setTimeout(() => setActiveForm("login"), 2000);
     } catch (error) {
       setSuccess(false);
@@ -203,7 +208,7 @@ export default function LoginPage({onLogin}) {
                   name="verifyPassword"
                   value={formData.verifyPassword}
                   onChange={handleChange}
-                  placeholder="Please re-enter your new password"
+                  placeholder="Please re-enter your password"
                 />
               </div>
 

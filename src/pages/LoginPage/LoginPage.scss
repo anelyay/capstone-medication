@@ -50,7 +50,7 @@
   }
 
   &__form-container {
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 5rem 2rem;
     width: 100%;
 
     @include tablet {
@@ -99,13 +99,17 @@
   &__input {
     @include input;
     background-color: transparent;
-    // background-color: $white-background-color;
   }
 
   &__button {
     @include button-one;
-    width: 8rem;
+    width: 100%;
     font-size: 1rem;
+    margin-top: 1rem;
   }
 
+  &__success {
+    @include flex (center, center);
+    font-weight: 500;
+  }
 }
