@@ -12,9 +12,13 @@ html {
   position: relative;
   margin: 0;
   padding: 0;
-  font-family: "Questrial", sans-serif;
+  // font-family: "Jost";
+    font-family: "Urbanist";
+
+  font-weight: 400;
   color: $main-font-color;
-  background-color: $white-background-color;
+  // background-color: $white-background-color;
+  background-color: #fffefa;
   background-image: url("/assets/images/pattern.png");
   background-repeat: repeat;
   background-size: 12rem 12rem;
@@ -30,7 +34,11 @@ select {
   position: relative;
   margin: 0;
   padding: 0;
-  font-family: "Questrial", sans-serif;
+    font-family: "Urbanist";
+
+        // font-family: "Outfit";
+
+  // font-family: "Questrial", sans-serif;
   color: $main-font-color;
 }
 

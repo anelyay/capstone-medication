@@ -12,7 +12,8 @@
 
   &__title {
     cursor: pointer;
-    
+    font-weight: 500;
+
 
     @include tablet {
       font-size: 1.75rem;

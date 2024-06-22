@@ -20,6 +20,8 @@
   }
 
   &__title {
+    font-weight: 600;
+
     @include tablet {
       font-size: 3rem;
       margin: 0.5rem;
@@ -42,11 +44,11 @@
     }
   }
 
-  &__button{
+  &__button {
     @include button-one;
   }
 
-  &__nopatients{
+  &__nopatients {
     @include flex(center, center);
     @include direction(column);
     height: 10rem;

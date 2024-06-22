@@ -105,7 +105,7 @@ export default function ProfileDetailsPage() {
     navigate(`/medication/${id}/add`);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="details__loading">Loading...</div>;
   if (patientError) return <div>{patientError}</div>;
 
   return (
@@ -192,13 +192,13 @@ export default function ProfileDetailsPage() {
           </div>
         </div>
 
-        <div className="details__picture">
+        {/* <div className="details__picture">
           <img
             src={otterMed}
             alt="otter with a pill"
             className="details__image"
           />
-        </div>
+        </div> */}
       </div>
       <div className="details__buttons">
         <button type="button" className="details__button" onClick={handleBack}>

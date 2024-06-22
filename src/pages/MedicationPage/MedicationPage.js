@@ -92,7 +92,9 @@ export default function MedicationPage() {
 
   return (
     <div className="medication">
-      <h1>{medication.patient_name}'s Pill</h1>
+      <h1 className="medication__maintitle">
+        {medication.patient_name}'s Pill
+      </h1>
       <div className="medication__card">
         <div className="medication__title-box">
           <h2 className="medication__title">{medication.med_name}</h2>
@@ -171,8 +173,9 @@ export default function MedicationPage() {
                 </>
               ) : (
                 <div>
-                  <h4>Medication has not been taken yet</h4>
-
+                  <h4 className="medication__h4">
+                    Medication has not been taken yet
+                  </h4>
                 </div>
               )}
             </div>
@@ -201,7 +204,7 @@ export default function MedicationPage() {
       <div className="medication__buttons">
         <button
           type="button"
-          className="medication__button"
+          className="medication__button medication__button-back"
           onClick={handleBack}
         >
           go back

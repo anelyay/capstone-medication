@@ -17,9 +17,9 @@ export default function ProfilePage() {
     navigate("add");
   };
 
-  const handleBack = () => {
-    navigate("/");
-  };
+  // const handleBack = () => {
+  //   navigate("/");
+  // };
 
   useEffect(() => {
     const getPatientsData = async () => {
@@ -88,9 +88,9 @@ export default function ProfilePage() {
         </div>
 
         <div className="profile__buttons">
-          <button className="profile__action-back" onClick={handleBack}>
+          {/* <button className="profile__action-back" onClick={handleBack}>
             go back
-          </button>
+          </button> */}
           <button className="profile__action" onClick={handleAdd}>
             add a profile
           </button>

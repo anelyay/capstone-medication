@@ -5,7 +5,6 @@
   width: 100%;
   @include flex(center, center);
   @include direction(column);
-  margin: 1rem 0;
 
   @include tablet {
     margin: 0;
@@ -110,6 +109,7 @@
   &__title {
     font-size: 1.6rem;
     margin: 0.5rem 0;
+    font-weight: 500;
 
     @include tablet {
       font-size: 2rem;
@@ -128,6 +128,7 @@
   &__heading {
     font-size: 0.7rem;
     margin: 0.5rem 0;
+    font-weight: 500;
     color: $white-background-color;
 
     &--schedule {
@@ -143,6 +144,7 @@
     text-align: center;
     margin: 1rem 0 0 0;
     font-size: 1.3rem;
+    font-weight: 500;
 
     @include tablet {
       margin: 0 0 0.5rem 0;
@@ -182,15 +184,23 @@
   }
 
   &__buttons {
-    @include flex(center, center);
-    @include direction(row);
+    padding: 2rem 0.5rem 0 0.5rem;
     gap: 1rem;
     width: 100%;
-    padding: 2rem 0.5rem 0 0.5rem;
+    @include flex(center, center);
+    @include direction(column);
+
+    @include tablet {
+      @include direction(row);
+    }
   }
 
   &__button {
     @include button-one;
+
+    &-back{
+      order: 1;
+    }
   }
 
   &__show-more {
@@ -219,5 +229,14 @@
 
   &__loading {
     @include flex(center, center);
+  }
+
+  &__maintitle {
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  &__h4 {
+    font-weight: 500;
   }
 }

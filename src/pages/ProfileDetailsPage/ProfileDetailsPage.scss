@@ -56,6 +56,7 @@
   &__title {
     font-size: 1.6rem;
     margin: 0.75rem 0 0 0;
+    font-weight: 500;
 
     @include tablet {
       font-size: 2rem;
@@ -75,6 +76,7 @@
     font-size: 0.7rem;
     margin: 0.5rem 0;
     color: $white-background-color;
+    font-weight: 500;
 
     &-main {
       @extend .details__heading;
@@ -94,6 +96,7 @@
     text-align: center;
     margin: 0.5rem 0 0.25rem 0;
     font-size: 1.3rem;
+    font-weight: 500;
   }
 
   &__headerbox {
@@ -148,7 +151,7 @@
     padding: 1rem 0.5rem 0 0.5rem;
 
     @include tablet {
-      gap: 5rem;
+      // gap: 5rem;
     }
   }
 
@@ -181,5 +184,9 @@
     @include tablet{
       width: 5.6rem;
     }
+  }
+
+  &__loading {
+    @include flex(center, center)
   }
 }
