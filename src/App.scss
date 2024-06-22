@@ -19,12 +19,14 @@ html {
   background-repeat: repeat;
   background-size: 12rem 12rem;
   background-position: top center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 input,
 textarea,
 button,
-select  {
+select {
   position: relative;
   margin: 0;
   padding: 0;
