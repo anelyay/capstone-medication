@@ -58,6 +58,10 @@
   &__compliance {
     margin: 0;
     font-weight: 800;
+
+    &--totake{
+      font-weight: 500;
+    }
   }
 
   &__button {
@@ -68,7 +72,6 @@
     background-size: 2.6rem;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: $box-shadow;
     border: none;
     cursor: pointer;
 

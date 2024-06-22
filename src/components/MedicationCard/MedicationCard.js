@@ -32,9 +32,14 @@ export default function MedicationCard({ medication }) {
         <div className="card__schedule">
           <div className="card__timebox">
             <p className="card__time">{medication.med_time}</p>
-            <p className="card__compliance">
-              {medication.med_taken || clicked ? "TAKEN" : "TO TAKE"}
-            </p>
+
+            {medication.med_taken || clicked ? (
+              <p className="card__compliance">TAKEN</p>
+            ) : (
+              <p className="card__compliance card__compliance--totake">
+                TO TAKE
+              </p>
+            )}
           </div>
           <div className="card__done-button">
             <button
