@@ -49,7 +49,7 @@ export default function MedicationForm({
       setSelectedTimes(schedule ? schedule.times : null);
       setTimes(initialData.schedule.map((entry) => entry.med_time) || []);
     }
-  }, [initialData]);
+  }, [initialData, scheduleOptions]);
 
   const handleScheduleChange = (event) => {
     const selectedOption = scheduleOptions.find(

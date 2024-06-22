@@ -1,9 +1,9 @@
 import "./Footer.scss";
 import { useLocation } from "react-router-dom";
-import meds from "../../assets/images/meds.png";
-import github from "../../assets/icons/github.png";
-import email from "../../assets/icons/email.png";
-import pills from "../../assets/images/pills.png";
+// import meds from "../../assets/images/meds.png";
+// import github from "../../assets/icons/github.png";
+// import email from "../../assets/icons/email.png";
+// import pills from "../../assets/images/pills.png";
 
 export default function Footer() {
   const location = useLocation();
