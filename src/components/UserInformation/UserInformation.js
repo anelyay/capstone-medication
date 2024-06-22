@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function UserInfo({ email, username }) {
   const [isForm, setIsForm] = useState(false);
+  const [alert, setAlert] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: username,
     email: email,
@@ -14,8 +15,8 @@ export default function UserInfo({ email, username }) {
     return <p>Loading...</p>;
   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
 
@@ -23,7 +24,10 @@ export default function UserInfo({ email, username }) {
     event.preventDefault();
     try {
       await AuthAPI.UpdateUser(userInfo);
-      alert("User info updated successfully!");
+      setAlert("Updated successfully");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("Failed to update user info:", error);
       alert("Failed to update user info.");
@@ -41,10 +45,10 @@ export default function UserInfo({ email, username }) {
   return (
     <div className="user-info">
       <div className="user-info__container">
-        <h2 className="user-info__title">Personal Details</h2>
+        <h2 className="user-info__title">My Personal Details</h2>
 
         {!isForm && (
-          <>
+          <div className="user-info__wrapper">
             <div className="user-info__box">
               <p className="user-info__label">Name:</p>
               <p className="user-info__text">{username}</p>
@@ -58,7 +62,7 @@ export default function UserInfo({ email, username }) {
             <button onClick={handleShowForm} className="user-info__button-edit">
               Edit
             </button>
-          </>
+          </div>
         )}
 
         {isForm && (
@@ -117,6 +121,8 @@ export default function UserInfo({ email, username }) {
                 update
               </button>
             </div>
+
+            {alert && <p>{alert}</p>}
           </form>
         )}
       </div>

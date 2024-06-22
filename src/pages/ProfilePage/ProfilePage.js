@@ -50,7 +50,7 @@ export default function ProfilePage() {
           setIsLoading(false); // Ensure isLoading is set to false regardless of success or failure
         }
       };
-    
+
 
     fetchProfile();
   }, [navigate]);
@@ -73,7 +73,7 @@ export default function ProfilePage() {
             <div className="profile__loading">Loading ...</div>
           ) : users.length > 0 ? (
             <>
-              <h2 className="profile__heading">My managed profiles:</h2>
+              <h2 className="profile__heading">My Managed Profiles</h2>
               <div className="profile__patients">
                 {users.map((user) => (
                   <PatientUsers key={user.id} patient={user} />

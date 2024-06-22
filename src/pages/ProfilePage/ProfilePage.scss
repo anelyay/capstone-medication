@@ -11,9 +11,7 @@
   @include desktop {
     @include flex(center, center);
     @include direction(column);
-
     padding: 0rem 8rem;
-    margin-top: 0;
   }
 
   &__wrap {
