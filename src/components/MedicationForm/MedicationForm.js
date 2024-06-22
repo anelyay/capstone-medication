@@ -109,7 +109,7 @@ export default function MedicationForm({
 
   const renderTimeInputs = () => {
     if (selectedTimes === null) return null;
-    const timeOptions = generateTimeOptions(15); // 5-minute increments
+    const timeOptions = generateTimeOptions(15);
     const inputs = [];
     for (let i = 0; i < selectedTimes; i++) {
       inputs.push(

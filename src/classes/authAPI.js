@@ -45,6 +45,16 @@ class AuthAPI {
       throw error;
     }
   }
+
+  static async UpdateUser(credentials) {
+    try {
+      const response = await axiosInstance.put("/auth/users", credentials);
+      return response.data;
+    } catch (error) {
+      console.error("Error updating a user:", error);
+      throw error;
+    }
+  }
 }
 
 export default AuthAPI;

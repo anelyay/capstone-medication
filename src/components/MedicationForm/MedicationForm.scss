@@ -4,6 +4,7 @@
 
 .edit-med {
   @include flex(center, center);
+  margin: 0 1rem;
 
   &__wrap {
     margin: 1rem;
@@ -110,6 +111,7 @@
 
 .add-med {
   @include flex(center, center);
+  margin: 0 1rem;
 
   &__wrap {
     margin: 1rem;

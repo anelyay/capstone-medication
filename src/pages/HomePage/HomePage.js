@@ -21,8 +21,9 @@ export default function HomePage() {
       }
     };
 
-    getPatients(); 
+    getPatients();
   }, []);
+
   const addPatient = () => {
     navigate("/profile/add");
   };

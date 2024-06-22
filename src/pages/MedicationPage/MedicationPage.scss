@@ -7,6 +7,10 @@
   @include direction(column);
   margin: 1rem 0;
 
+  @include tablet {
+    margin: 0;
+  }
+
   &__card {
     width: 18rem;
     padding: 1rem;
@@ -183,10 +187,6 @@
     gap: 1rem;
     width: 100%;
     padding: 2rem 0.5rem 0 0.5rem;
-
-    @include tablet {
-      gap: 5rem;
-    }
   }
 
   &__button {
@@ -215,5 +215,9 @@
       border-left: 1px solid $cool-color;
       padding-left: 2rem;
     }
+  }
+
+  &__loading {
+    @include flex(center, center);
   }
 }

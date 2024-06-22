@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import PatientAPI from "../../classes/patientAPI";
 import AuthAPI from "../../classes/authAPI";
 import { useState, useEffect } from "react";
+import UserInfo from "../../components/UserInformation/UserInformation";
 
 export default function ProfilePage() {
   const [users, setUsers] = useState([]);
@@ -35,24 +36,21 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await AuthAPI.getUser();
-        setProfile(response);
-      } catch (error) {
-        if (error.response) {
+      const fetchProfile = async () => {
+        try {
+          const response = await AuthAPI.getUser();
+          setProfile(response);
+        } catch (error) {
           console.error("Error fetching profile:", error);
-          if (error.response.status === 401) {
+          if (error.response && error.response.status === 401) {
             sessionStorage.removeItem("token");
             navigate("/login");
           }
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-        } else {
-          console.error("Error setting up the request:", error.message);
+        } finally {
+          setIsLoading(false); // Ensure isLoading is set to false regardless of success or failure
         }
-      }
-    };
+      };
+    
 
     fetchProfile();
   }, [navigate]);
@@ -75,7 +73,7 @@ export default function ProfilePage() {
             <div className="profile__loading">Loading ...</div>
           ) : users.length > 0 ? (
             <>
-              <h2 className="profile__heading">Your managed profiles:</h2>
+              <h2 className="profile__heading">My managed profiles:</h2>
               <div className="profile__patients">
                 {users.map((user) => (
                   <PatientUsers key={user.id} patient={user} />
@@ -98,6 +96,8 @@ export default function ProfilePage() {
           </button>
         </div>
       </div>
+
+        {profile && <UserInfo username={profile.username} email={profile.email} />}
     </div>
   );
 }

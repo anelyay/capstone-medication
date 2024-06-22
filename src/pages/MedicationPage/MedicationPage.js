@@ -36,7 +36,7 @@ export default function MedicationPage() {
   }, [id]);
 
   if (!medication) {
-    return <div>Loading...</div>;
+    return <div className="medication__loading">Loading...</div>;
   }
 
   const sortedSchedule = medication.schedule.sort((a, b) => {
@@ -92,6 +92,7 @@ export default function MedicationPage() {
 
   return (
     <div className="medication">
+      <h1>{medication.patient_name}'s Pill</h1>
       <div className="medication__card">
         <div className="medication__title-box">
           <h2 className="medication__title">{medication.med_name}</h2>
@@ -135,40 +136,46 @@ export default function MedicationPage() {
                   </div>
                 </div>
               </div>
+
+              {medication.notes && (
+                <div className="medication__box">
+                  <h3 className="medication__heading">notes:</h3>
+                  <p className="medication__text">{medication.notes}</p>
+                </div>
+              )}
             </div>
 
-            {medication.notes && (
-              <div className="medication__box">
-                <h3 className="medication__heading">notes:</h3>
-                <p className="medication__text">{medication.notes}</p>
-              </div>
-            )}
+            <div className="medication__box-log">
+              <h2 className="medication__header">Compliance History</h2>
+              {activityLog && activityLog.length > 0 ? (
+                <>
+                  <div className="medication__headerbox">
+                    <h3 className="medication__heading">
+                      administration date:
+                    </h3>
+                    <h3 className="medication__heading">pills left:</h3>
+                  </div>
+                  {logsToShow.map((log, index) => (
+                    <div className="medication__wrapping" key={index}>
+                      <p className="medication__text-history">{log.log_time}</p>
+                      <p className="medication__text-history">{log.quantity}</p>
+                    </div>
+                  ))}
+                  {sortedActivityLog.length > 3 && (
+                    <div className="medication__showbox">
+                      <p className="medication__show-more" onClick={showLogs}>
+                        {showAllLogs ? "show less" : "show more"}
+                      </p>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div>
+                  <h4>Medication has not been taken yet</h4>
 
-            {activityLog && activityLog.length > 0 && (
-              <div className="medication__box-log">
-                <h2 className="medication__header">Compliance History</h2>
-                <div className="medication__headerbox">
-                  <h3 className="medication__heading">administration date:</h3>
-                  <h3 className="medication__heading">pills left:</h3>
                 </div>
-                {logsToShow.map((log, index) => (
-                  <div className="medication__wrapping" key={index}>
-                    <p className="medication__text-history">{log.log_time}</p>
-                    <p className="medication__text-history">{log.quantity}</p>
-                  </div>
-                ))}
-                {sortedActivityLog.length > 3 && (
-                  <div className="medication__showbox">
-                    <p
-                      className="medication__show-more"
-                      onClick={showLogs}
-                    >
-                      {showAllLogs ? "show less" : "show more"}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
           <div className="medication__picture">
