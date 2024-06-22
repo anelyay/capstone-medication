@@ -30,7 +30,7 @@ export default function AddMedication() {
             med_time: convertTimeTo24HourFormat(entry.med_time),
           })),
         };
-        const userData = await MedicationAPI.addMedication(convertedFormData);
+        await MedicationAPI.addMedication(convertedFormData);
         navigate("/");
       } else {
         throw new Error("Schedule data is invalid");

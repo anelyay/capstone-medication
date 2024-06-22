@@ -12,7 +12,7 @@ export default function AddProfile() {
 
    const handleSubmit = async (formData) => {
      try {
-       const userData = await PatientAPI.addPatient(formData);
+      await PatientAPI.addPatient(formData);
        navigate("/profile");
      } catch (error) {
        console.error("Unable to add patient:", error);

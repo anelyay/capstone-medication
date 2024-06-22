@@ -37,7 +37,7 @@ export default function EditProfile() {
 
   const handleSubmit = async (formData) => {
     try {
-      const userData = await PatientAPI.updatePatient(id, formData);
+      await PatientAPI.updatePatient(id, formData);
       navigate("/profile");
     } catch (error) {
       console.error("Unable to update patient:", error);

@@ -4,9 +4,6 @@ import "./PatientCard.scss";
 export default function PatientUsers({ patient }) {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`${patient.id}/edit`);
-  };
 
   const calculateAge = (dob) => {
     const dobDate = new Date(dob);
@@ -79,7 +76,6 @@ export default function PatientUsers({ patient }) {
           </div>
         </div>
         <div className="user__link">
-          {/* <button className="user__button" onClick={handleClick} /> */}
           <p className="user__details">details</p>
         </div>
       </div>

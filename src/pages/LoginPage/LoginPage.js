@@ -2,7 +2,6 @@ import "./LoginPage.scss";
 import logo from "../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import AuthAPI from "../../classes/authAPI";
 
 export default function LoginPage({onLogin}) {
