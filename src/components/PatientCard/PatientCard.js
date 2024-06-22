@@ -45,7 +45,7 @@ export default function PatientUsers({ patient }) {
       <Link to={`/${patient.id}`}>
         <h2 className="user__title">{patient.patient_name}</h2>
       </Link>
-      <div className="user__container">
+      {/* <div className="user__container">
         <div className="user__birth">
           <div className="user__box">
             <h3 className="user__label">Date of Birth:</h3>
@@ -78,7 +78,7 @@ export default function PatientUsers({ patient }) {
         <div className="user__link">
           <p className="user__details">details</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

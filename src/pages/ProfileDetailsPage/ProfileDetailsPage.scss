@@ -78,7 +78,7 @@
 
     &-main {
       @extend .details__heading;
-      padding-left: 1.5rem;
+      padding-left: 1.2rem;
 
       @include tablet {
         padding-left: 1.5rem;
@@ -145,7 +145,7 @@
     @include direction(row);
     gap: 1rem;
     width: 100%;
-    padding: 2rem 0.5rem 0 0.5rem;
+    padding: 1rem 0.5rem 0 0.5rem;
 
     @include tablet {
       gap: 5rem;
@@ -173,5 +173,13 @@
   &__times {
     @include direction(row);
     gap: 2rem;
+  }
+
+  &__box-age{
+    width: 4.8rem;
+
+    @include tablet{
+      width: 5.6rem;
+    }
   }
 }

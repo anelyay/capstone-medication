@@ -120,7 +120,7 @@ export default function ProfileDetailsPage() {
             <h3 className="details__heading">Date of Birth:</h3>
             <p className="details__text">{formatDate(patient.patient_dob)}</p>
           </div>
-          <div className="details__box">
+          <div className="details__box details__box-age">
             <h3 className="details__heading">Age:</h3>
             <p className="details__text">
               {calculateAge(patient.patient_dob)} years old
