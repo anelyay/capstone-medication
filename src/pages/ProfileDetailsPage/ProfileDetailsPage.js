@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PatientAPI from "../../classes/patientAPI";
 // import otterMed from "../../assets/images/otterholdspill.png";
+import moment from "moment-timezone";
+
 
 export default function ProfileDetailsPage() {
   const { id } = useParams();
@@ -71,35 +73,33 @@ export default function ProfileDetailsPage() {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
-  function formatDateTimestamp(dateString) {
-    const options = { year: "numeric", month: "short", day: "2-digit" };
-    const date = new Date(dateString);
-    return date.toLocaleDateString(undefined, options);
-  }
+   const formatDateTimestamp = (timestamp) => {
+     return moment(timestamp).format("MMM DD, YYYY"); //local to user
+   };
 
-  function formatDate(inputDate) {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+  // function formatDate(inputDate) {
+  //   const months = [
+  //     "Jan",
+  //     "Feb",
+  //     "Mar",
+  //     "Apr",
+  //     "May",
+  //     "Jun",
+  //     "Jul",
+  //     "Aug",
+  //     "Sep",
+  //     "Oct",
+  //     "Nov",
+  //     "Dec",
+  //   ];
 
-    const date = new Date(inputDate + "T00:00:00Z");
-    const day = date.getUTCDate();
-    const month = months[date.getUTCMonth()];
-    const year = date.getUTCFullYear();
+  //   const date = new Date(inputDate + "T00:00:00Z");
+  //   const day = date.getUTCDate();
+  //   const month = months[date.getUTCMonth()];
+  //   const year = date.getUTCFullYear();
 
-    return `${month} ${day}, ${year}`;
-  }
+  //   return `${month} ${day}, ${year}`;
+  // }
 
   const handleAdd = () => {
     navigate(`/medication/${id}/add`);
@@ -122,7 +122,8 @@ export default function ProfileDetailsPage() {
               <div className="details__box">
                 <h3 className="details__heading">Date of Birth:</h3>
                 <p className="details__text">
-                  {formatDate(patient.patient_dob)}
+                  {moment(patient.patient_dob).format("MMM DD, YYYY")}{" "}
+                  {/* Format date of birth */}
                 </p>
               </div>
               <div className="details__box details__box-age">
@@ -215,7 +216,11 @@ export default function ProfileDetailsPage() {
           >
             edit
           </button>
-          <button type="button" className="details__button-tablet" onClick={handleAdd}>
+          <button
+            type="button"
+            className="details__button-tablet"
+            onClick={handleAdd}
+          >
             add a pill
           </button>
         </div>

@@ -4,6 +4,7 @@ import MedicationAPI from "../../classes/medicationAPI";
 import { useNavigate, useParams } from "react-router-dom";
 import otterMedication from "../../assets/images/med_otter.png";
 import bubbleSpeech from "../../assets/images/bubble.png";
+import moment from "moment-timezone";
 
 export default function MedicationPage() {
   const { id } = useParams();
@@ -14,25 +15,19 @@ export default function MedicationPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getMedication = async () => {
+    const fetchData = async () => {
       try {
         const medicationData = await MedicationAPI.getSingleMedication(id);
         setMedication(medicationData);
-      } catch (error) {
-        console.error("Unable to get medication");
-      }
-    };
 
-    const getActivityLog = async () => {
-      try {
         const logData = await MedicationAPI.getActivityLog(id);
         setActivityLog(logData);
       } catch (error) {
-        console.error("Unable to get an activity log");
+        console.error("Error fetching data:", error);
       }
     };
-    getMedication();
-    getActivityLog();
+
+    fetchData();
   }, [id]);
 
   if (!medication) {
@@ -54,20 +49,13 @@ export default function MedicationPage() {
           const timeB = new Date(b.log_time);
           return timeB - timeA;
         })
-        .map((entry) => {
-          const date = new Date(entry.log_time);
-          const formattedDate = date.toLocaleString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          });
-          const formattedTime = date.toLocaleString("en-US", {
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: false,
-          });
-          return { ...entry, log_time: `${formattedDate} | ${formattedTime}` };
-        })
+        .map((entry) => ({
+          ...entry,
+          log_time: moment
+            .utc(entry.log_time)
+            .tz(moment.tz.guess())
+            .format("MMM DD, YYYY | HH:mm"),
+        }))
     : [];
 
   const navigateEdit = () => {
@@ -93,7 +81,7 @@ export default function MedicationPage() {
   return (
     <div className="medication">
       <h1 className="medication__maintitle">
-        {medication.patient_name}'s Pill
+        {medication.patient_name}'s Pill Information
       </h1>
       <div className="medication__card">
         <div className="medication__title-box">
@@ -102,7 +90,7 @@ export default function MedicationPage() {
         <div className="medication__wrap">
           <div className="medication__container">
             <div className="medication__wrapper">
-              <h2 className="medication__header">Details</h2>
+              <h2 className="medication__header">Medication Details</h2>
               <div>
                 <div className="medication__wrapping">
                   <div className="medication__box">

@@ -6,7 +6,7 @@ import MedicationAPI from "../../classes/medicationAPI";
 export default function MedicationCard({ medication }) {
   const [clicked, setClicked] = useState(false);
 
-  const handleClick = async (event) => {
+  const handleClick = async () => {
     setClicked(true);
     try {
       await MedicationAPI.markMedAsTaken(medication.id, {

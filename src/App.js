@@ -1,3 +1,4 @@
+///
 import "./App.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -13,14 +14,20 @@ import AddProfile from "./pages/AddProfile/AddProfile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import ProfileDetailsPage from "./pages/ProfileDetailsPage/ProfileDetailsPage";
 import Navbar from "./components/Navbar/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 export default function App() {
-  const [session, setSession] = useState(() => {
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
     const savedSession = Cookies.get("session");
-    return savedSession ? JSON.parse(savedSession) : null;
-  });
+    if (savedSession) {
+      setSession(JSON.parse(savedSession));
+    }
+    setLoading(false);
+  }, []);
 
   const handleLogin = (sessionData) => {
     setSession(sessionData);
@@ -31,6 +38,10 @@ export default function App() {
     setSession(null);
     Cookies.remove("session");
   };
+
+   if (loading) {
+     return <div>Loading...</div>; // You can replace this with a spinner or any loading indicator
+   }
 
   return (
     <BrowserRouter>
