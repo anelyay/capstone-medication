@@ -2,7 +2,7 @@ import "./ProfileDetailsPage.scss";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PatientAPI from "../../classes/patientAPI";
-import otterMed from "../../assets/images/otterholdspill.png";
+// import otterMed from "../../assets/images/otterholdspill.png";
 
 export default function ProfileDetailsPage() {
   const { id } = useParams();
@@ -110,86 +110,114 @@ export default function ProfileDetailsPage() {
 
   return (
     <div className="details">
+      <div className="details__title-box">
+        <h2 className="details__title">{patient.patient_name}`s Information</h2>
+      </div>
       <div className="details__card">
-        <div className="details__title-box">
-          <h2 className="details__title">{patient.patient_name}</h2>
-        </div>
+        <div className="details__bigbox">
+          <div className="details__topbox">
+            <h3 className="details__header">Details</h3>
 
-        <div className="details__wrap">
-          <div className="details__box">
-            <h3 className="details__heading">Date of Birth:</h3>
-            <p className="details__text">{formatDate(patient.patient_dob)}</p>
-          </div>
-          <div className="details__box details__box-age">
-            <h3 className="details__heading">Age:</h3>
-            <p className="details__text">
-              {calculateAge(patient.patient_dob)} years old
-            </p>
-          </div>
-        </div>
-
-        <div className="details__wrap">
-          <div className="details__box">
-            <h3 className="details__heading">Allergies:</h3>
-            <p className="details__text">
-              {patient.patient_allergy
-                ? patient.patient_allergy
-                : "no allergies entered"}
-            </p>
-          </div>
-
-          <div className="details__box">
-            <h3 className="details__heading">Primary Doctor:</h3>
-            <p className="details__text">{patient.patient_md}</p>
-          </div>
-        </div>
-
-        <div className="details__box-log">
-          {!medError && (
-            <>
-              <h2 className="details__header">All Medications</h2>
-              <div className="details__headerbox">
-                <h3 className="details__heading">added on:</h3>
-                <h3 className="details__heading-main">name:</h3>
-                <h3 className="details__heading">quantity:</h3>
+            <div className="details__wrap">
+              <div className="details__box">
+                <h3 className="details__heading">Date of Birth:</h3>
+                <p className="details__text">
+                  {formatDate(patient.patient_dob)}
+                </p>
               </div>
-            </>
-          )}
+              <div className="details__box details__box-age">
+                <h3 className="details__heading">Age:</h3>
+                <p className="details__text">
+                  {calculateAge(patient.patient_dob)} years old
+                </p>
+              </div>
+            </div>
 
-          <div className="details__wrapper">
-            {medError ? (
-              <p className="details__text-med">No medications yet</p>
-            ) : medications.length > 0 ? (
-              medications.map((med, index) => (
-                <div className="details__wrapping" key={index}>
-                  <p className="details__text-med">
-                    {formatDateTimestamp(med.created_at)}
-                  </p>
-                  <p
-                    className="details__text-name"
-                    onClick={() => navigate(`/medication/${med.id}`)}
-                  >
-                    {med.med_name}
-                  </p>
-                  <p className="details__text-med details__text-number">
-                    {med.quantity}
-                  </p>
+            <div className="details__wrap">
+              <div className="details__box">
+                <h3 className="details__heading">Allergies:</h3>
+                <p className="details__text">
+                  {patient.patient_allergy ? patient.patient_allergy : "NKDA"}
+                </p>
+              </div>
+
+              <div className="details__box">
+                <h3 className="details__heading">Primary Doctor:</h3>
+                <p className="details__text">{patient.patient_md}</p>
+              </div>
+            </div>
+
+            <div className="details__buttonbox">
+              <button
+                type="button"
+                className="details__button"
+                onClick={navigateEdit}
+              >
+                edit
+              </button>
+            </div>
+          </div>
+
+          <div className="details__box-log">
+            {!medError && (
+              <>
+                <h2 className="details__header">All Medications</h2>
+                <div className="details__headerbox">
+                  <h3 className="details__heading">added on:</h3>
+                  <h3 className="details__heading-main">name:</h3>
+                  <h3 className="details__heading">quantity:</h3>
                 </div>
-              ))
-            ) : (
-              <p className="details__text-med">No medications yet</p>
+              </>
             )}
-          </div>
 
-          <div className="details__buttons">
-            <button
-              type="button"
-              className="details__button"
-              onClick={handleAdd}
-            >
-              add a new medication
-            </button>
+            <div className="details__wrapper">
+              {medError ? (
+                <p className="details__text-med">No medications yet</p>
+              ) : medications.length > 0 ? (
+                medications.map((med, index) => (
+                  <div className="details__wrapping" key={index}>
+                    <p className="details__text-med">
+                      {formatDateTimestamp(med.created_at)}
+                    </p>
+                    <p
+                      className="details__text-name"
+                      onClick={() => navigate(`/medication/${med.id}`)}
+                    >
+                      {med.med_name}
+                    </p>
+                    <p className="details__text-med details__text-number">
+                      {med.quantity}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p className="details__text-med">No medications yet</p>
+              )}
+            </div>
+
+            <div className="details__buttonbox">
+              <button
+                type="button"
+                className="details__button"
+                onClick={handleAdd}
+              >
+                add a pill
+              </button>
+            </div>
           </div>
+        </div>
+
+        <div className="details__tabletbuttons">
+          <button
+            type="button"
+            className="details__button-tablet"
+            onClick={navigateEdit}
+          >
+            edit
+          </button>
+          <button type="button" className="details__button-tablet" onClick={handleAdd}>
+            add a pill
+          </button>
         </div>
 
         {/* <div className="details__picture">
@@ -201,16 +229,20 @@ export default function ProfileDetailsPage() {
         </div> */}
       </div>
       <div className="details__buttons">
-        <button type="button" className="details__button" onClick={handleBack}>
+        <button
+          type="button"
+          className="details__button details__button--back"
+          onClick={handleBack}
+        >
           go back
         </button>
-        <button
+        {/* <button
           type="button"
           className="details__button"
           onClick={navigateEdit}
         >
           edit
-        </button>
+        </button> */}
       </div>
     </div>
   );

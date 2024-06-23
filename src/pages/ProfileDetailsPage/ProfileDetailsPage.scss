@@ -5,11 +5,12 @@
   width: 100%;
   @include flex(center, center);
   @include direction(column);
-  margin: 1rem 0 3rem 0;
+  padding: 0 1rem;
 
   &__card {
-    width: 18rem;
-    padding: 0 1rem 1rem 1rem;
+    // width: 18rem;
+    width: 100%;
+    padding: 1rem;
     @include flex(center, center);
     @include direction(column);
     background-color: $card-background-color;
@@ -17,12 +18,13 @@
     border-radius: 50px;
 
     @include tablet {
-      width: 25rem;
+      width: 40rem;
     }
   }
 
   &__wrap {
     width: 100%;
+    padding: 0 0.5rem;
     @include direction(row);
     @include flex(space-between, center);
   }
@@ -51,11 +53,12 @@
   &__title-box {
     @include flex(center, center);
     @include direction(column);
+    width: 100%;
   }
 
   &__title {
     font-size: 1.6rem;
-    margin: 0.75rem 0 0 0;
+    margin: 0 0 0.5rem 0;
     font-weight: 500;
 
     @include tablet {
@@ -65,15 +68,16 @@
 
   &__wrapping {
     @include flex(space-between, center);
-    gap: 2.8rem;
+    gap: 2rem;
+    padding: 0 0.5rem;
 
     @include tablet {
-      gap: 6.2rem;
+      // gap: 5rem;
     }
   }
 
   &__heading {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin: 0.5rem 0;
     color: $white-background-color;
     font-weight: 500;
@@ -102,6 +106,7 @@
   &__headerbox {
     @include flex(space-between, center);
     margin-bottom: -0.5rem;
+    padding: 0 0.5rem;
   }
 
   &__wrapper {
@@ -131,32 +136,42 @@
     }
 
     &-name {
-      @extend .details__text-med;
+      @extend .details__text;
       width: 4rem;
       cursor: pointer;
-      text-decoration: underline
+      text-decoration: underline;
     }
 
-    &-number{
-        width: 1.35rem;
-        text-align: right;
+    &-number {
+      width: 1.35rem;
+      text-align: right;
     }
   }
 
   &__buttons {
-    @include flex(center, center);
-    @include direction(row);
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem 0.5rem 0 0.5rem;
-
-    @include tablet {
-      // gap: 5rem;
-    }
+    @include buttons;
+    padding: 2rem 0.5rem 0 0.5rem;
   }
 
   &__button {
     @include button-one;
+    width: 9rem;
+    font-size: 0.9rem;
+
+    &--back {
+      order: 1;
+      @include button-one;
+
+      @include tablet {
+        order: 0;
+      }
+    }
+
+    &-tablet {
+      @include button-two;
+      width: 10rem;
+      font-size: 0.8rem;
+    }
   }
 
   &__show-more {
@@ -178,15 +193,61 @@
     gap: 2rem;
   }
 
-  &__box-age{
-    width: 4.8rem;
+  &__box-age {
+    width: 5.5rem;
 
-    @include tablet{
+    @include tablet {
       width: 5.6rem;
     }
   }
 
   &__loading {
-    @include flex(center, center)
+    @include flex(center, center);
+  }
+
+  &__bigbox {
+    // margin: 1rem 2rem;
+    width: 100%;
+
+    @include tablet {
+      @include direction(row);
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__box-log {
+    @include tablet {
+      border-left: 1px solid $cool-color;
+      padding-left: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__buttonbox {
+    @include flex(center, center);
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__topbox {
+
+    @include tablet {
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__tabletbuttons {
+    display: none;
+
+    @include tablet {
+      width: 100%;
+      // margin-left: 10rem;
+      @include flex(center, center);
+      gap: 14rem;
+    }
   }
 }

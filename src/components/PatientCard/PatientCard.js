@@ -5,36 +5,36 @@ export default function PatientUsers({ patient }) {
   const navigate = useNavigate();
 
 
-  const calculateAge = (dob) => {
-    const dobDate = new Date(dob);
-    const ageDiffMs = Date.now() - dobDate.getTime();
-    const ageDate = new Date(ageDiffMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  };
+  // const calculateAge = (dob) => {
+  //   const dobDate = new Date(dob);
+  //   const ageDiffMs = Date.now() - dobDate.getTime();
+  //   const ageDate = new Date(ageDiffMs);
+  //   return Math.abs(ageDate.getUTCFullYear() - 1970);
+  // };
 
-  function formatDate(inputDate) {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+  // function formatDate(inputDate) {
+  //   const months = [
+  //     "Jan",
+  //     "Feb",
+  //     "Mar",
+  //     "Apr",
+  //     "May",
+  //     "Jun",
+  //     "Jul",
+  //     "Aug",
+  //     "Sep",
+  //     "Oct",
+  //     "Nov",
+  //     "Dec",
+  //   ];
 
-    const date = new Date(inputDate + "T00:00:00Z");
-    const day = date.getUTCDate();
-    const month = months[date.getUTCMonth()];
-    const year = date.getUTCFullYear();
+  //   const date = new Date(inputDate + "T00:00:00Z");
+  //   const day = date.getUTCDate();
+  //   const month = months[date.getUTCMonth()];
+  //   const year = date.getUTCFullYear();
 
-    return `${month} ${day}, ${year}`;
-  }
+  //   return `${month} ${day}, ${year}`;
+  // }
 
   const handleDetails = () => {
     navigate(`details/${patient.id}`)
