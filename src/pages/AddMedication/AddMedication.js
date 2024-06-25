@@ -6,7 +6,7 @@ import MedicationAPI from "../../classes/medicationAPI";
 export default function AddMedication() {
   const navigate = useNavigate();
 
-  const handleSecond = (event) => {
+  const handleSecond = () => {
     navigate("/");
   };
 

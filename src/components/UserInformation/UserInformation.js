@@ -95,7 +95,7 @@ export default function UserInfo({ email, username }) {
             </div>
 
             <button onClick={handleShowForm} className="user-info__button">
-              Edit
+              edit
             </button>
           </div>
         )}
