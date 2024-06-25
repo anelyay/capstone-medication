@@ -77,29 +77,6 @@ export default function ProfileDetailsPage() {
      return moment(timestamp).format("MMM DD, YYYY"); //local to user
    };
 
-  // function formatDate(inputDate) {
-  //   const months = [
-  //     "Jan",
-  //     "Feb",
-  //     "Mar",
-  //     "Apr",
-  //     "May",
-  //     "Jun",
-  //     "Jul",
-  //     "Aug",
-  //     "Sep",
-  //     "Oct",
-  //     "Nov",
-  //     "Dec",
-  //   ];
-
-  //   const date = new Date(inputDate + "T00:00:00Z");
-  //   const day = date.getUTCDate();
-  //   const month = months[date.getUTCMonth()];
-  //   const year = date.getUTCFullYear();
-
-  //   return `${month} ${day}, ${year}`;
-  // }
 
   const handleAdd = () => {
     navigate(`/medication/${id}/add`);
@@ -160,9 +137,10 @@ export default function ProfileDetailsPage() {
           </div>
 
           <div className="details__box-log">
+            <h2 className="details__header">Medications</h2>
+
             {!medError && (
               <>
-                <h2 className="details__header">All Medications</h2>
                 <div className="details__headerbox">
                   <h3 className="details__heading">added on:</h3>
                   <h3 className="details__heading-main">name:</h3>
@@ -173,7 +151,9 @@ export default function ProfileDetailsPage() {
 
             <div className="details__wrapper">
               {medError ? (
-                <p className="details__text-med">No medications yet</p>
+                <p className="details__text-med">
+                  No medications yet
+                </p>
               ) : medications.length > 0 ? (
                 medications.map((med, index) => (
                   <div className="details__wrapping" key={index}>

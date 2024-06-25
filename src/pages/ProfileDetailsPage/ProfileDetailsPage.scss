@@ -9,7 +9,7 @@
 
   &__card {
     width: 100%;
-    padding: 0 1rem 1rem 1rem;
+    padding: 0.5rem 1rem 1rem 1rem;
     @include flex(center, center);
     @include direction(column);
     background-color: $card-background-color;
@@ -18,6 +18,7 @@
 
     @include tablet {
       width: 40rem;
+      padding: 1rem;
     }
   }
 
@@ -132,7 +133,9 @@
     &-med {
       margin: 0.5rem 0 0 0;
       font-size: 0.9rem;
+      text-align: center;
     }
+
 
     &-name {
       @extend .details__text;
@@ -214,15 +217,17 @@
     @include tablet {
       @include direction(row);
       gap: 1rem;
-      margin-top: 0.5rem;
     }
   }
 
   &__box-log {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid $cool-color;
 
     @include tablet {
       border-left: 1px solid $cool-color;
+      border-top: none;
       padding-left: 1rem;
       padding-top: 0;
       width: 100%;
@@ -231,6 +236,7 @@
 
   &__buttonbox {
     @include flex(center, center);
+    margin-top: 0.5rem;
 
     @include tablet {
       display: none;
