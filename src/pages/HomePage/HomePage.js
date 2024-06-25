@@ -8,6 +8,7 @@ export default function HomePage() {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const [failedAuth, setFailedAuth] = useState(false);
 
   useEffect(() => {
     const getPatients = async () => {
@@ -27,6 +28,21 @@ export default function HomePage() {
   const addPatient = () => {
     navigate("/profile/add");
   };
+
+  const login = () => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+      return setFailedAuth(true);
+    }
+
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    login();
+  }, []);
 
   return (
     <main className="home">
