@@ -35,19 +35,34 @@ export default function Navbar({ onLogout }) {
 
   return (
     <div className="nav">
-      <img
-        src={logout}
-        alt="logout"
-        className="nav__image"
-        onClick={handleLogout}
-      />
-      <img src={home} alt="home" className="nav__image" onClick={handleHome} />
-      <img
-        src={profile}
-        alt="profile"
-        className="nav__image"
-        onClick={handleProfile}
-      />
+      <div className="nav__box">
+        <img
+          src={logout}
+          alt="logout"
+          className="nav__image"
+          onClick={handleLogout}
+        />
+        <p className="nav__text">logout</p>
+      </div>
+
+      <div className="nav__box">
+        <img
+          src={home}
+          alt="home"
+          className="nav__image"
+          onClick={handleHome}
+        />
+        <p className="nav__text">home</p>
+      </div>
+      <div className="nav__box">
+        <img
+          src={profile}
+          alt="profile"
+          className="nav__image"
+          onClick={handleProfile}
+        />
+        <p className="nav__text">profile</p>
+      </div>
     </div>
   );
 }

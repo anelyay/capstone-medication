@@ -40,7 +40,7 @@ export default function App() {
   };
 
    if (loading) {
-     return <div>Loading...</div>; // You can replace this with a spinner or any loading indicator
+     return <div>Loading...</div>;
    }
 
   return (
