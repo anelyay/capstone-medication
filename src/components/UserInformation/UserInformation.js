@@ -205,7 +205,7 @@ export default function UserInfo({ email, username, timezone, timezoneLabel }) {
               </button>
             </div>
 
-            {alert && <p>{alert}</p>}
+            {alert && <p className="user-info__alert">{alert}</p>}
           </form>
         )}
       </div>

@@ -4,6 +4,7 @@ import MedicationAPI from "../../classes/medicationAPI";
 import { useNavigate, useParams } from "react-router-dom";
 import otterMedication from "../../assets/images/med_otter.png";
 import bubbleSpeech from "../../assets/images/bubble.png";
+import AuthAPI from "../../classes/authAPI";
 import moment from "moment-timezone";
 
 export default function MedicationPage() {
@@ -12,6 +13,7 @@ export default function MedicationPage() {
   const [activityLog, setActivityLog] = useState();
   const [showAllLogs, setShowAllLogs] = useState(false);
   const [bubble, setBubble] = useState(false);
+  const [userTimezone, setUserTimezone] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +24,9 @@ export default function MedicationPage() {
 
         const logData = await MedicationAPI.getActivityLog(id);
         setActivityLog(logData);
+
+        // const user = await AuthAPI.getUser();
+        // setUserTimezone(user.timezone);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -42,21 +47,20 @@ export default function MedicationPage() {
     return 0;
   });
 
-  const sortedActivityLog = activityLog
-    ? activityLog
-        .sort((a, b) => {
-          const timeA = new Date(a.log_time);
-          const timeB = new Date(b.log_time);
-          return timeB - timeA;
-        })
-        .map((entry) => ({
-          ...entry,
-          log_time: moment
-            .utc(entry.log_time)
-            .tz(moment.tz.guess())
-            .format("MMM DD, YYYY | HH:mm"),
-        }))
-    : [];
+const sortedActivityLog = activityLog
+  ? activityLog
+      .sort((a, b) => {
+        const timeA = new Date(a.log_time);
+        const timeB = new Date(b.log_time);
+        return timeB - timeA;
+      })
+      .map((entry) => ({
+        ...entry,
+        formatted_log_time: moment(entry.log_time).format(
+          "DD MMMM YYYY | HH:mm"
+        ),
+      }))
+  : [];
 
   const navigateEdit = () => {
     navigate(`/medication/${id}/edit`);
@@ -147,7 +151,9 @@ export default function MedicationPage() {
                   </div>
                   {logsToShow.map((log, index) => (
                     <div className="medication__wrapping" key={index}>
-                      <p className="medication__text-history">{log.log_time}</p>
+                      <p className="medication__text-history">
+                        {log.formatted_log_time}
+                      </p>
                       <p className="medication__text-history">{log.quantity}</p>
                     </div>
                   ))}

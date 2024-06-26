@@ -2,7 +2,7 @@
 @use "../../styles/partials/variables" as *;
 
 .user-info {
-  margin: 2rem 1rem 5rem 1rem;
+  margin: 2rem 0rem 5rem 0rem;
 
   @include tablet {
     margin: 0 2rem;
@@ -12,6 +12,15 @@
     @include flex(center, center);
     @include direction(column);
     padding: 0rem 8rem;
+  }
+
+  &__form {
+    width: 100%;
+
+    @include tablet {
+      @include flex(center, center);
+      @include direction(column);
+    }
   }
 
   &__container {
@@ -105,11 +114,11 @@
 
   &__buttons {
     @include direction(column);
+    @include flex(center, center);
     gap: 1rem;
     margin-top: 2rem;
 
     @include tablet {
-      @include flex(center, center);
       @include direction(row);
     }
   }
@@ -127,9 +136,13 @@
     }
   }
 
-  &__visibilitybox{
+  &__visibilitybox {
     @include direction(row);
     @include flex(center, center);
     gap: 0.5rem;
+  }
+
+  &__alert {
+    text-align: center;
   }
 }
