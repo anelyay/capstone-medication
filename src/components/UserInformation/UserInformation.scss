@@ -83,6 +83,7 @@
   &__visible {
     width: 2rem;
     height: 2rem;
+    margin-bottom: 0.3rem;
     background: none;
     background-repeat: no-repeat;
     background-position: center;
@@ -124,5 +125,11 @@
     &::placeholder {
       font-style: italic;
     }
+  }
+
+  &__visibilitybox{
+    @include direction(row);
+    @include flex(center, center);
+    gap: 0.5rem;
   }
 }

@@ -1,8 +1,9 @@
 import "./UserInformation.scss";
 import AuthAPI from "../../classes/authAPI";
 import { useState } from "react";
+import { timezoneCodes } from "../../utils/utils.js";
 
-export default function UserInfo({ email, username }) {
+export default function UserInfo({ email, username, timezone, timezoneLabel }) {
   const [isForm, setIsForm] = useState(false);
   const [alert, setAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -10,6 +11,7 @@ export default function UserInfo({ email, username }) {
     username: username,
     email: email,
     password: "",
+    timezone: timezone,
   });
 
   if (email === null || username === null) {
@@ -50,7 +52,16 @@ export default function UserInfo({ email, username }) {
   return (
     <div className="user-info">
       <div className="user-info__container">
-        <h2 className="user-info__title">My Personal Details</h2>
+        <div className="user-info__visibilitybox">
+          <h2 className="user-info__title">My Personal Details</h2>
+          <button
+            alt="visibility"
+            onClick={handleVisibility}
+            className={
+              isVisible ? "user-info__visible" : "user-info__invisible"
+            }
+          />
+        </div>
 
         {!isForm && (
           <div className="user-info__wrapper">
@@ -81,9 +92,22 @@ export default function UserInfo({ email, username }) {
                     {email}
                   </p>
                 </div>
+
+                <div className="user-info__box">
+                  <p className="user-info__label">Timezone:</p>
+                  <p
+                    className={
+                      isVisible
+                        ? "user-info__text-visible"
+                        : "user-info__text-invisible"
+                    }
+                  >
+                    {timezoneLabel}
+                  </p>
+                </div>
               </div>
 
-              <div className="user-info__visibilitybox">
+              {/* <div className="user-info__visibilitybox">
                 <button
                   alt="visibility"
                   onClick={handleVisibility}
@@ -91,7 +115,7 @@ export default function UserInfo({ email, username }) {
                     isVisible ? "user-info__visible" : "user-info__invisible"
                   }
                 />
-              </div>
+              </div> */}
             </div>
 
             <button onClick={handleShowForm} className="user-info__button">
@@ -128,6 +152,26 @@ export default function UserInfo({ email, username }) {
                 onChange={handleInputChange}
                 className="user-info__input"
               />
+            </div>
+
+            <div className="user-info__group">
+              <label htmlFor="timezone" className="user-info__label">
+                Timezone
+              </label>
+              <select
+                id="timezone"
+                name="timezone"
+                value={userInfo.timezone}
+                onChange={handleInputChange}
+                className="user-info__input"
+              >
+                <option value="">Select your timezone</option>
+                {timezoneCodes.map((tz) => (
+                  <option key={tz.value} value={tz.value}>
+                    {tz.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="user-info__group">

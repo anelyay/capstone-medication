@@ -42,7 +42,7 @@ export default function LoginPage({ onLogin }) {
     { value: "Europe/Paris", label: "(UTC+01:00) Central European Time" },
     { value: "Europe/Moscow", label: "(UTC+03:00) Moscow Time" },
     { value: "Asia/Dubai", label: "(UTC+04:00) Gulf Standard Time" },
-    { value: "Asia/Karachi", label: "(UTC+05:00) Pakistan Standard Time" },
+    { value: "Asia/Karachi", label: "(UTC+05:00) Kazakhstan Standard Time" },
     { value: "Asia/Dhaka", label: "(UTC+06:00) Bangladesh Standard Time" },
     { value: "Asia/Jakarta", label: "(UTC+07:00) Western Indonesia Time" },
     { value: "Asia/Shanghai", label: "(UTC+08:00) China Standard Time" },

@@ -6,11 +6,14 @@ import PatientAPI from "../../classes/patientAPI";
 import AuthAPI from "../../classes/authAPI";
 import { useState, useEffect } from "react";
 import UserInfo from "../../components/UserInformation/UserInformation";
+import { timezoneCodes } from "../../utils/utils.js";
 
 export default function ProfilePage() {
   const [users, setUsers] = useState([]);
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [timezoneLabel, setTimezoneLabel] = useState("");
+
   const navigate = useNavigate();
 
   const handleAdd = () => {
@@ -36,21 +39,26 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
-      const fetchProfile = async () => {
-        try {
-          const response = await AuthAPI.getUser();
-          setProfile(response);
-        } catch (error) {
-          console.error("Error fetching profile:", error);
-          if (error.response && error.response.status === 401) {
-            sessionStorage.removeItem("token");
-            navigate("/login");
-          }
-        } finally {
-          setIsLoading(false); // Ensure isLoading is set to false regardless of success or failure
+    const fetchProfile = async () => {
+      try {
+        const response = await AuthAPI.getUser();
+        const timezoneObj = timezoneCodes.find(
+          (tz) => tz.value === response.timezone
+        );
+        if (timezoneObj) {
+          setTimezoneLabel(timezoneObj.label);
         }
-      };
-
+        setProfile(response);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        if (error.response && error.response.status === 401) {
+          sessionStorage.removeItem("token");
+          navigate("/login");
+        }
+      } finally {
+        setIsLoading(false); // Ensure isLoading is set to false regardless of success or failure
+      }
+    };
 
     fetchProfile();
   }, [navigate]);
@@ -97,7 +105,14 @@ export default function ProfilePage() {
         </div>
       </div>
 
-        {profile && <UserInfo username={profile.username} email={profile.email} />}
+      {profile && (
+        <UserInfo
+          username={profile.username}
+          email={profile.email}
+          timezone={profile.timezone}
+          timezoneLabel={timezoneLabel}
+        />
+      )}
     </div>
   );
 }
