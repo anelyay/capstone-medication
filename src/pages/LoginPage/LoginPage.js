@@ -3,6 +3,8 @@ import logo from "../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AuthAPI from "../../classes/authAPI";
+import { timezoneCodes } from "../../utils/utils.js";
+
 
 export default function LoginPage({ onLogin }) {
   const [formData, setFormData] = useState({
@@ -21,40 +23,8 @@ export default function LoginPage({ onLogin }) {
   const [activeForm, setActiveForm] = useState("login");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-
   const navigate = useNavigate();
 
-  const timezones = [
-    { value: "Pacific/Midway", label: "(UTC-11:00) Pacific/Midway" },
-    { value: "Pacific/Honolulu", label: "(UTC-10:00) Pacific/Honolulu" },
-    { value: "America/Anchorage", label: "(UTC-09:00) Alaska Time" },
-    { value: "America/Los_Angeles", label: "(UTC-08:00) Pacific Time" },
-    { value: "America/Denver", label: "(UTC-07:00) Mountain Time" },
-    { value: "America/Chicago", label: "(UTC-06:00) Central Time" },
-    { value: "America/New_York", label: "(UTC-05:00) Eastern Time" },
-    { value: "America/Halifax", label: "(UTC-04:00) Atlantic Time" },
-    { value: "America/Caracas", label: "(UTC-04:00) Venezuela Time" },
-    { value: "America/Santiago", label: "(UTC-03:00) Chile Time" },
-    { value: "America/Buenos_Aires", label: "(UTC-03:00) Argentina Time" },
-    { value: "Atlantic/Azores", label: "(UTC-01:00) Azores Time" },
-    { value: "UTC", label: "(UTC+00:00) Coordinated Universal Time (UTC)" },
-    { value: "Europe/London", label: "(UTC+00:00) Greenwich Mean Time" },
-    { value: "Europe/Paris", label: "(UTC+01:00) Central European Time" },
-    { value: "Europe/Moscow", label: "(UTC+03:00) Moscow Time" },
-    { value: "Asia/Dubai", label: "(UTC+04:00) Gulf Standard Time" },
-    { value: "Asia/Karachi", label: "(UTC+05:00) Kazakhstan Standard Time" },
-    { value: "Asia/Dhaka", label: "(UTC+06:00) Bangladesh Standard Time" },
-    { value: "Asia/Jakarta", label: "(UTC+07:00) Western Indonesia Time" },
-    { value: "Asia/Shanghai", label: "(UTC+08:00) China Standard Time" },
-    { value: "Asia/Tokyo", label: "(UTC+09:00) Japan Standard Time" },
-    { value: "Australia/Sydney", label: "(UTC+10:00) Eastern Australia Time" },
-    { value: "Pacific/Noumea", label: "(UTC+11:00) New Caledonia Time" },
-    {
-      value: "Pacific/Auckland",
-      label: "(UTC+12:00) New Zealand Standard Time",
-    },
-    { value: "Pacific/Tongatapu", label: "(UTC+13:00) Tonga Time" },
-  ];
 
   const handleActive = (formName) => {
     setActiveForm(formName);
@@ -103,7 +73,7 @@ export default function LoginPage({ onLogin }) {
         email: email,
         password: "",
       });
-      setTimeout(() => setActiveForm("login"), 2000);
+      setTimeout(() => setActiveForm("login"), 1500);
     } catch (error) {
       setSuccess(false);
       setError(error.response?.data || "Signup failed");
@@ -232,13 +202,34 @@ export default function LoginPage({ onLogin }) {
                   required
                 >
                   <option value="">Select your timezone</option>
-                  {timezones.map((tz) => (
+                  {timezoneCodes.map((tz) => (
                     <option key={tz.value} value={tz.value}>
                       {tz.label}
                     </option>
                   ))}
                 </select>
               </div>
+              {/* ///
+              <div className="user-info__group">
+                <label htmlFor="timezone" className="user-info__label">
+                  Timezone
+                </label>
+                <select
+                  id="timezone"
+                  name="timezone"
+                  value={userInfo.timezone}
+                  onChange={handleInputChange}
+                  className="user-info__input"
+                >
+                  <option value="">Select your timezone</option>
+                  {timezoneCodes.map((tz) => (
+                    <option key={tz.value} value={tz.value}>
+                      {tz.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              /// */}
               <div className="login__form-box">
                 <label className="login__label">Password:</label>
                 <input
@@ -250,7 +241,6 @@ export default function LoginPage({ onLogin }) {
                   placeholder="Please enter your password"
                 />
               </div>
-
               <div className="login__form-box">
                 <label className="login__label">Verify Password:</label>
                 <input
@@ -262,7 +252,6 @@ export default function LoginPage({ onLogin }) {
                   placeholder="Please re-enter your password"
                 />
               </div>
-
               <button
                 type="submit"
                 className="login__button"
