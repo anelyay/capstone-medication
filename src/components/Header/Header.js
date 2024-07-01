@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import logout from "../../assets/icons/logout.png";
 import home from "../../assets/icons/home.png";
 import profile from "../../assets/icons/profile.png";
+import TimezoneClock from "../TimeClock/TimeClock";
 
 export default function Header({ onLogout }) {
   const navigate = useNavigate();
@@ -43,7 +44,8 @@ export default function Header({ onLogout }) {
           </div>
         </Link>
         <nav className="header__nav">
-          {/* <p className="header__navlink" onClick={handleHome}>
+          <TimezoneClock/>
+          <p className="header__navlink" onClick={handleHome}>
             home
           </p>
           <p className="header__navlink" onClick={handleProfile}>
@@ -51,9 +53,9 @@ export default function Header({ onLogout }) {
           </p>
           <p className="header__navlink" onClick={handleLogout}>
             logout
-          </p> */}
+          </p>
 
-          <img
+          {/* <img
             src={home}
             alt="home"
             className="header__image"
@@ -70,7 +72,7 @@ export default function Header({ onLogout }) {
             alt="logout"
             className="header__image"
             onClick={handleLogout}
-          />
+          /> */}
         </nav>
       </div>
     </header>

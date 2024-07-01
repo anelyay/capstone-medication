@@ -72,6 +72,16 @@ class AuthAPI {
       throw error;
     }
   }
+
+  static async RefreshStatus() {
+    try {
+      const response = await axiosInstance.post("/auth/refresh");
+      return response.data;
+    } catch (error) {
+      console.error("Error updating a user:", error);
+      throw error;
+    }
+  }
 }
 
 export default AuthAPI;

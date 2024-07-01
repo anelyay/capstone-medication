@@ -7,6 +7,7 @@ import AuthAPI from "../../classes/authAPI";
 import { useState, useEffect } from "react";
 import UserInfo from "../../components/UserInformation/UserInformation";
 import { timezoneCodes } from "../../utils/utils.js";
+import moment from "moment-timezone";
 
 export default function ProfilePage() {
   const [users, setUsers] = useState([]);
@@ -23,6 +24,19 @@ export default function ProfilePage() {
   // const handleBack = () => {
   //   navigate("/");
   // };
+
+  const handleRefresh = async (event) => {
+    event.preventDefault();
+
+    try {
+      await AuthAPI.RefreshStatus(); // Assuming RefreshStatus is a function in your AuthAPI
+      console.log("Status refreshed successfully");
+      // Optionally, you can update state or perform other actions after refreshing
+    } catch (error) {
+      console.error("Error refreshing status:", error);
+      // Handle error state or display an error message to the user
+    }
+  };
 
   useEffect(() => {
     const getPatientsData = async () => {
@@ -48,6 +62,7 @@ export default function ProfilePage() {
         if (timezoneObj) {
           setTimezoneLabel(timezoneObj.label);
         }
+        console.log(response);
         setProfile(response);
       } catch (error) {
         console.error("Error fetching profile:", error);
@@ -62,6 +77,7 @@ export default function ProfilePage() {
 
     fetchProfile();
   }, [navigate]);
+
 
   return (
     <div className="profile">
@@ -113,6 +129,8 @@ export default function ProfilePage() {
           timezoneLabel={timezoneLabel}
         />
       )}
+
+      <button onClick={handleRefresh}>REFRESH</button>
     </div>
   );
 }

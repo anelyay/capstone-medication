@@ -209,27 +209,6 @@ export default function LoginPage({ onLogin }) {
                   ))}
                 </select>
               </div>
-              {/* ///
-              <div className="user-info__group">
-                <label htmlFor="timezone" className="user-info__label">
-                  Timezone
-                </label>
-                <select
-                  id="timezone"
-                  name="timezone"
-                  value={userInfo.timezone}
-                  onChange={handleInputChange}
-                  className="user-info__input"
-                >
-                  <option value="">Select your timezone</option>
-                  {timezoneCodes.map((tz) => (
-                    <option key={tz.value} value={tz.value}>
-                      {tz.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              /// */}
               <div className="login__form-box">
                 <label className="login__label">Password:</label>
                 <input
