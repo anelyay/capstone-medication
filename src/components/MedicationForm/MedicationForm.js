@@ -224,6 +224,7 @@ export default function MedicationForm({
               name="quantity"
               type="number"
               min="1"
+              max="1000"
               className={`${className}__input`}
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
