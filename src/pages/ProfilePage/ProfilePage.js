@@ -130,7 +130,7 @@ export default function ProfilePage() {
         />
       )}
 
-      <button onClick={handleRefresh}>REFRESH</button>
+      {/* <button onClick={handleRefresh}>REFRESH</button> */}
     </div>
   );
 }
