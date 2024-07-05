@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment-timezone";
-import AuthAPI from "../../classes/authAPI"; // Adjust path as needed
+import AuthAPI from "../../classes/authAPI";
 import { useNavigate } from "react-router-dom";
 
 const TimezoneClock = ({ userTimezone }) => {

@@ -96,7 +96,7 @@ export default function MedicationForm({
    start.setHours(6, 0, 0, 0); // Start at 6:00 AM
 
    const end = new Date();
-   end.setHours(23, 59, 0, 0); // End at 12:00 AM (midnight)
+   end.setHours(23, 59, 0, 0); // End at 12:00 AM
 
    while (start <= end) {
      const hours = start.getHours().toString().padStart(2, "0");

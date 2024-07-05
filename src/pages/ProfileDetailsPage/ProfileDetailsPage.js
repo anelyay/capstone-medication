@@ -99,8 +99,7 @@ export default function ProfileDetailsPage() {
               <div className="details__box">
                 <h3 className="details__heading">Date of Birth:</h3>
                 <p className="details__text">
-                  {moment(patient.patient_dob).format("MMM DD, YYYY")}{" "}
-                  {/* Format date of birth */}
+                  {moment(patient.patient_dob).format("MMM DD, YYYY")}
                 </p>
               </div>
               <div className="details__box details__box-age">

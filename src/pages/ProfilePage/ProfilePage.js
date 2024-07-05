@@ -7,7 +7,6 @@ import AuthAPI from "../../classes/authAPI";
 import { useState, useEffect } from "react";
 import UserInfo from "../../components/UserInformation/UserInformation";
 import { timezoneCodes } from "../../utils/utils.js";
-import moment from "moment-timezone";
 
 export default function ProfilePage() {
   const [users, setUsers] = useState([]);
@@ -29,12 +28,10 @@ export default function ProfilePage() {
     event.preventDefault();
 
     try {
-      await AuthAPI.RefreshStatus(); // Assuming RefreshStatus is a function in your AuthAPI
+      await AuthAPI.RefreshStatus();
       console.log("Status refreshed successfully");
-      // Optionally, you can update state or perform other actions after refreshing
     } catch (error) {
       console.error("Error refreshing status:", error);
-      // Handle error state or display an error message to the user
     }
   };
 
@@ -71,7 +68,7 @@ export default function ProfilePage() {
           navigate("/login");
         }
       } finally {
-        setIsLoading(false); // Ensure isLoading is set to false regardless of success or failure
+        setIsLoading(false);
       }
     };
 
