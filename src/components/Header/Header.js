@@ -1,9 +1,9 @@
 import "./Header.scss";
 import logo from "../../assets/images/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logout from "../../assets/icons/logout.png";
-import home from "../../assets/icons/home.png";
-import profile from "../../assets/icons/profile.png";
+// import logout from "../../assets/icons/logout.png";
+// import home from "../../assets/icons/home.png";
+// import profile from "../../assets/icons/profile.png";
 import TimezoneClock from "../TimeClock/TimeClock";
 
 export default function Header({ onLogout }) {
@@ -44,35 +44,54 @@ export default function Header({ onLogout }) {
           </div>
         </Link>
         <nav className="header__nav">
-          <TimezoneClock/>
-          <p className="header__navlink" onClick={handleHome}>
+          <TimezoneClock />
+          <p
+            className={`header__navlink ${
+              location.pathname === "/" ? "header__navlink--active" : ""
+            }`}
+            onClick={handleHome}
+          >
             home
           </p>
-          <p className="header__navlink" onClick={handleProfile}>
+          <p
+            className={`header__navlink ${
+              location.pathname === "/profile" ? "header__navlink--active" : ""
+            }`}
+            onClick={handleProfile}
+          >
             profile
           </p>
           <p className="header__navlink" onClick={handleLogout}>
             logout
           </p>
 
-          {/* <img
-            src={home}
-            alt="home"
-            className="header__image"
-            onClick={handleHome}
-          />
-          <img
-            src={profile}
-            alt="profile"
-            className="header__image"
-            onClick={handleProfile}
-          />
-          <img
-            src={logout}
-            alt="logout"
-            className="header__image"
-            onClick={handleLogout}
-          /> */}
+          {/* <div className="header__icon-container">
+            <img
+              src={home}
+              alt="home"
+              className="header__image"
+              onClick={handleHome}
+            />
+            <p className="nav__text">home</p>
+          </div>
+          <div className="header__icon-container">
+            <img
+              src={profile}
+              alt="profile"
+              className="header__image"
+              onClick={handleProfile}
+            />
+            <p className="nav__text">home</p>
+          </div>
+          <div className="header__icon-container">
+            <img
+              src={logout}
+              alt="logout"
+              className="header__image"
+              onClick={handleLogout}
+            />
+            <p className="nav__text">home</p>
+          </div> */}
         </nav>
       </div>
     </header>

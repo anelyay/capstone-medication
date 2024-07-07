@@ -48,9 +48,13 @@
     }
   }
 
-  // &__navlink {
-  //   // @include button-one;
-  // }
+  &__navlink {
+    @include hover-text;
+
+    &--active{
+      text-decoration: underline;
+    }
+  }
 
   &__image {
     width: 1.5rem;
