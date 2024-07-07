@@ -2,24 +2,8 @@
 @use "../../styles/partials/variables" as *;
 
 .login {
-  // background-color: $white-background-color;
-  // @include desktop {
-  //   @include flex(center, center);
-  //   @include direction(row);
-  // }
-  &__pattern {
-    height: 20rem;
-    width: 100vw;
-    margin-top: -15rem;
-    // background-image: url("../../assets/images/loginpattern.png");
-    background-size: contain;
-    background-position: center;
-
-    @include desktop {
-      // height: 100vh;
-      // margin: 0;
-    }
-  }
+    padding-top: 3rem;
+    padding-bottom: 6rem;
 
   &__wrap {
     padding: 1rem 0;
@@ -29,19 +13,12 @@
 
     @include tablet {
       @include direction(row);
+      gap: 0;
     }
-
-    // @include desktop {
-    //   @include direction(column);
-    // }
   }
 
   &__logo {
     width: 10rem;
-
-    @include desktop {
-      width: 15rem;
-    }
   }
 
   &__title {

@@ -97,8 +97,6 @@ export default function LoginPage({ onLogin }) {
 
   return (
     <div className="login">
-      <div className="login__pattern"></div>
-
       <div className="login__section">
         <div className="login__wrap">
           <img src={logo} alt="logo" className="login__logo" />
