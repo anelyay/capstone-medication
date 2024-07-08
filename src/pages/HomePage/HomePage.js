@@ -11,62 +11,63 @@ export default function HomePage() {
   const [failedAuth, setFailedAuth] = useState(false);
 
   useEffect(() => {
-    const getPatients = async () => {
+    const fetchData = async () => {
       try {
+        const token = sessionStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          setFailedAuth(true);
+          return;
+        }
+
         const userData = await PatientAPI.getPatients();
         setPatients(userData);
-        setIsLoading(false);
       } catch (error) {
-        console.error(`Unable to get patients: ${error.message}`);
+        console.error(`Unable to fetch patients: ${error.message}`);
+      } finally {
         setIsLoading(false);
       }
     };
 
-    getPatients();
-  }, []);
+    fetchData();
+  }, [navigate]);
 
   const addPatient = () => {
     navigate("/profile/add");
   };
 
-  const login = () => {
-    const token = sessionStorage.getItem("token");
+  if (isLoading) {
+    return (
+      <main className="home">
+        <div className="home__container">
+          <h1 className="home__title">Today's Medications</h1>
+          <p>Loading...</p>
+        </div>
+      </main>
+    );
+  }
 
-    if (!token) {
-      navigate("/login");
-      return setFailedAuth(true);
-    }
-
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    login();
-  }, []);
 
   return (
     <main className="home">
       <div className="home__container">
         <h1 className="home__title">Today's Medications</h1>
-
-        <div className="home__patientlist">
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : patients.length > 0 ? (
-            patients.map((patient) => (
-              <Patient key={patient.id} patient={patient} />
-            ))
-          ) : (
-            <div className="home__nopatients">
-              <h1 className="home__subtitle">
-                No medications to display because there are no patients yet.
-              </h1>
-              <button className="home__button" onClick={addPatient}>
-                add a patient
-              </button>
-            </div>
-          )}
-        </div>
+          <div className="home__patientlist">
+            {patients.length > 0 ? (
+              patients.map((patient) => (
+                <Patient key={patient.id} patient={patient} />
+              ))
+            ) : (
+              <div className="home__nopatients">
+                <h1 className="home__subtitle">
+                  No medications to display because there are no patients yet.
+                </h1>
+                <button className="home__button" onClick={addPatient}>
+                  Add a patient
+                </button>
+              </div>
+            )}
+          </div>
       </div>
     </main>
   );
