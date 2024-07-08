@@ -92,10 +92,9 @@ export default function MedicationForm({
  const generateTimeOptions = (interval) => {
    const options = [];
    const start = new Date();
-   start.setHours(6, 0, 0, 0); // Start at 6:00 AM
-
+   start.setHours(0, 0, 0, 0);
    const end = new Date();
-   end.setHours(23, 59, 0, 0); // End at 12:00 AM
+   end.setHours(23, 59, 0, 0);
 
    while (start <= end) {
      const hours = start.getHours().toString().padStart(2, "0");

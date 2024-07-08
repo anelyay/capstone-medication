@@ -56,7 +56,6 @@ export default function ProfilePage() {
         if (timezoneObj) {
           setTimezoneLabel(timezoneObj.label);
         }
-        console.log(response);
         setProfile(response);
       } catch (error) {
         console.error("Error fetching profile:", error);

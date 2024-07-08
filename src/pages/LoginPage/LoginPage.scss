@@ -79,7 +79,6 @@
 
     &-select{
       @include arrow-input;
-      color: grey;
     }
   }
 
@@ -93,5 +92,9 @@
   &__success {
     @include flex (center, center);
     font-weight: 500;
+  }
+
+  &__error {
+   color: $red-color;
   }
 }
