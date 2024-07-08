@@ -36,6 +36,7 @@
   opacity: 1;
   transition: opacity 1s;
   font-size: 1rem;
+  transition: transform 0.3s ease-in-out;
 
   &--delete {
     background-color: $red-color;
@@ -84,9 +85,10 @@
   }
 }
 
-
 @mixin hover-text {
-  &:hover{
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
     text-decoration: underline;
     transform: scale(1.05);
   }

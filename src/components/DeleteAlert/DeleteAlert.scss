@@ -13,7 +13,12 @@
   }
 
   &__title {
+    margin: 1.5rem 0 0 0;
+  }
+
+  &__subtitle {
     margin: 1rem 0;
+    font-size: 0.8rem;
   }
 
   &__select {
@@ -29,12 +34,13 @@
     cursor: pointer;
 
     &--yes {
-        color: white;
-        background-color: $red-color;
+      color: white;
+      background-color: $red-color;
     }
 
     &--no {
-        background-color: $white-background-color;
+      color: white;
+      background-color: $cool-color;
     }
   }
 }

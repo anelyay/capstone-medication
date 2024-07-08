@@ -2,10 +2,10 @@
 @use "../../styles/partials/variables" as *;
 
 .card {
-  width: 250px;
-  height: 250px;
+  width: 15.625rem;
+  height: 15.625rem;
   background-color: #93b1a7;
-  border-radius: 120px;
+  border-radius: 7.5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px -23px 25px 0px inset,
     rgba(0, 0, 0, 0.1) 0px -36px 30px 0px inset,
     rgba(0, 0, 0, 0.09) 0px -79px 40px 0px inset,
@@ -16,6 +16,7 @@
   @include flex(Center, center);
   @include direction(column);
   gap: 1.5rem;
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
     transform: scale(1.05);
