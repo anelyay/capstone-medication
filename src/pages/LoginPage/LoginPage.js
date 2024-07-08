@@ -193,7 +193,7 @@ export default function LoginPage({ onLogin }) {
               <div className="login__form-box">
                 <label className="login__label">Timezone:</label>
                 <select
-                  className="login__input"
+                  className="login__input login__input-select"
                   name="timezone"
                   value={formData.timezone}
                   onChange={handleChange}

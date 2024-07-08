@@ -68,21 +68,13 @@
     width: 100%;
 
     &-time {
-      background-image: url(../../assets/icons/down-arrow.png);
-      background-repeat: no-repeat;
-      background-position: right 0.7rem top 50%;
-      background-size: 0.65rem auto;
-      appearance: none;
+      @include arrow-input;
     }
   }
 
   &__schedule {
     @extend .add-med__input;
-    appearance: none;
-    background-image: url(../../assets/icons/down-arrow.png);
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 0.65rem auto;
+    @include arrow-input;
   }
 
   &__button {
@@ -186,21 +178,13 @@
     width: 100%;
 
     &-time {
-      background-image: url(../../assets/icons/down-arrow.png);
-      background-repeat: no-repeat;
-      background-position: right 0.7rem top 50%;
-      background-size: 0.65rem auto;
-      appearance: none;
+      @include arrow-input;
     }
   }
 
   &__schedule {
     @extend .add-med__input;
-    appearance: none;
-    background-image: url(../../assets/icons/down-arrow.png);
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 0.65rem auto;
+    @include arrow-input;
   }
 
   &__button {

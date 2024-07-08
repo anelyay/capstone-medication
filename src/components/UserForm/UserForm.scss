@@ -67,8 +67,6 @@
 
     @include tablet {
       @include direction(row);
-
-      // gap: 8rem;
     }
   }
 
@@ -156,8 +154,6 @@
 
     @include tablet {
       @include direction(row);
-
-      // gap: 8rem;
     }
   }
 

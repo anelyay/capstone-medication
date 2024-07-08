@@ -70,10 +70,6 @@
     @include flex(space-between, center);
     gap: 2rem;
     padding: 0 0.5rem;
-
-    @include tablet {
-      // gap: 5rem;
-    }
   }
 
   &__heading {
@@ -222,10 +218,10 @@
   &__box-log {
     padding-top: 0.5rem;
     margin-top: 1rem;
-    border-top: 1px solid $cool-color;
+    border-top: $border;
 
     @include tablet {
-      border-left: 1px solid $cool-color;
+      border-left: $border;
       border-top: none;
       padding-left: 1rem;
       padding-top: 0;

@@ -44,7 +44,7 @@ export default function Header({ onLogout }) {
           </div>
         </Link>
         <nav className="header__nav">
-          <TimezoneClock />
+            <TimezoneClock />
           <p
             className={`header__navlink ${
               location.pathname === "/" ? "header__navlink--active" : ""

@@ -6,12 +6,9 @@
   @include flex(space-between, center);
   padding: 0.5rem 2rem;
   z-index: 1;
-  background-color: #fffefa;
-  // background-color: #D5E6E1;
-  // background-image: url("/assets/images/pattern.png");
+  background-color: $white-background-color;
   background-repeat: repeat;
   background-size: 12rem 12rem;
-
   position: fixed;
   bottom: 0;
   width: 100%;

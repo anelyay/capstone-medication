@@ -226,7 +226,7 @@
 
   &__box-log {
     @include tablet {
-      border-left: 1px solid $cool-color;
+      border-left: $border;
       padding-left: 2rem;
     }
   }

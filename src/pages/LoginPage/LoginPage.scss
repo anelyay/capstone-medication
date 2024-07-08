@@ -76,6 +76,11 @@
   &__input {
     @include input;
     background-color: transparent;
+
+    &-select{
+      @include arrow-input;
+      color: grey;
+    }
   }
 
   &__button {

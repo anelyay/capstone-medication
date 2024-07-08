@@ -1,4 +1,3 @@
-///
 import { useState, useEffect } from "react";
 import "./MedicationForm.scss";
 import { useParams } from "react-router-dom";

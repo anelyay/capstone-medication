@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import "./TimeClock.scss"
+import { useState, useEffect } from "react";
 import moment from "moment-timezone";
 import AuthAPI from "../../classes/authAPI";
 import { useNavigate } from "react-router-dom";
+import timeIcon from "../../assets/icons/timeIcon.png"
 
 const TimezoneClock = ({ userTimezone }) => {
   const [selectedTimezone, setSelectedTimezone] = useState(userTimezone);
@@ -39,8 +41,9 @@ const TimezoneClock = ({ userTimezone }) => {
   }, [selectedTimezone]);
 
   return (
-    <div>
-      <p>{currentTime}</p>
+    <div className="time">
+      <img src={timeIcon} alt="time icon" className="time__icon"/>
+      <p className="time__clock">{currentTime}</p>
     </div>
   );
 };
