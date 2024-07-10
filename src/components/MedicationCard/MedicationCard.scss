@@ -74,6 +74,11 @@
     &--totake {
       @extend .card__button;
       background-image: url(../../assets/images/totake.png);
+      transition: 1s ease;
+
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 
