@@ -48,8 +48,11 @@ class AuthAPI {
       const response = await axiosInstance.post("/auth/register", credentials);
       return response.data;
     } catch (error) {
-      console.error("Error registering a user:", error);
-      throw error;
+     if (error.response) {
+       throw new Error(error.response.data.message);
+     } else {
+       throw new Error("Signup failed");
+     }
     }
   }
 

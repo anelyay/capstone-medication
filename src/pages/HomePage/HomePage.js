@@ -60,10 +60,10 @@ export default function HomePage() {
             ) : (
               <div className="home__nopatients">
                 <h1 className="home__subtitle">
-                  No medications to display because there are no patients yet.
+                  No medications to display because there are no profiles yet.
                 </h1>
                 <button className="home__button" onClick={addPatient}>
-                  Add a patient
+                  add a profile
                 </button>
               </div>
             )}

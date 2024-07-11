@@ -5,7 +5,6 @@ import { useState } from "react";
 import AuthAPI from "../../classes/authAPI";
 import { timezoneCodes } from "../../utils/utils.js";
 
-
 export default function LoginPage({ onLogin }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -24,7 +23,6 @@ export default function LoginPage({ onLogin }) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-
 
   const handleActive = (formName) => {
     setActiveForm(formName);
@@ -66,7 +64,7 @@ export default function LoginPage({ onLogin }) {
         email: "",
         password: "",
         verifyPassword: "",
-        timezone:""
+        timezone: "",
       });
 
       setLoginData({
@@ -91,7 +89,7 @@ export default function LoginPage({ onLogin }) {
       navigate("/");
     } catch (error) {
       console.error("Error logging in a user:", error);
-      setError(error.response?.data || "Error logging in");
+      setError(error.message || "Signup failed");
     }
   };
 
@@ -165,11 +163,6 @@ export default function LoginPage({ onLogin }) {
               {error && <div className="login__error"> {error} </div>}
             </form>
           )}
-
-
-
-
-
 
           {activeForm === "signup" && (
             <form className="login__form">
