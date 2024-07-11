@@ -73,8 +73,8 @@ export default function LoginPage({ onLogin }) {
       });
       setTimeout(() => setActiveForm("login"), 1500);
     } catch (error) {
-      setSuccess(false);
-      setError(error.response?.data || "Signup failed");
+      console.error("Error during registration:", error);
+      setError(error.message)
     }
   };
 
@@ -89,7 +89,7 @@ export default function LoginPage({ onLogin }) {
       navigate("/");
     } catch (error) {
       console.error("Error logging in a user:", error);
-      setError(error.message || "Signup failed");
+      setError(error.response.data || "Login failed");
     }
   };
 
