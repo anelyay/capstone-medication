@@ -30,7 +30,7 @@ export default function LoginPage({ onLogin }) {
     setSuccess(false);
   };
 
-  const handleChange = (event) => {
+  const handleRegisterChange = (event) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
@@ -46,10 +46,45 @@ export default function LoginPage({ onLogin }) {
     });
   };
 
+   const validateEmail = (email) => {
+     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     return emailPattern.test(email) ? "" : "Invalid email address.";
+   };
+
+    const validatePassword = (password) => {
+      const minLength = 8;
+      const hasNumber = /\d/;
+      const hasLetter = /[a-zA-Z]/;
+
+      if (password.length < minLength) {
+        return "Password must be at least 8 characters long.";
+      }
+      if (!hasNumber.test(password)) {
+        return "Password must contain at least one number.";
+      }
+      if (!hasLetter.test(password)) {
+        return "Password must contain at least one letter.";
+      }
+      return "";
+    };
+
   const handleSignSubmit = async (event) => {
     event.preventDefault();
 
     const { username, email, password, verifyPassword, timezone } = formData;
+
+
+    const emailError = validateEmail(email);
+    if (emailError) {
+      setError(emailError);
+      return;
+    }
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
 
     if (password !== verifyPassword) {
       setError("Passwords do not match");
@@ -173,7 +208,7 @@ export default function LoginPage({ onLogin }) {
                   type="text"
                   name="username"
                   value={formData.username}
-                  onChange={handleChange}
+                  onChange={handleRegisterChange}
                   placeholder="Please enter your name"
                 />
               </div>
@@ -184,7 +219,7 @@ export default function LoginPage({ onLogin }) {
                   type="email"
                   name="email"
                   value={formData.email}
-                  onChange={handleChange}
+                  onChange={handleRegisterChange}
                   placeholder="Please enter your email"
                 />
               </div>
@@ -194,7 +229,7 @@ export default function LoginPage({ onLogin }) {
                   className="login__input login__input-select"
                   name="timezone"
                   value={formData.timezone}
-                  onChange={handleChange}
+                  onChange={handleRegisterChange}
                   required
                 >
                   <option value="">Select your timezone</option>
@@ -212,7 +247,7 @@ export default function LoginPage({ onLogin }) {
                   type="password"
                   name="password"
                   value={formData.password}
-                  onChange={handleChange}
+                  onChange={handleRegisterChange}
                   placeholder="Please enter your password"
                 />
               </div>
@@ -223,7 +258,7 @@ export default function LoginPage({ onLogin }) {
                   type="password"
                   name="verifyPassword"
                   value={formData.verifyPassword}
-                  onChange={handleChange}
+                  onChange={handleRegisterChange}
                   placeholder="Please re-enter your password"
                 />
               </div>
