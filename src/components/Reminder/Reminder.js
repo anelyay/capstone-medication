@@ -1,4 +1,4 @@
-import "../Reminder.scss"
+import "./Reminder.scss"
 
 export default function Reminder ({pill, quantity}) {
 

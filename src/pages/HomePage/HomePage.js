@@ -3,6 +3,7 @@ import "./HomePage.scss";
 import { useState, useEffect } from "react";
 import PatientAPI from "../../classes/patientAPI";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function HomePage() {
   const [patients, setPatients] = useState([]);
@@ -41,7 +42,7 @@ export default function HomePage() {
       <main className="home">
         <div className="home__container">
           <h1 className="home__title">Today's Medications</h1>
-          <p>Loading...</p>
+          <Spinner/>
         </div>
       </main>
     );

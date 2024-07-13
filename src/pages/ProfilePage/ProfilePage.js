@@ -20,7 +20,6 @@ export default function ProfilePage() {
     navigate("add");
   };
 
-
   const handleRefresh = async (event) => {
     event.preventDefault();
 
@@ -71,7 +70,6 @@ export default function ProfilePage() {
     fetchProfile();
   }, [navigate]);
 
-
   return (
     <div className="profile">
       <div className="profile__wrap">
@@ -121,6 +119,7 @@ export default function ProfilePage() {
       )}
 
       {/* <button onClick={handleRefresh}>REFRESH</button> */}
+
     </div>
   );
 }

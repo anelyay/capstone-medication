@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AuthAPI from "../../classes/authAPI";
 import { timezoneCodes } from "../../utils/utils.js";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function LoginPage({ onLogin }) {
   const [formData, setFormData] = useState({
@@ -22,6 +23,7 @@ export default function LoginPage({ onLogin }) {
   const [activeForm, setActiveForm] = useState("login");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleActive = (formName) => {
@@ -68,7 +70,7 @@ export default function LoginPage({ onLogin }) {
       return "";
     };
 
-  const handleSignSubmit = async (event) => {
+  const handleSignupSubmit = async (event) => {
     event.preventDefault();
 
     const { username, email, password, verifyPassword, timezone } = formData;
@@ -113,7 +115,7 @@ export default function LoginPage({ onLogin }) {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = loginData;
 
@@ -121,12 +123,14 @@ export default function LoginPage({ onLogin }) {
       const response = await AuthAPI.Login({ email, password });
       sessionStorage.setItem("token", response.token);
       onLogin(response.token);
+      setIsLoading(true);
       navigate("/");
     } catch (error) {
       console.error("Error logging in a user:", error);
       setError(error.response.data || "Login failed");
     }
   };
+
 
   return (
     <div className="login">
@@ -191,11 +195,12 @@ export default function LoginPage({ onLogin }) {
               <button
                 type="submit"
                 className="login__button"
-                onClick={handleSubmit}
+                onClick={handleLoginSubmit}
               >
                 enter
               </button>
               {error && <div className="login__error"> {error} </div>}
+              {isLoading && <Spinner/>}
             </form>
           )}
 
@@ -265,13 +270,16 @@ export default function LoginPage({ onLogin }) {
               <button
                 type="submit"
                 className="login__button"
-                onClick={handleSignSubmit}
+                onClick={handleSignupSubmit}
               >
                 sign up
               </button>
               {error && <div className="login__error"> {error} </div>}
               {success && (
-                <div className="login__success"> Signup successful! </div>
+                <>
+                  <div className="login__success"> Signup successful! </div>
+                  <Spinner/>
+                </>
               )}
             </form>
           )}
