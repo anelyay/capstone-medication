@@ -55,11 +55,15 @@ export default function LoginPage({ onLogin }) {
 
   const validatePassword = (password) => {
     const minLength = 8;
+    const maxLength = 128;
     const hasNumber = /\d/;
     const hasLetter = /[a-zA-Z]/;
 
     if (password.length < minLength) {
       return "Password must be at least 8 characters long.";
+    }
+    if (password.length > minLength) {
+      return "Password cannot exceed 128 characters.";
     }
     if (!hasNumber.test(password)) {
       return "Password must contain at least one number.";
@@ -127,6 +131,7 @@ export default function LoginPage({ onLogin }) {
     } catch (error) {
       console.error("Error logging in a user:", error);
       setError(error.response.data || "Login failed");
+      setIsLoading(false);
     }
   };
 
