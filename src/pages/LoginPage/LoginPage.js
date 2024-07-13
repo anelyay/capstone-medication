@@ -48,33 +48,32 @@ export default function LoginPage({ onLogin }) {
     });
   };
 
-   const validateEmail = (email) => {
-     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     return emailPattern.test(email) ? "" : "Invalid email address.";
-   };
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email) ? "" : "Invalid email address.";
+  };
 
-    const validatePassword = (password) => {
-      const minLength = 8;
-      const hasNumber = /\d/;
-      const hasLetter = /[a-zA-Z]/;
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasNumber = /\d/;
+    const hasLetter = /[a-zA-Z]/;
 
-      if (password.length < minLength) {
-        return "Password must be at least 8 characters long.";
-      }
-      if (!hasNumber.test(password)) {
-        return "Password must contain at least one number.";
-      }
-      if (!hasLetter.test(password)) {
-        return "Password must contain at least one letter.";
-      }
-      return "";
-    };
+    if (password.length < minLength) {
+      return "Password must be at least 8 characters long.";
+    }
+    if (!hasNumber.test(password)) {
+      return "Password must contain at least one number.";
+    }
+    if (!hasLetter.test(password)) {
+      return "Password must contain at least one letter.";
+    }
+    return "";
+  };
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
 
     const { username, email, password, verifyPassword, timezone } = formData;
-
 
     const emailError = validateEmail(email);
     if (emailError) {
@@ -111,26 +110,25 @@ export default function LoginPage({ onLogin }) {
       setTimeout(() => setActiveForm("login"), 1500);
     } catch (error) {
       console.error("Error during registration:", error);
-      setError(error.message)
+      setError(error.message);
     }
   };
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = loginData;
+    setIsLoading(true);
 
     try {
       const response = await AuthAPI.Login({ email, password });
       sessionStorage.setItem("token", response.token);
       onLogin(response.token);
-      setIsLoading(true);
       navigate("/");
     } catch (error) {
       console.error("Error logging in a user:", error);
       setError(error.response.data || "Login failed");
     }
   };
-
 
   return (
     <div className="login">
@@ -200,7 +198,7 @@ export default function LoginPage({ onLogin }) {
                 enter
               </button>
               {error && <div className="login__error"> {error} </div>}
-              {isLoading && <Spinner/>}
+              {isLoading && <Spinner />}
             </form>
           )}
 
@@ -278,7 +276,7 @@ export default function LoginPage({ onLogin }) {
               {success && (
                 <>
                   <div className="login__success"> Signup successful! </div>
-                  <Spinner/>
+                  <Spinner />
                 </>
               )}
             </form>

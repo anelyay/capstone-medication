@@ -7,6 +7,8 @@ export default function MedicationCard({ medication }) {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = async () => {
+    if (clicked) return; // to prevent multiple clicks!!
+
     setClicked(true);
     try {
       await MedicationAPI.markMedAsTaken(medication.id, {
@@ -44,6 +46,7 @@ export default function MedicationCard({ medication }) {
           <div className="card__done-button">
             <button
               onClick={handleClick}
+              disabled={clicked}
               className={
                 medication.med_taken || clicked
                   ? "card__button"
