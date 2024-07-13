@@ -2,6 +2,7 @@ import "./UserInformation.scss";
 import AuthAPI from "../../classes/authAPI";
 import { useState } from "react";
 import { timezoneCodes } from "../../utils/utils.js";
+import Spinner from "../Spinner/Spinner";
 
 export default function UserInfo({ email, username, timezone, timezoneLabel }) {
   const [isForm, setIsForm] = useState(false);
@@ -15,7 +16,7 @@ export default function UserInfo({ email, username, timezone, timezoneLabel }) {
   });
 
   if (email === null || username === null) {
-    return <p>Loading...</p>;
+    return <Spinner/>;
   }
 
   const handleInputChange = (event) => {

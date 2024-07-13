@@ -7,6 +7,7 @@ import AuthAPI from "../../classes/authAPI";
 import { useState, useEffect } from "react";
 import UserInfo from "../../components/UserInformation/UserInformation";
 import { timezoneCodes } from "../../utils/utils.js";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function ProfilePage() {
   const [users, setUsers] = useState([]);
@@ -86,7 +87,7 @@ export default function ProfilePage() {
         <div className="profile__list">
           <h2 className="profile__heading">My Managed Profiles</h2>
           {isLoading ? (
-            <div className="profile__loading">Loading ...</div>
+            <Spinner/>
           ) : users.length > 0 ? (
             <>
               <div className="profile__patients">

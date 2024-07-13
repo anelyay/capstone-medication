@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PatientAPI from "../../classes/patientAPI";
 // import otterMed from "../../assets/images/otterholdspill.png";
 import moment from "moment-timezone";
+import Spinner from "../../components/Spinner/Spinner";
 
 
 export default function ProfileDetailsPage() {
@@ -82,7 +83,7 @@ export default function ProfileDetailsPage() {
     navigate(`/medication/${id}/add`);
   };
 
-  if (loading) return <div className="details__loading">Loading...</div>;
+  if (loading) return <Spinner/>;
   if (patientError) return <div>{patientError}</div>;
 
   return (

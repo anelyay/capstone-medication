@@ -3,6 +3,7 @@ import MedicationCard from "../MedicationCard/MedicationCard";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PatientAPI from "../../classes/patientAPI";
+import Spinner from "../Spinner/Spinner";
 
 export default function Patient({ patient }) {
   const [medications, setMedications] = useState([]);
@@ -48,7 +49,7 @@ export default function Patient({ patient }) {
       </h2>
       <div className="patient__medlist">
         {loading ? (
-          <p>Loading medications...</p>
+          <Spinner/>
         ) : medications.length > 0 ? (
           medications.map((medication) => (
             <MedicationCard

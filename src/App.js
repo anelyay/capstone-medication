@@ -16,6 +16,7 @@ import ProfileDetailsPage from "./pages/ProfileDetailsPage/ProfileDetailsPage";
 import Navbar from "./components/Navbar/Navbar";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Spinner from "./components/Spinner/Spinner";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -40,7 +41,8 @@ export default function App() {
   };
 
    if (loading) {
-     return <div>Loading...</div>;
+     return
+     <Spinner/>;
    }
 
   return (

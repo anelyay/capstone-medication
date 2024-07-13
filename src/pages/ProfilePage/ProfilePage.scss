@@ -147,8 +147,4 @@
   &__nousers {
     @include flex(center, center);
   }
-
-  &__loading {
-    @include flex(center, center);
-  }
 }

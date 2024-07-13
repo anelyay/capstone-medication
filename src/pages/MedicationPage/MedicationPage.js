@@ -6,6 +6,7 @@ import otterMedication from "../../assets/images/med_otter.png";
 import bubbleSpeech from "../../assets/images/bubble.png";
 import AuthAPI from "../../classes/authAPI";
 import moment from "moment-timezone";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function MedicationPage() {
   const { id } = useParams();
@@ -36,7 +37,8 @@ export default function MedicationPage() {
   }, [id]);
 
   if (!medication) {
-    return <div className="medication__loading">Loading...</div>;
+    // return <div className="medication__loading">Loading...</div>;
+    return <Spinner/>
   }
 
   const sortedSchedule = medication.schedule.sort((a, b) => {
