@@ -142,9 +142,9 @@ export default function ProfileDetailsPage() {
             {!medError && (
               <>
                 <div className="details__headerbox">
-                  <h3 className="details__heading">added on:</h3>
-                  <h3 className="details__heading-main">name:</h3>
-                  <h3 className="details__heading">quantity:</h3>
+                  <h3 className="details__heading">Added on:</h3>
+                  <h3 className="details__heading-main">Name:</h3>
+                  <h3 className="details__heading">Quantity:</h3>
                 </div>
               </>
             )}

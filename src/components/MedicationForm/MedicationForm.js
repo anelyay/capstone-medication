@@ -157,6 +157,7 @@ export default function MedicationForm({
               placeholder="Please enter the medication name"
               id="medicationName"
               name="medicationName"
+              maxLength={16}
               className={`${className}__input`}
               value={medicationName}
               onChange={(e) => setMedicationName(e.target.value)}

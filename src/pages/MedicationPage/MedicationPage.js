@@ -14,7 +14,6 @@ export default function MedicationPage() {
   const [activityLog, setActivityLog] = useState();
   const [showAllLogs, setShowAllLogs] = useState(false);
   const [bubble, setBubble] = useState(false);
-  const [userTimezone, setUserTimezone] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +25,6 @@ export default function MedicationPage() {
         const logData = await MedicationAPI.getActivityLog(id);
         setActivityLog(logData);
 
-        // const user = await AuthAPI.getUser();
-        // setUserTimezone(user.timezone);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -37,7 +34,6 @@ export default function MedicationPage() {
   }, [id]);
 
   if (!medication) {
-    // return <div className="medication__loading">Loading...</div>;
     return <Spinner/>
   }
 

@@ -4,7 +4,7 @@ $desktop-breakpoint: 1280px;
 $background-color: #25383c;
 $white-background-color: #fffefa;
 $card-background-color: #93b1a7;
-$cool-color: #3A574E;
+$card-color: #3A574E;
 $main-font-color: #1B322B;
 $input-color: #fbfbf2;
 $input-color-user: #fbfbf2;
@@ -12,9 +12,9 @@ $button-font-color: #ffffff;
 $invalid-font-color: #a9b7c0;
 $red-color: #9d0208;
 
-$border: 1px solid $cool-color;
+$border: 1px solid $card-color;
 
-$box-shadow: 4px 4px 0 0 $cool-color;
+$box-shadow: 4px 4px 0 0 $card-color;
 $box-shadow-button: 0 8px 12px rgba(0, 0, 0, 0.2);
 
 $box-shadow-medication:rgba(0, 0, 0, 0.1) 0px -23px 25px 0px inset,

@@ -16,6 +16,7 @@
 
   &__form {
     width: 100%;
+    margin-bottom: 10rem;
 
     @include tablet {
       @include flex(center, center);
@@ -125,6 +126,7 @@
 
     @include tablet {
       @include direction(row);
+      margin-top: 1rem;
     }
   }
 
@@ -138,6 +140,9 @@
 
     &::placeholder {
       font-style: italic;
+    }
+    &-select{
+      @include arrow-input;
     }
   }
 

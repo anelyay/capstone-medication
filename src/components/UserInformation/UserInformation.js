@@ -107,16 +107,6 @@ export default function UserInfo({ email, username, timezone, timezoneLabel }) {
                   </p>
                 </div>
               </div>
-
-              {/* <div className="user-info__visibilitybox">
-                <button
-                  alt="visibility"
-                  onClick={handleVisibility}
-                  className={
-                    isVisible ? "user-info__visible" : "user-info__invisible"
-                  }
-                />
-              </div> */}
             </div>
 
             <button onClick={handleShowForm} className="user-info__button">
@@ -164,7 +154,7 @@ export default function UserInfo({ email, username, timezone, timezoneLabel }) {
                 name="timezone"
                 value={userInfo.timezone}
                 onChange={handleInputChange}
-                className="user-info__input"
+                className="user-info__input user-info__input-select"
               >
                 <option value="">Select your timezone</option>
                 {timezoneCodes.map((tz) => (

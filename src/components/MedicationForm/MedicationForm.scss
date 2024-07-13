@@ -7,7 +7,7 @@
 
   &__wrap {
     margin: 1rem;
-    width: 100%;
+    width: 18rem;
     @include flex(center, center);
     @include direction(column);
   }
@@ -117,7 +117,7 @@
 
   &__wrap {
     margin: 1rem;
-    width: 100%;
+    width: 18rem;
     @include flex(center, center);
     @include direction(column);
   }

@@ -99,7 +99,7 @@
     @include flex(center, center);
     @include direction(column);
     width: 100%;
-    border-bottom: 1px solid $cool-color;
+    border-bottom: 1px solid $card-color;
 
     @include tablet {
       border: none;
@@ -119,10 +119,6 @@
   &__wrapping {
     @include flex(space-between, center);
     gap: 6rem;
-
-    @include tablet {
-      gap: 7rem;
-    }
   }
 
   &__heading {

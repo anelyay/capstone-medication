@@ -74,6 +74,7 @@ export default function UserForm({
               placeholder="Please enter the name"
               id="patient_name"
               name="patient_name"
+              maxLength={17}
               className={`${className}__input`}
               value={formData.patient_name}
               onChange={handleChange}
