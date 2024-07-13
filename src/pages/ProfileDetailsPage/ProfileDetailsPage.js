@@ -151,7 +151,7 @@ export default function ProfileDetailsPage() {
 
             <div className="details__wrapper">
               {medError ? (
-                <p className="details__text-med">
+                <p className="details__text-nomed">
                   No medications yet
                 </p>
               ) : medications.length > 0 ? (
@@ -172,7 +172,7 @@ export default function ProfileDetailsPage() {
                   </div>
                 ))
               ) : (
-                <p className="details__text-med">No medications yet</p>
+                <p className="details__text-nomed">No medications yet</p>
               )}
             </div>
 

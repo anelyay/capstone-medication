@@ -157,7 +157,7 @@ const sortedActivityLog = activityLog
                   ))}
                   {sortedActivityLog.length > 3 && (
                     <div className="medication__showbox">
-                      <p className="medication__show-more" onClick={showLogs}>
+                      <p className="medication__show-button" onClick={showLogs}>
                         {showAllLogs ? "show less" : "show more"}
                       </p>
                     </div>

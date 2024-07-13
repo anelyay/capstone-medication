@@ -73,7 +73,6 @@
 
   &__wrapping {
     @include flex(space-between, center);
-    gap: 2rem;
     padding: 0 0.5rem;
   }
 
@@ -85,7 +84,7 @@
 
     &-main {
       @extend .details__heading;
-      padding-left: 0.7rem;
+      padding-left: 1.8rem;
 
       @include tablet {
         padding-right: 2rem;
@@ -134,6 +133,11 @@
     &-med {
       margin: 0.5rem 0 0 0;
       font-size: 0.9rem;
+      text-align: left;
+      width: 5.5rem;
+    }
+
+    &-nomed {
       text-align: center;
     }
 

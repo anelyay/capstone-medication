@@ -22,6 +22,7 @@ export default function UserForm({
     patient_allergy: "",
   });
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (initialData) {
@@ -29,16 +30,37 @@ export default function UserForm({
     }
   }, [initialData]);
 
+ const validateFields = () => {
+   const newErrors = {};
+   if (!formData.patient_name.trim()) {
+     newErrors.patient_name = "Profile name is required.";
+   }
+   if (!formData.patient_dob) {
+     newErrors.patient_dob = "Date of Birth is required.";
+   }
+   if (!formData.patient_md.trim()) {
+     newErrors.patient_md = "Primary Doctor is required.";
+   }
+   setErrors(newErrors);
+   return Object.keys(newErrors).length === 0;
+ };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!validateFields()) return;
+
     if (onSubmit) {
       onSubmit(formData);
     }
@@ -70,41 +92,59 @@ export default function UserForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Name</label>
             <input
-              required
               placeholder="Please enter the name"
               id="patient_name"
               name="patient_name"
               maxLength={17}
-              className={`${className}__input`}
+              className={
+                errors.patient_name
+                  ? `${className}__input ${className}__input-error`
+                  : `${className}__input`
+              }
               value={formData.patient_name}
               onChange={handleChange}
             />
+            {errors.patient_name && (
+              <div className={`${className}__error`}>{errors.patient_name}</div>
+            )}
           </div>
 
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Date of Birth</label>
             <input
-              required
               type="date"
               id="patient_dob"
               name="patient_dob"
-              className={`${className}__date`}
+              className={
+                errors.patient_dob
+                  ? `${className}__date ${className}__date-error`
+                  : `${className}__date`
+              }
               value={formData.patient_dob}
               onChange={handleChange}
             />
+            {errors.patient_dob && (
+              <div className={`${className}__error`}>{errors.patient_dob}</div>
+            )}
           </div>
 
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Primary Doctor</label>
             <input
-              required
               placeholder="Please enter the name of Primary Doctor"
               id="patient_md"
               name="patient_md"
-              className={`${className}__input`}
+              className={
+                errors.patient_md
+                  ? `${className}__input ${className}__input-error`
+                  : `${className}__input`
+              }
               value={formData.patient_md}
               onChange={handleChange}
             />
+            {errors.patient_md && (
+              <div className={`${className}__error`}>{errors.patient_md}</div>
+            )}
           </div>
 
           <div className={`${className}__box`}>

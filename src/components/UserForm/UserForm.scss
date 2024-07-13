@@ -45,6 +45,10 @@
     @include input;
     margin-bottom: 1rem;
     width: 100%;
+
+    &-error {
+      border: 1px solid $red-color;
+    }
   }
 
   &__date {
@@ -84,6 +88,10 @@
 
   &__box {
     @include direction(column);
+  }
+
+  &__error {
+    @include error;
   }
 }
 
@@ -131,6 +139,10 @@
     @include input;
     margin-bottom: 1rem;
     width: 100%;
+
+    &-error {
+      border: 1px solid $red-color;
+    }
   }
 
   &__date {
@@ -140,6 +152,10 @@
     &::-webkit-calendar-picker-indicator {
       position: absolute;
       left: 6rem;
+    }
+    
+    &-error {
+      border: 1px solid $red-color;
     }
   }
 
@@ -170,5 +186,9 @@
 
   &__box {
     @include direction(column);
+  }
+
+   &__error {
+    @include error;
   }
 }
