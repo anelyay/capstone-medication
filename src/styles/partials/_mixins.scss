@@ -63,7 +63,7 @@
   border: $border;
   border-radius: 50px;
   height: 2rem;
-  background-color: $input-color;
+  background-color: transparent;
   padding-left: 0.75rem;
 
   @include tablet {
@@ -96,4 +96,12 @@
   background-position: right 0.7rem top 50%;
   background-size: 0.65rem auto;
   appearance: none;
+}
+
+@mixin error {
+  font-size: 0.8rem;
+  color: $red-color;
+  margin-top: -1rem;
+  text-align: right;
+  padding-bottom: 0.5rem;
 }

@@ -70,6 +70,10 @@
     &-time {
       @include arrow-input;
     }
+
+    &-error {
+      border: 1.5px solid $red-color;
+    }
   }
 
   &__schedule {
@@ -108,6 +112,10 @@
       @include direction(row);
       gap: 1rem;
     }
+  }
+
+  &__error {
+    @include error;
   }
 }
 
@@ -180,6 +188,10 @@
     &-time {
       @include arrow-input;
     }
+
+    &-error {
+      border: 1.5px solid $red-color;
+    }
   }
 
   &__schedule {
@@ -218,5 +230,9 @@
       @include direction(row);
       gap: 1rem;
     }
+  }
+
+  &__error {
+    @include error;
   }
 }

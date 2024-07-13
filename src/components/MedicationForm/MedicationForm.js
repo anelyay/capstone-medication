@@ -35,6 +35,7 @@ export default function MedicationForm({
   const [selectedTimes, setSelectedTimes] = useState(null);
   const [times, setTimes] = useState([]);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [errors, setErrors] = useState("");
 
   useEffect(() => {
     if (initialData) {
@@ -58,12 +59,14 @@ export default function MedicationForm({
     setSelectedSchedule(event.target.value);
     setSelectedTimes(selectedOption ? selectedOption.times : null);
     setTimes(Array(selectedOption ? selectedOption.times : 0).fill(""));
+    setErrors((prevErrors) => ({ ...prevErrors, selectedSchedule: "" }));
   };
 
   const handleTimeChange = (index, value) => {
     const newTimes = [...times];
     newTimes[index] = value;
     setTimes(newTimes);
+    setErrors((prevErrors) => ({ ...prevErrors, [`time-${index}`]: "" }));
   };
 
   const handleSecondClick = (event) => {
@@ -76,8 +79,28 @@ export default function MedicationForm({
     setShowDeleteAlert(false);
   };
 
+  const validateFields = () => {
+    const newErrors = {};
+    if (!medicationName)
+      newErrors.medicationName = "Medication name is required.";
+    if (!dose) newErrors.dose = "Dose is required.";
+    if (!selectedSchedule) newErrors.selectedSchedule = "Schedule is required.";
+    if (!quantity) newErrors.quantity = "Quantity is required.";
+    if (quantity < 1) newErrors.quantity = "Quantity cannot be less than 1.";
+    if (quantity > 1024) newErrors.quantity = "Quantity cannot exceed 1024.";
+    times.forEach((time, index) => {
+      if (!time) newErrors[`time-${index}`] = `Time ${index + 1} is required.`;
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!validateFields()) return;
+
     const formData = {
       patient_id: patientId,
       med_name: medicationName,
@@ -89,22 +112,22 @@ export default function MedicationForm({
     onSubmit(formData);
   };
 
- const generateTimeOptions = (interval) => {
-   const options = [];
-   const start = new Date();
-   start.setHours(0, 0, 0, 0);
-   const end = new Date();
-   end.setHours(23, 59, 0, 0);
+  const generateTimeOptions = (interval) => {
+    const options = [];
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+    const end = new Date();
+    end.setHours(23, 59, 0, 0);
 
-   while (start <= end) {
-     const hours = start.getHours().toString().padStart(2, "0");
-     const minutes = start.getMinutes().toString().padStart(2, "0");
-     options.push(`${hours}:${minutes}`);
-     start.setMinutes(start.getMinutes() + interval);
-   }
+    while (start <= end) {
+      const hours = start.getHours().toString().padStart(2, "0");
+      const minutes = start.getMinutes().toString().padStart(2, "0");
+      options.push(`${hours}:${minutes}`);
+      start.setMinutes(start.getMinutes() + interval);
+    }
 
-   return options;
- };
+    return options;
+  };
 
   const renderTimeInputs = () => {
     if (selectedTimes === null) return null;
@@ -115,10 +138,13 @@ export default function MedicationForm({
         <div key={i} className={`${className}__time`}>
           <label className={`${className}__label`}>Time {i + 1}</label>
           <select
-            required
             id={`time-${i}`}
             name={`time-${i}`}
-            className={`${className}__input ${className}__input-time `}
+            className={
+              errors[`time-${i}`]
+                ? `${className}__input ${className}__input-time ${className}__input-error`
+                : `${className}__input ${className}__input-time `
+            }
             value={times[i]}
             onChange={(e) => handleTimeChange(i, e.target.value)}
           >
@@ -131,6 +157,9 @@ export default function MedicationForm({
               </option>
             ))}
           </select>
+          {errors[`time-${i}`] && (
+            <div className={`${className}__error`}>{errors[`time-${i}`]}</div>
+          )}
         </div>
       );
     }
@@ -153,27 +182,50 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Medication Name</label>
             <input
-              required
               placeholder="Please enter the medication name"
               id="medicationName"
               name="medicationName"
               maxLength={16}
-              className={`${className}__input`}
+              className={
+                errors.medicationName
+                  ? `${className}__input ${className}__input-error`
+                  : `${className}__input`
+              }
               value={medicationName}
-              onChange={(e) => setMedicationName(e.target.value)}
+              onChange={(e) => {
+                setMedicationName(e.target.value);
+                setErrors((prevErrors) => ({
+                  ...prevErrors,
+                  medicationName: "",
+                }));
+              }}
             />
+            {errors.medicationName && (
+              <div className={`${className}__error`}>
+                {errors.medicationName}
+              </div>
+            )}
           </div>
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Dose</label>
             <input
-              required
               placeholder="Please enter the medication dose"
               id="dose"
               name="dose"
-              className={`${className}__input`}
+              className={
+                errors.dose
+                  ? `${className}__input ${className}__input-error`
+                  : `${className}__input`
+              }
               value={dose}
-              onChange={(e) => setDose(e.target.value)}
+              onChange={(e) => {
+                setDose(e.target.value);
+                setErrors((prevErrors) => ({ ...prevErrors, dose: "" }));
+              }}
             />
+            {errors.dose && (
+              <div className={`${className}__error`}>{errors.dose}</div>
+            )}
           </div>
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Notes</label>
@@ -189,7 +241,6 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Schedule</label>
             <select
-              required
               id="schedule"
               name="schedule"
               className={`${className}__schedule`}
@@ -210,6 +261,11 @@ export default function MedicationForm({
                 </option>
               ))}
             </select>
+            {errors.selectedSchedule && (
+              <div className={`${className}__error`}>
+                {errors.selectedSchedule}
+              </div>
+            )}
           </div>
           <div className={`${className}__box`}>
             <div className={`${className}__times`}>{renderTimeInputs()}</div>
@@ -217,17 +273,24 @@ export default function MedicationForm({
           <div className={`${className}__box`}>
             <label className={`${className}__label`}>Quantity</label>
             <input
-              required
               placeholder="Please enter the medication quantity"
               id="quantity"
               name="quantity"
               type="number"
-              min="1"
-              max="1024"
-              className={`${className}__input`}
+              className={
+                errors.quantity
+                  ? `${className}__input ${className}__input-error`
+                  : `${className}__input`
+              }
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => {
+                setQuantity(e.target.value);
+                setErrors((prevErrors) => ({ ...prevErrors, quantity: "" }));
+              }}
             />
+            {errors.quantity && (
+              <div className={`${className}__error`}>{errors.quantity}</div>
+            )}
           </div>
           <div className={`${className}__buttons`}>
             <button
