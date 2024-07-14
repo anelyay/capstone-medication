@@ -44,7 +44,7 @@ export default function Header({ onLogout }) {
           </div>
         </Link>
         <nav className="header__nav">
-            <TimezoneClock />
+          <TimezoneClock />
           <p
             className={`header__navlink ${
               location.pathname === "/" ? "header__navlink--active" : ""
@@ -55,7 +55,9 @@ export default function Header({ onLogout }) {
           </p>
           <p
             className={`header__navlink ${
-              location.pathname === "/profile" ? "header__navlink--active" : ""
+              location.pathname.startsWith("/profile")
+                ? "header__navlink--active"
+                : ""
             }`}
             onClick={handleProfile}
           >
