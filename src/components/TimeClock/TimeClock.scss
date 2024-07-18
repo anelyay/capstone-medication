@@ -5,6 +5,8 @@
     @include direction(row);
     @include flex(center, center);
     gap: 0.3rem;
+    cursor: none;
+
 
     &__icon{
         width: 1.2rem;

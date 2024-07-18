@@ -62,7 +62,7 @@ export default function LoginPage({ onLogin }) {
     if (password.length < minLength) {
       return "Password must be at least 8 characters long.";
     }
-    if (password.length > minLength) {
+    if (password.length > maxLength) {
       return "Password cannot exceed 128 characters.";
     }
     if (!hasNumber.test(password)) {
