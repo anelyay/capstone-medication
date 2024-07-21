@@ -8,6 +8,7 @@ import Spinner from "../Spinner/Spinner";
 export default function Patient({ patient }) {
   const [medications, setMedications] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -19,6 +20,15 @@ export default function Patient({ patient }) {
       try {
         const medData = await PatientAPI.findMedicationsByPatient(patient.id);
         const currentDate = new Date();
+
+        // const hasZeroQuantity = medData.some((med) => med.quantity === 0);
+        // if (hasZeroQuantity && !loading) {
+        //   setZeroAlert(true);
+        //   setTimeout(() => {
+        //     window.location.reload();
+        //   }, 2000);
+        //   return;
+        // }
         const sortedMeds = medData
           .filter((med) => {
             const medDate = new Date(med.date);
@@ -49,7 +59,7 @@ export default function Patient({ patient }) {
       </h2>
       <div className="patient__medlist">
         {loading ? (
-          <Spinner/>
+          <Spinner />
         ) : medications.length > 0 ? (
           medications.map((medication) => (
             <MedicationCard

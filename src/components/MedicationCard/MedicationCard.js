@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./MedicationCard.scss";
 import { Link } from "react-router-dom";
 import MedicationAPI from "../../classes/medicationAPI";
+import ZeroAlert from "../ZeroAlert/ZeroAlert";
 
 export default function MedicationCard({ medication }) {
   const [clicked, setClicked] = useState(false);
+  const [zeroAlert, setZeroAlert] = useState(false);
+  const [currentQuantity, setCurrentQuantity] = useState(medication.quantity);
+  const [invisible, SetInvisible]=useState(false)
 
   const handleClick = async () => {
     if (clicked) return; // to prevent multiple clicks!!
@@ -16,13 +20,25 @@ export default function MedicationCard({ medication }) {
         med_time: medication.med_time,
         med_taken: true,
       });
+
+      const updatedQuantity = currentQuantity - 1;
+      setCurrentQuantity(updatedQuantity);
+
+      if (updatedQuantity === 0) {
+        setZeroAlert(true);
+        SetInvisible(true);
+      //   setTimeout(() => {
+      //     window.location.reload();
+      //   }, 2000);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
+
   return (
-    <section className="card">
+    <section className={`card ${invisible ? "card__invisible" : ""}`}>
       <div className="card__top">
         <Link to={`/medication/${medication.id}`}>
           <h3 className="card__title">{medication.med_name}</h3>
@@ -59,6 +75,7 @@ export default function MedicationCard({ medication }) {
       <Link to={`/medication/${medication.id}`}>
         <div className="card__expand">details</div>
       </Link>
+      {/* {zeroAlert && <ZeroAlert medName={medication.med_name} />} */}
     </section>
   );
 }

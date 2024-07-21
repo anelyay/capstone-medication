@@ -5,7 +5,7 @@
     @include direction(row);
     @include flex(center, center);
     gap: 0.3rem;
-    cursor: none;
+    cursor:auto;
 
 
     &__icon{

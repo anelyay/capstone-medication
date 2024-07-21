@@ -21,16 +21,16 @@ export default function ProfilePage() {
     navigate("add");
   };
 
-  const handleRefresh = async (event) => {
-    event.preventDefault();
+  // const handleRefresh = async (event) => {
+  //   event.preventDefault();
 
-    try {
-      await AuthAPI.RefreshStatus();
-      console.log("Status refreshed successfully");
-    } catch (error) {
-      console.error("Error refreshing status:", error);
-    }
-  };
+  //   try {
+  //     await AuthAPI.RefreshStatus();
+  //     console.log("Status refreshed successfully");
+  //   } catch (error) {
+  //     console.error("Error refreshing status:", error);
+  //   }
+  // };
 
   useEffect(() => {
     const getPatientsData = async () => {

@@ -11,7 +11,12 @@
   @include flex(Center, center);
   @include direction(column);
   gap: 1.5rem;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
+
+  &__invisible{
+    transform: scale(0.5);
+    opacity: 0;
+  }
 
   &:hover {
     transform: scale(1.05);
