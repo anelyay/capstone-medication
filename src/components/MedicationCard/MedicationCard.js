@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./MedicationCard.scss";
 import { Link } from "react-router-dom";
 import MedicationAPI from "../../classes/medicationAPI";
-import ZeroAlert from "../ZeroAlert/ZeroAlert";
+// import ZeroAlert from "../ZeroAlert/ZeroAlert";
 
 export default function MedicationCard({ medication }) {
   const [clicked, setClicked] = useState(false);
